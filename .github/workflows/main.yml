@@ -66,3 +66,4 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           branch: pages
+          github_token: ${{ secrets.RAN_ACTIONS_TOKEN }}
