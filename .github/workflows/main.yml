@@ -1,46 +1,50 @@
-name: Build and Deploy to Pages Branch
+
+name: 部署文档
 
 on:
   push:
-    branches: [ main ] # 当 main 分支有推送时触发
-  workflow_dispatch: # 允许手动触发
+    branches:
+      - main
+
+permissions:
+  contents: write
 
 jobs:
-  build-and-deploy:
+  deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取源代码
-      - name: Checkout main
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main # 明确检出 main 分支
+          fetch-depth: 0
+          # 如果你文档需要 Git 子模块，取消注释下一行
+          # submodules: true
 
-      # 2. 设置 Node.js 环境
-      - name: Setup Node.js
+
+
+      - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
 
-      # 3. 安装依赖并构建
-      - name: Install and Build
+      - name: 安装依赖
         run: |
+          corepack enable
           npm ci
-          npm run docs:build # 请确保你的 package.json 中有此脚本
 
-      # 4. 创建 .nojekyll 文件 (防止下划线文件被忽略)
-      - name: Create .nojekyll
-        run: touch docs/.vitepress/dist/.nojekyll
+      - name: 构建文档
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: |-
+          npm run docs:build
+          > src\.vuepress\dist\.nojekyll
 
-      # 5. 部署到 pages 分支
-      - name: Deploy to Pages Branch
+      - name: 部署文档
         uses: JamesIves/github-pages-deploy-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          branch: pages # 部署的目标分支
-          folder: docs/.vitepress/dist # VitePress 构建产物的目录
-          clean: true # 部署前清空目标分支文件夹内容
-          # 单次提交信息，保持分支历史干净
-          single-commit: true
-          commit-message: 'Deploy: ${{ github.sha }}'
+          # 部署文档
+          branch: pages
+          folder: src\.vuepress\dist
