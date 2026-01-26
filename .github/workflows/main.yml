@@ -1,52 +1,55 @@
-name: Build and Deploy to Pages Branch
+name: Deploy VitePress to Pages Branch
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]   # 当代码推送到 main 分支时触发
+  workflow_dispatch:      # 允许在 GitHub 网页手动触发工作流
 
+# 设置工作流全局权限
 permissions:
-  contents: write
+  contents: write        # 必须：允许向 pages 分支推送代码
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      # 1. 拉取代码
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
-          token: ${{ secrets.MY_PAT }} # 使用 PAT 检出
+          fetch-depth: 0          # 获取完整历史，某些插件可能需要
 
+      # 2. 设置 Node.js 环境
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run docs:build
+      # 3. 安装依赖并构建
+      - name: Install dependencies
+        run: npm ci
 
-      - name: List build output
-        run: ls -la docs/.vitepress/dist
+      - name: Build VitePress site
+        run: npm run docs:build    # 请确保你的 package.json 中有此脚本
 
-      - name: Configure Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Create .nojekyll
-        run: touch docs/.vitepress/dist/.nojekyll
-
-      - name: Deploy to Pages Branch
-        uses: JamesIves/github-pages-deploy-action@v4
+      # 4. 部署到 GitHub Pages 分支
+      - name: Deploy to Pages branch
+        uses: peaceiris/actions-gh-pages@v3.9.3
         with:
-          branch: pages
-          folder: docs/.vitepress/dist
-          clean: true
-          force: true
-          single-commit: true
-          commit-message: 'Deploy: ${{ github.sha }}'
-          token: ${{ secrets.ACCESS_TOKEN }} # 使用相同的 PAT 推送
+          # ★ 关键修复：传递 GitHub Token
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          
+          # 构建输出目录（根据你的实际目录调整）
+          publish_dir: ./docs/.vitepress/dist
+          
+          # 目标分支名称
+          publish_branch: pages
+          
+          # 保持分支干净，只包含最新构建
+          force_orphan: true
+          
+          # 提交信息
+          commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
