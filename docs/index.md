@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Blog"
-  text: "Suzilong Blog"
+  name: "博客"
+  text: "苏子龙博客"
   tagline: My great project tagline
   actions:
     - theme: brand
