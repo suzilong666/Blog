@@ -11,6 +11,11 @@ export default defineConfig({
     },
   },
   themeConfig: {
+    // 1. 配置大纲（右侧目录）显示到 h3
+    outline: {
+      level: [2, 3],  // 显示 h2 和 h3 标题
+      label: '目录',   // 目录标题文字
+    },
     // 导航栏
     nav: [
       { text: 'Home', link: '/' },
