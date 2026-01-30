@@ -20,28 +20,34 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Html', link: '/Html/html' },
-      { text: 'Css', link: '/Css/引入方式与优先级' },
+      { text: 'Css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/JavaScript/闭包' },
     ],
     // 侧边栏
     sidebar: {
-      "Html": [
+      "html": [
         {
           text: 'Html',
           items: [
-            { text: 'Html', link: '/Html/Html' },
+            { text: 'Html', link: '/html/html' },
           ]
         },
       ],
-      "Css": [
+      "css": [
         {
           text: 'Css',
           items: [
-            { text: '引入方式与优先级', link: '/Css/引入方式与优先级' },
-            { text: '选择器', link: '/Css/选择器' },
-            { text: '盒模型', link: '/Css/盒模型' },
-            { text: '布局', link: '/Css/布局' },
-            { text: '响应式', link: '/Css/响应式' },
+            { text: '引入方式与优先级', link: '/css/引入方式与优先级' },
+            { text: '选择器', link: '/css/选择器' },
+            { text: '伪类和伪元素', link: '/css/伪类和伪元素' },
+            { text: '层叠、优先级与继承', link: '/css/层叠、优先级与继承' },
+            { text: '盒模型', link: '/css/盒模型' },
+            { text: '布局', link: '/css/布局' },
+            { text: '响应式网页设计和媒体查询', link: '/css/响应式网页设计和媒体查询' },
+            { text: '溢出', link: '/css/溢出' },
+            { text: '层叠上下文', link: '/css/层叠上下文' },
+            { text: '格式化上下文', link: '/css/格式化上下文' },
+            { text: '重排与重绘', link: '/css/重排与重绘' },
           ]
         },
       ],
