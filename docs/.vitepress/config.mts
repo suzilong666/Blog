@@ -21,7 +21,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Html', link: '/Html/html' },
       { text: 'Css', link: '/css/引入方式与优先级' },
-      { text: 'JavaScript', link: '/JavaScript/闭包' },
+      { text: 'JavaScript', link: '/javaScript/basic/数据类型' },
     ],
     // 侧边栏
     sidebar: {
@@ -52,13 +52,86 @@ export default defineConfig({
           ]
         },
       ],
-      "JavaScript": [
+      "javascript": [
         {
-          text: 'JavaScript',
+          text: '基础知识',
           items: [
-            { text: '闭包', link: '/JavaScript/闭包' },
+            { text: '数据类型', link: '/javaScript/basic/数据类型' },
+            { text: '类型转换', link: '/javaScript/basic/类型转换' },
           ]
-        }
+        },
+        {
+          text: '核心概念',
+          items: [
+            { text: '闭包', link: '/javaScript/core' },
+          ]
+        },
+        {
+          text: '高级主题',
+          items: [
+            { text: '闭包', link: '/JavaScript/advanced' },
+          ]
+        },
+        // {
+        //   text: 'DOM',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: 'BOM',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '存储相关',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '网络请求',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '函数进阶',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: 'ES6',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '异步编程',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '性能优化',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '设计模式',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
+        // {
+        //   text: '安全相关',
+        //   items: [
+        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //   ]
+        // },
       ]
     },
     socialLinks: [
