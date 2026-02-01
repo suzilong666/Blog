@@ -58,18 +58,24 @@ export default defineConfig({
           items: [
             { text: '数据类型', link: '/javaScript/basic/数据类型' },
             { text: '类型转换', link: '/javaScript/basic/类型转换' },
+            { text: '严格模式', link: '/javaScript/basic/严格模式' },
           ]
         },
         {
           text: '核心概念',
           items: [
-            { text: '闭包', link: '/javaScript/core' },
+            { text: '作用域与作用域链', link: '/javaScript/core/作用域与作用域链' },
+            { text: '闭包', link: '/javaScript/core/闭包' },
+            { text: 'this', link: '/javaScript/core/this' },
+            { text: '原型与原型链', link: '/javaScript/core/原型与原型链' },
+            { text: '继承', link: '/javaScript/core/继承' },
+            { text: '事件循环', link: '/javaScript/core/事件循环' },
+            { text: '深拷贝与浅拷贝', link: '/javaScript/core/深拷贝与浅拷贝' },
           ]
         },
         {
           text: '高级主题',
           items: [
-            { text: '闭包', link: '/JavaScript/advanced' },
           ]
         },
         // {
