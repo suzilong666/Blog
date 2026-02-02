@@ -64,10 +64,12 @@ export default defineConfig({
         {
           text: '核心概念',
           items: [
-            { text: '作用域与作用域链', link: '/javaScript/core/作用域与作用域链' },
+            { text: '作用域', link: '/javaScript/core/作用域' },
+            { text: '提升', link: '/javaScript/core/提升' },
             { text: '闭包', link: '/javaScript/core/闭包' },
+            { text: '执行上下文', link: '/javaScript/core/执行上下文' },
             { text: 'this', link: '/javaScript/core/this' },
-            { text: '原型与原型链', link: '/javaScript/core/原型与原型链' },
+            { text: '原型', link: '/javaScript/core/原型' },
             { text: '继承', link: '/javaScript/core/继承' },
             { text: '事件循环', link: '/javaScript/core/事件循环' },
             { text: '深拷贝与浅拷贝', link: '/javaScript/core/深拷贝与浅拷贝' },
