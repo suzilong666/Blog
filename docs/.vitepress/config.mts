@@ -58,6 +58,7 @@ export default defineConfig({
           items: [
             { text: '数据类型', link: '/javaScript/basic/数据类型' },
             { text: '类型转换', link: '/javaScript/basic/类型转换' },
+            { text: '相等性比较', link: '/javaScript/basic/相等性比较' },
             { text: '严格模式', link: '/javaScript/basic/严格模式' },
           ]
         },
@@ -72,7 +73,12 @@ export default defineConfig({
             { text: '原型', link: '/javaScript/core/原型' },
             { text: '继承', link: '/javaScript/core/继承' },
             { text: '事件循环', link: '/javaScript/core/事件循环' },
-            { text: '深拷贝与浅拷贝', link: '/javaScript/core/深拷贝与浅拷贝' },
+          ]
+        },
+        {
+          text: '其他',
+          items: [
+            { text: '深拷贝与浅拷贝', link: '/javaScript/other/深拷贝与浅拷贝' },
           ]
         },
         {
