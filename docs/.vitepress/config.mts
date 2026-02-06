@@ -79,6 +79,8 @@ export default defineConfig({
           text: '其他',
           items: [
             { text: '深拷贝与浅拷贝', link: '/javaScript/other/深拷贝与浅拷贝' },
+            { text: '编辑器撤销重做功能', link: '/javaScript/other/编辑器撤销重做功能' },
+            { text: '微前端iframe架构通讯方式', link: '/javaScript/other/微前端iframe架构通讯方式' },
           ]
         },
         {
@@ -146,7 +148,15 @@ export default defineConfig({
         //     { text: '闭包', link: '/JavaScript/闭包' },
         //   ]
         // },
-      ]
+      ],
+      "vue": [
+        {
+          text: '基础',
+          items: [
+            { text: 'new Vue()和createApp()的区别', link: '/vue/new Vue()和createApp()的区别' },
+          ]
+        },
+      ],
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
