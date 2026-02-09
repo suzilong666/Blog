@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'Html', link: '/Html/html' },
       { text: 'Css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/javaScript/basic/数据类型' },
+      { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
     ],
     // 侧边栏
     sidebar: {
@@ -154,6 +155,10 @@ export default defineConfig({
           text: '基础',
           items: [
             { text: 'new Vue()和createApp()的区别', link: '/vue/new Vue()和createApp()的区别' },
+            { text: '响应式原理', link: '/vue/响应式原理' },
+            { text: '虚拟Dom', link: '/vue/虚拟Dom' },
+            { text: 'Diff算法', link: '/vue/Diff算法' },
+            { text: 'key的作用', link: '/vue/key的作用' },
           ]
         },
       ],
