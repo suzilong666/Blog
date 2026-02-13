@@ -36,7 +36,7 @@ export default defineConfig({
       ],
       "css": [
         {
-          text: 'css',
+          text: 'Css',
           items: [
             { text: '引入方式与优先级', link: '/css/引入方式与优先级' },
             { text: '选择器', link: '/css/选择器' },
