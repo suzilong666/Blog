@@ -21,7 +21,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Html', link: '/Html/html' },
       { text: 'Css', link: '/css/引入方式与优先级' },
-      { text: 'JavaScript', link: '/javaScript/basic/数据类型' },
+      { text: 'JavaScript', link: '/javascript/basic/数据类型' },
       { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
     ],
     // 侧边栏
