@@ -57,31 +57,31 @@ export default defineConfig({
         {
           text: '基础知识',
           items: [
-            { text: '数据类型', link: '/javaScript/basic/数据类型' },
-            { text: '类型转换', link: '/javaScript/basic/类型转换' },
-            { text: '相等性比较', link: '/javaScript/basic/相等性比较' },
-            { text: '严格模式', link: '/javaScript/basic/严格模式' },
+            { text: '数据类型', link: '/javascript/basic/数据类型' },
+            { text: '类型转换', link: '/javascript/basic/类型转换' },
+            { text: '相等性比较', link: '/javascript/basic/相等性比较' },
+            { text: '严格模式', link: '/javascript/basic/严格模式' },
           ]
         },
         {
           text: '核心概念',
           items: [
-            { text: '作用域', link: '/javaScript/core/作用域' },
-            { text: '提升', link: '/javaScript/core/提升' },
-            { text: '闭包', link: '/javaScript/core/闭包' },
-            { text: '执行上下文', link: '/javaScript/core/执行上下文' },
-            { text: 'this', link: '/javaScript/core/this' },
-            { text: '原型', link: '/javaScript/core/原型' },
-            { text: '继承', link: '/javaScript/core/继承' },
-            { text: '事件循环', link: '/javaScript/core/事件循环' },
+            { text: '作用域', link: '/javascript/core/作用域' },
+            { text: '提升', link: '/javascript/core/提升' },
+            { text: '闭包', link: '/javascript/core/闭包' },
+            { text: '执行上下文', link: '/javascript/core/执行上下文' },
+            { text: 'this', link: '/javascript/core/this' },
+            { text: '原型', link: '/javascript/core/原型' },
+            { text: '继承', link: '/javascript/core/继承' },
+            { text: '事件循环', link: '/javascript/core/事件循环' },
           ]
         },
         {
           text: '其他',
           items: [
-            { text: '深拷贝与浅拷贝', link: '/javaScript/other/深拷贝与浅拷贝' },
-            { text: '编辑器撤销重做功能', link: '/javaScript/other/编辑器撤销重做功能' },
-            { text: '微前端iframe架构通讯方式', link: '/javaScript/other/微前端iframe架构通讯方式' },
+            { text: '深拷贝与浅拷贝', link: '/javascript/other/深拷贝与浅拷贝' },
+            { text: '编辑器撤销重做功能', link: '/javascript/other/编辑器撤销重做功能' },
+            { text: '微前端iframe架构通讯方式', link: '/javascript/other/微前端iframe架构通讯方式' },
           ]
         },
         {
@@ -92,61 +92,61 @@ export default defineConfig({
         // {
         //   text: 'DOM',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: 'BOM',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '存储相关',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '网络请求',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '函数进阶',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: 'ES6',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '异步编程',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '性能优化',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '设计模式',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
         // {
         //   text: '安全相关',
         //   items: [
-        //     { text: '闭包', link: '/JavaScript/闭包' },
+        //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
       ],
