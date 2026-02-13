@@ -19,8 +19,8 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Html', link: '/Html/html' },
-      { text: 'Css', link: '/css/引入方式与优先级' },
+      { text: 'Html', link: '/html/html' },
+      { text: 'css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/javascript/basic/数据类型' },
       { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
     ],
@@ -36,7 +36,7 @@ export default defineConfig({
       ],
       "css": [
         {
-          text: 'Css',
+          text: 'css',
           items: [
             { text: '引入方式与优先级', link: '/css/引入方式与优先级' },
             { text: '选择器', link: '/css/选择器' },
