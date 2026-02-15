@@ -155,6 +155,7 @@ export default defineConfig({
           text: '基础',
           items: [
             { text: 'new Vue()和createApp()的区别', link: '/vue/new Vue()和createApp()的区别' },
+            { text: 'Vue2源码执行流程', link: '/vue/Vue2源码执行流程' },
             { text: '响应式原理', link: '/vue/响应式原理' },
             { text: '虚拟Dom', link: '/vue/虚拟Dom' },
             { text: 'Diff算法', link: '/vue/Diff算法' },
