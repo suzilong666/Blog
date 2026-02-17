@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./chunks/framework.BrHDBe7t.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"vue/虚拟Dom.md","filePath":"vue/虚拟Dom.md"}'),a={name:"vue/虚拟Dom.md"};function r(s,c,n,m,_,p){return t(),o("div")}const f=e(a,[["render",r]]);export{i as __pageData,f as default};
