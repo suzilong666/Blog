@@ -18,19 +18,34 @@ export default defineConfig({
     },
     // 导航栏
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Html', link: '/html/html' },
+      { text: '首页', link: '/' },
+      { text: 'Html', link: '/' },
       { text: 'Css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/javascript/basic/数据类型' },
-      { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
+      { text: '浏览器', link: '/browser/浏览器渲染原理' },
+      {
+        text: '框架',
+        items: [
+          { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
+          { text: 'React', link: '/' },
+        ]
+      }
     ],
     // 侧边栏
     sidebar: {
+      "browser": [
+        {
+          text: '浏览器',
+          items: [
+            { text: '浏览器渲染原理', link: '/browser/浏览器渲染原理' },
+          ]
+        },
+      ],
       "html": [
         {
           text: 'Html',
           items: [
-            { text: 'Html', link: '/html/html' },
+            { text: '浏览器渲染原理', link: '/browser/浏览器渲染原理' },
           ]
         },
       ],
@@ -50,6 +65,8 @@ export default defineConfig({
             { text: '层叠上下文', link: '/css/层叠上下文' },
             { text: '重排与重绘', link: '/css/重排与重绘' },
             { text: 'GPU加速', link: '/css/GPU加速' },
+            { text: '属性计算过程', link: '/css/属性计算过程' },
+            { text: '包含块', link: '/css/包含块' },
           ]
         },
       ],
