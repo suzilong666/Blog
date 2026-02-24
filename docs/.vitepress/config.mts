@@ -23,13 +23,15 @@ export default defineConfig({
       { text: 'Css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/javascript/basic/数据类型' },
       { text: '浏览器', link: '/browser/浏览器渲染原理' },
+      { text: '网络', link: '/network/' },
       {
         text: '框架',
         items: [
           { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
           { text: 'React', link: '/' },
         ]
-      }
+      },
+      { text: '其他', link: '/other/资源' },
     ],
     // 侧边栏
     sidebar: {
@@ -38,6 +40,7 @@ export default defineConfig({
           text: '浏览器',
           items: [
             { text: '浏览器渲染原理', link: '/browser/浏览器渲染原理' },
+            { text: '浏览器输入URL后回车会发生什么', link: '/browser/浏览器输入URL后回车会发生什么' },
           ]
         },
       ],
@@ -136,12 +139,12 @@ export default defineConfig({
         //     { text: '闭包', link: '/javascript/闭包' },
         //   ]
         // },
-        // {
-        //   text: 'ES6',
-        //   items: [
-        //     { text: '闭包', link: '/javascript/闭包' },
-        //   ]
-        // },
+        {
+          text: 'ES6',
+          items: [
+            { text: '箭头函数', link: '/javascript/es6/箭头函数' },
+          ]
+        },
         // {
         //   text: '异步编程',
         //   items: [
@@ -179,7 +182,16 @@ export default defineConfig({
             { text: 'key的作用', link: '/vue/key的作用' },
           ]
         },
+
       ],
+      "资源": [
+        {
+          text: '资源',
+          items: [
+            { text: '资源', link: '/other/资源' },
+          ]
+        }
+      ]
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
