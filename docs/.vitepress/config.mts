@@ -27,10 +27,11 @@ export default defineConfig({
       {
         text: '框架',
         items: [
-          { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
-          // { text: 'React', link: '/' },
+          { text: 'Vue', link: '/vue/Vue3新特性' },
+          { text: 'React', link: '/react/Fiber' },
         ]
       },
+      { text: '性能', link: '/performance/vendor文件体积过大如何解决' },
       { text: '其他', link: '/other/资源' },
     ],
     // 侧边栏
@@ -174,12 +175,23 @@ export default defineConfig({
         {
           text: '基础',
           items: [
+            { text: 'Vue3新特性', link: '/vue/Vue3新特性' },
             { text: 'new Vue()和createApp()的区别', link: '/vue/new Vue()和createApp()的区别' },
             { text: 'Vue2源码执行流程', link: '/vue/Vue2源码执行流程' },
             { text: '响应式原理', link: '/vue/响应式原理' },
             { text: '虚拟Dom', link: '/vue/虚拟Dom' },
             { text: 'Diff算法', link: '/vue/Diff算法' },
             { text: 'key的作用', link: '/vue/key的作用' },
+          ]
+        },
+
+      ],
+      "react": [
+        {
+          text: 'react',
+          items: [
+            { text: 'Fiber', link: '/react/Fiber' },
+            { text: '自动批处理', link: '/react/自动批处理' },
           ]
         },
 
