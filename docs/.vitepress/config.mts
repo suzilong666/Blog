@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/Blog/',
+  base: '/blog/',
   title: "博客",
   description: "苏子龙博客",
   markdown: {
@@ -19,16 +19,16 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: '首页', link: '/' },
-      { text: 'Html', link: '/' },
+      // { text: 'Html', link: '/' },
       { text: 'Css', link: '/css/引入方式与优先级' },
       { text: 'JavaScript', link: '/javascript/basic/数据类型' },
       { text: '浏览器', link: '/browser/浏览器渲染原理' },
-      { text: '网络', link: '/network/' },
+      // { text: '网络', link: '/network/' },
       {
         text: '框架',
         items: [
           { text: 'Vue', link: '/vue/new Vue()和createApp()的区别' },
-          { text: 'React', link: '/' },
+          // { text: 'React', link: '/' },
         ]
       },
       { text: '其他', link: '/other/资源' },

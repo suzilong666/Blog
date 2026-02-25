@@ -3,23 +3,27 @@
 layout: home
 
 hero:
-  name: "博客"
-  text: "苏子龙博客"
-  tagline: My great project tagline
+  name: "苏子龙的博客"
+  text: "记录学习与思考"
+  tagline: "前端开发 | 工具控 | 终身学习者"
+
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 开始吧
+      link: /javascript/basic/数据类型
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: ⚡
+    title: 深度源码解读
+    details: 不只是表面 API，深入 Vue、React 等框架核心，剖析设计思想与实现原理。
+  - icon: 🛠️
+    title: 工程化实战
+    details: 从构建工具到代码规范，分享大厂级项目配置与优化技巧，直接用于生产。
+  - icon: 📚
+    title: 知识体系梳理
+    details: 将零散知识点串联成体系，帮助建立完整的前端知识图谱，告别碎片化。
+  - icon: 🚀
+    title: 每周持续更新
+    details: 保持周更频率，与社区同步成长，不错过每一个前沿技术动态。
 ---
 
