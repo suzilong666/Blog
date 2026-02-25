@@ -9,8 +9,11 @@ hero:
 
   actions:
     - theme: brand
-      text: 开始吧
+      text: 开始学习
       link: /javascript/basic/数据类型
+    - theme: alt
+      text: 我的简历
+      link: 苏子龙-前端开发工程师.pdf
 
 features:
   - icon: ⚡
