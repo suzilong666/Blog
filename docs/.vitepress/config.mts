@@ -38,6 +38,7 @@ export default defineConfig({
       { text: "Python", link: "/python/basic/环境搭建" },
       { text: "Java", link: "/java/basic/环境搭建" },
       { text: "AI", link: "/ai/basic/大模型概述" },
+      { text: "MySQL", link: "/mysql/basic/MySQL简介与环境搭建" },
     ],
     // 侧边栏
     sidebar: {
@@ -434,6 +435,44 @@ export default defineConfig({
           items: [
             { text: "模型微调", link: "/ai/expert/模型微调" },
             { text: "生产部署", link: "/ai/expert/生产部署" },
+          ],
+        },
+      ],
+      mysql: [
+        {
+          text: "入门",
+          items: [
+            { text: "MySQL简介与环境搭建", link: "/mysql/basic/MySQL简介与环境搭建" },
+            { text: "SQL基础语法", link: "/mysql/basic/SQL基础语法" },
+            { text: "数据类型与表结构", link: "/mysql/basic/数据类型与表结构" },
+            { text: "数据查询与操作", link: "/mysql/basic/数据查询与操作" },
+          ],
+        },
+        {
+          text: "核心原理",
+          items: [
+            { text: "索引原理与应用", link: "/mysql/core/索引原理与应用" },
+            { text: "事务与ACID特性", link: "/mysql/core/事务与ACID特性" },
+            { text: "存储引擎详解", link: "/mysql/core/存储引擎详解" },
+            { text: "锁机制与并发控制", link: "/mysql/core/锁机制与并发控制" },
+          ],
+        },
+        {
+          text: "进阶实战",
+          items: [
+            { text: "SQL优化实战", link: "/mysql/advanced/SQL优化实战" },
+            { text: "主从复制原理", link: "/mysql/advanced/主从复制原理" },
+            { text: "分库分表策略", link: "/mysql/advanced/分库分表策略" },
+            { text: "性能调优实战", link: "/mysql/advanced/性能调优实战" },
+          ],
+        },
+        {
+          text: "精通与架构",
+          items: [
+            { text: "InnoDB存储引擎深度剖析", link: "/mysql/expert/InnoDB存储引擎深度剖析" },
+            { text: "查询优化器原理", link: "/mysql/expert/查询优化器原理" },
+            { text: "日志系统与恢复机制", link: "/mysql/expert/日志系统与恢复机制" },
+            { text: "MySQL高可用架构", link: "/mysql/expert/MySQL高可用架构" },
           ],
         },
       ],
