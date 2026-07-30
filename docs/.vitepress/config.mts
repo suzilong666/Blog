@@ -35,6 +35,7 @@ export default defineConfig({
       { text: "性能", link: "/performance/vendor文件体积过大如何解决" },
       { text: "其他", link: "/other/资源" },
       { text: "Python", link: "/python/basic/环境搭建" },
+      { text: "Java", link: "/java/basic/环境搭建" },
       { text: "AI", link: "/ai/basic/大模型概述" },
     ],
     // 侧边栏
@@ -315,6 +316,44 @@ export default defineConfig({
             { text: "pip", link: "/python/tools/pip" },
             { text: "虚拟环境", link: "/python/tools/虚拟环境" },
             { text: "代码规范", link: "/python/tools/代码规范" },
+          ],
+        },
+      ],
+      java: [
+        {
+          text: "基础",
+          items: [
+            { text: "环境搭建", link: "/java/basic/环境搭建" },
+            { text: "基础语法", link: "/java/basic/基础语法" },
+            { text: "数组与字符串", link: "/java/basic/数组与字符串" },
+          ],
+        },
+        {
+          text: "核心",
+          items: [
+            { text: "面向对象编程", link: "/java/core/面向对象编程" },
+            { text: "集合框架", link: "/java/core/集合框架" },
+            { text: "异常处理", link: "/java/core/异常处理" },
+            { text: "泛型", link: "/java/core/泛型" },
+            { text: "注解与反射", link: "/java/core/注解与反射" },
+          ],
+        },
+        {
+          text: "进阶",
+          items: [
+            { text: "JVM内存模型与GC", link: "/java/advanced/JVM内存模型与GC" },
+            { text: "并发编程", link: "/java/advanced/并发编程" },
+            { text: "Java 8+新特性", link: "/java/advanced/Java8新特性" },
+            { text: "IO与NIO", link: "/java/advanced/IO与NIO" },
+            { text: "序列化", link: "/java/advanced/序列化" },
+          ],
+        },
+        {
+          text: "高级",
+          items: [
+            { text: "JVM调优", link: "/java/expert/JVM调优" },
+            { text: "并发编程深入", link: "/java/expert/并发编程深入" },
+            { text: "设计模式", link: "/java/expert/设计模式" },
           ],
         },
       ],

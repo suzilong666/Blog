@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "苏子龙的博客"
   text: "记录学习与思考"
-  tagline: "前端开发 | 工具控 | 终身学习者"
+  tagline: "软件工程师 | 工具控 | 终身学习者"
 
   actions:
     - theme: brand
