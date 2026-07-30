@@ -356,6 +356,42 @@ export default defineConfig({
             { text: "设计模式", link: "/java/expert/设计模式" },
           ],
         },
+        {
+          text: "Spring",
+          items: [
+            { text: "Spring入门与IoC控制反转", link: "/java/frameworks/spring/Spring入门与IoC控制反转" },
+            { text: "Bean生命周期与作用域", link: "/java/frameworks/spring/Bean生命周期与作用域" },
+            { text: "AOP面向切面编程", link: "/java/frameworks/spring/AOP面向切面编程" },
+            { text: "Spring事务管理", link: "/java/frameworks/spring/Spring事务管理" },
+            { text: "Spring核心原理", link: "/java/frameworks/spring/Spring核心原理" },
+          ],
+        },
+        {
+          text: "SpringMVC",
+          items: [
+            { text: "SpringMVC入门与请求处理流程", link: "/java/frameworks/springmvc/SpringMVC入门与请求处理流程" },
+            { text: "参数绑定与数据校验", link: "/java/frameworks/springmvc/参数绑定与数据校验" },
+            { text: "异常处理机制", link: "/java/frameworks/springmvc/异常处理机制" },
+            { text: "拦截器与过滤器", link: "/java/frameworks/springmvc/拦截器与过滤器" },
+          ],
+        },
+        {
+          text: "MyBatis",
+          items: [
+            { text: "MyBatis入门与核心概念", link: "/java/frameworks/mybatis/MyBatis入门与核心概念" },
+            { text: "动态SQL与缓存机制", link: "/java/frameworks/mybatis/动态SQL与缓存机制" },
+            { text: "MyBatis核心原理", link: "/java/frameworks/mybatis/MyBatis核心原理" },
+          ],
+        },
+        {
+          text: "SpringBoot",
+          items: [
+            { text: "SpringBoot入门与核心特性", link: "/java/frameworks/springboot/SpringBoot入门与核心特性" },
+            { text: "SpringBoot自动配置原理", link: "/java/frameworks/springboot/SpringBoot自动配置原理" },
+            { text: "配置文件与环境管理", link: "/java/frameworks/springboot/配置文件与环境管理" },
+            { text: "SpringBoot核心原理", link: "/java/frameworks/springboot/SpringBoot核心原理" },
+          ],
+        },
       ],
       ai: [
         {
