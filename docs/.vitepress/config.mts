@@ -6,6 +6,7 @@ export default defineConfig({
   title: "博客",
   description: "苏子龙博客",
   markdown: {
+    html: false,
     headers: {
       level: [2, 3, 4], // 目录显示的标题级别
     },
