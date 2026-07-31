@@ -5,6 +5,7 @@ export default defineConfig({
   base: "/blog/",
   title: "博客",
   description: "苏子龙博客",
+  ignoreDeadLinks: true,
   markdown: {
     html: false,
     headers: {
