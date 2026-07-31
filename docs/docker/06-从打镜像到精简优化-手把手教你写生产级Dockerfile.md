@@ -1,21 +1,120 @@
 ﻿# 06-从打镜像到精简优化-手把手教你写生产级Dockerfile
 
-Dockerfile 是构建镜像的说明文件，它定义了镜像从何而来、如何安装依赖、如何复制代码以及容器启动时执行什么命令。一个好的 Dockerfile，决定了镜像能不能稳定构建、体积能不能控制、后续能不能高效维护。
+## 引言
 
-最常见的 Dockerfile 指令包括 `FROM`、`WORKDIR`、`COPY`、`RUN`、`EXPOSE` 和 `CMD`。其中，`FROM` 用来指定基础镜像，`WORKDIR` 设置工作目录，`COPY` 用于复制文件，`RUN` 执行安装步骤，`EXPOSE` 表示开放端口，`CMD` 定义默认启动命令。掌握这些基本指令，是构建生产级镜像的第一步。
+Dockerfile 是镜像构建的说明书。它决定了镜像来自哪里、依赖如何安装、代码如何复制、以及最终如何启动。在生产环境中，一个设计良好的 Dockerfile，能显著提高构建稳定性、缓存命中率和镜像可维护性。
 
-下面是一个非常典型的示例：
+## Dockerfile 的核心组成
+
+最常见的关键指令有：
+
+- `FROM`：指定基础镜像；
+- `WORKDIR`：设置工作目录；
+- `COPY` / `ADD`：复制文件到镜像；
+- `RUN`：执行构建命令；
+- `EXPOSE`：声明端口；
+- `CMD` / `ENTRYPOINT`：指定容器启动命令；
+- `ENV`：定义环境变量；
+- `VOLUME`：声明挂载卷。
+
+掌握这些指令之后，Dockerfile 就不是黑盒，而是一个可读的构建流程。
+
+## 一个基本示例
 
 ```dockerfile
 FROM node:20-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 COPY . .
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["node", "index.js"]
 ```
 
-这个例子足够简单，但也包含了镜像构建最核心的思路：以最小可用镜像为基础，按顺序安装依赖、复制代码、暴露端口并启动应用。真正生产级的 Dockerfile，通常还要考虑缓存命中、构建上下文、镜像层数和体积控制。最常见的优化方式包括使用轻量基础镜像、减少不必要的 `RUN` 指令、合理使用 `.dockerignore`，以及尽量只安装生产依赖。
+这个示例体现了生产级镜像的基本思路：先复制依赖清单，安装依赖，再复制代码，最后启动应用。
 
-很多初学者容易犯的错误是，把整个项目目录都拷贝进去，连本地日志、缓存和编译产物一起打进去，结果构建速度变慢，镜像体积越来越大。生产级镜像追求的从来不是“能跑就行”，而是“清晰、稳定、轻量、可维护”。
+## 生产级 Dockerfile 的优化策略
+
+### 1. 利用构建缓存
+
+Docker 会缓存每一层命令结果。常见优化是把变化频率低的步骤放在前面，比如：
+
+```dockerfile
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+```
+
+当你只修改源码而不改依赖时，`npm install` 可以复用缓存，构建速度大幅提升。
+
+### 2. 使用多阶段构建
+
+多阶段构建可以把构建依赖与运行依赖分离，最终镜像只包含运行时所需内容。
+
+```dockerfile
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+CMD ["node", "dist/index.js"]
+```
+
+这样既能保持构建阶段的灵活性，又能让最终镜像更小。
+
+### 3. 选择合适的基础镜像
+
+基础镜像越轻量，最终镜像越小。但不要为了最小体积牺牲稳定性。常见选择：
+
+- `alpine`：极致轻量，适合稳定的运行时；
+- `slim`：兼顾兼容性和体积；
+- 官方镜像：通常支持更好。
+
+### 4. 避免不必要的文件
+
+使用 `.dockerignore` 排除本地开发环境中的临时文件、日志、`node_modules`、构建缓存等，避免它们进入构建上下文。
+
+### 5. 只安装运行时依赖
+
+如果有构建工具和开发依赖，尽量只在构建阶段安装它们，最终镜像中只保留生产依赖。
+
+## 常见误区
+
+- 把整个项目目录直接 `COPY . .`，导致构建上下文变大；
+- 把构建工具和临时文件留在最终镜像中；
+- 忽略了构建缓存机制；
+- 在 Dockerfile 中硬编码环境配置。
+
+## 何时使用 `CMD` 与 `ENTRYPOINT`
+
+- `CMD` 更适合默认命令，可被 `docker run` 覆盖；
+- `ENTRYPOINT` 更适合固定命令，适合把容器当作可执行程序。
+
+例如：
+
+```dockerfile
+ENTRYPOINT ["node", "dist/index.js"]
+CMD ["--port", "3000"]
+```
+
+这样既能固定运行程序，又能通过 `docker run` 传参。
+
+## 最佳实践总结
+
+1. 明确基础镜像；
+2. 先复制依赖文件，后复制源码；
+3. 使用多阶段构建；
+4. 拒绝无关文件进入镜像；
+5. 保持 Dockerfile 简洁、可读；
+6. 把配置和敏感信息从镜像中剥离出来。
+
+## 结语
+
+生产级 Dockerfile 的目标不是“写了就行”，而是“写得可维护、构建稳定、运行高效”。把镜像构建当成工程化流程，而不是一次性手工操作，你就能让 Docker 的价值真正落地。
