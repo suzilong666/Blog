@@ -39,6 +39,7 @@ export default defineConfig({
       { text: "Java", link: "/java/basic/环境搭建" },
       { text: "AI", link: "/ai/basic/大模型概述" },
       { text: "MySQL", link: "/mysql/basic/MySQL简介与环境搭建" },
+      { text: "Redis", link: "/redis/basic/Redis简介与环境搭建" },
     ],
     // 侧边栏
     sidebar: {
@@ -473,6 +474,38 @@ export default defineConfig({
             { text: "查询优化器原理", link: "/mysql/expert/查询优化器原理" },
             { text: "日志系统与恢复机制", link: "/mysql/expert/日志系统与恢复机制" },
             { text: "MySQL高可用架构", link: "/mysql/expert/MySQL高可用架构" },
+          ],
+        },
+      ],
+      redis: [
+        {
+          text: "入门",
+          items: [
+            { text: "Redis简介与环境搭建", link: "/redis/basic/Redis简介与环境搭建" },
+            { text: "数据类型与基础命令", link: "/redis/basic/数据类型与基础命令" },
+          ],
+        },
+        {
+          text: "核心原理",
+          items: [
+            { text: "数据结构底层实现", link: "/redis/core/数据结构底层实现" },
+            { text: "持久化机制", link: "/redis/core/持久化机制" },
+            { text: "内存管理与淘汰策略", link: "/redis/core/内存管理与淘汰策略" },
+            { text: "发布订阅与事务", link: "/redis/core/发布订阅与事务" },
+          ],
+        },
+        {
+          text: "进阶实战",
+          items: [
+            { text: "主从复制与集群", link: "/redis/advanced/主从复制与集群" },
+            { text: "缓存问题与性能优化", link: "/redis/advanced/缓存问题与性能优化" },
+          ],
+        },
+        {
+          text: "精通与架构",
+          items: [
+            { text: "单线程模型与事件循环", link: "/redis/expert/单线程模型与事件循环" },
+            { text: "分布式锁与高可用架构", link: "/redis/expert/分布式锁与高可用架构" },
           ],
         },
       ],
