@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis 简介与环境搭建 | 博客</title>
+    <meta name="description" content="苏子龙博客">
+    <meta name="generator" content="VitePress v2.0.0-alpha.15">
+    <link rel="preload stylesheet" href="/blog/assets/style.CATQHecQ.css" as="style">
+    <link rel="preload stylesheet" href="/blog/vp-icons.css" as="style">
+    
+    <script type="module" src="/blog/assets/app.C5rY1Z9v.js"></script>
+    <link rel="preload" href="/blog/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/blog/assets/chunks/theme.DAmqxd4Q.js">
+    <link rel="modulepreload" href="/blog/assets/chunks/framework.CPHJ30oF.js">
+    <link rel="modulepreload" href="/blog/assets/redis_basic_Redis简介与环境搭建.md.DkyTvIN5.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-1df9f90f><!--[--><!--]--><!--[--><span tabindex="-1" data-v-331ec75c></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-331ec75c>Skip to content</a><!--]--><!----><header class="VPNav" data-v-1df9f90f data-v-da52a441><div class="VPNavBar" data-v-da52a441 data-v-70946a35><div class="wrapper" data-v-70946a35><div class="container" data-v-70946a35><div class="title" data-v-70946a35><div class="VPNavBarTitle has-sidebar" data-v-70946a35 data-v-1e38c6bc><a class="title" href="/blog/" data-v-1e38c6bc><!--[--><!--]--><!----><span data-v-1e38c6bc>博客</span><!--[--><!--]--></a></div></div><div class="content" data-v-70946a35><div class="content-body" data-v-70946a35><!--[--><!--]--><div class="VPNavBarSearch search" data-v-70946a35><!----></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-70946a35 data-v-39714824><span id="main-nav-aria-label" class="visually-hidden" data-v-39714824> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/css/%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Css</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/javascript/basic/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>JavaScript</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>浏览器</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/engineering/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>工程化</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-39714824 data-v-42cb505d><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-42cb505d><span class="text" data-v-42cb505d><!----><span data-v-42cb505d>框架</span><span class="vpi-chevron-down text-icon" data-v-42cb505d></span></span></button><div class="menu" data-v-42cb505d><div class="VPMenu" data-v-42cb505d data-v-25a6cce8><div class="items" data-v-25a6cce8><!--[--><!--[--><div class="VPMenuLink" data-v-25a6cce8 data-v-faf5b206><a class="VPLink link" href="/blog/vue/Vue3%E6%96%B0%E7%89%B9%E6%80%A7.html" data-v-faf5b206><!--[--><span data-v-faf5b206>Vue</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-25a6cce8 data-v-faf5b206><a class="VPLink link" href="/blog/react/Fiber.html" data-v-faf5b206><!--[--><span data-v-faf5b206>React</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/performance/vendor%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF%E8%BF%87%E5%A4%A7%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>性能</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/other/%E8%B5%84%E6%BA%90.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>其他</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/python/basic/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Python</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/java/basic/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Java</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/ai/basic/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>AI</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/mysql/basic/MySQL%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>MySQL</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink active" href="/blog/redis/basic/Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Redis</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-70946a35 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-70946a35 data-v-0394ad82 data-v-d07f11e6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/vuejs/vitepress" aria-label="github" target="_blank" rel="me noopener" data-v-d07f11e6 data-v-591a6b30><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-70946a35 data-v-bf2fac68 data-v-42cb505d><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-42cb505d><span class="vpi-more-horizontal icon" data-v-42cb505d></span></button><div class="menu" data-v-42cb505d><div class="VPMenu" data-v-42cb505d data-v-25a6cce8><!----><!--[--><!--[--><!----><div class="group" data-v-bf2fac68><div class="item appearance" data-v-bf2fac68><p class="label" data-v-bf2fac68>Appearance</p><div class="appearance-action" data-v-bf2fac68><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bf2fac68 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bf2fac68><div class="item social-links" data-v-bf2fac68><div class="VPSocialLinks social-links-list" data-v-bf2fac68 data-v-d07f11e6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/vuejs/vitepress" aria-label="github" target="_blank" rel="me noopener" data-v-d07f11e6 data-v-591a6b30><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-70946a35 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-70946a35><div class="divider-line" data-v-70946a35></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-1df9f90f data-v-db738f89><div class="container" data-v-db738f89><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-db738f89><span class="vpi-align-left menu-icon" data-v-db738f89></span><span class="menu-text" data-v-db738f89>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-db738f89 data-v-0bf0e06f><button data-v-0bf0e06f>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-1df9f90f data-v-af661f50><div class="curtain" data-v-af661f50></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-af661f50><span class="visually-hidden" id="sidebar-aria-label" data-v-af661f50> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0 has-active" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>入门</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/basic/Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>Redis简介与环境搭建</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/basic/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>数据类型与基础命令</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>核心原理</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>数据结构底层实现</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>持久化机制</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%8E%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>内存管理与淘汰策略</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E4%B8%8E%E4%BA%8B%E5%8A%A1.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>发布订阅与事务</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>进阶实战</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/advanced/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%9B%86%E7%BE%A4.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>主从复制与集群</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/advanced/%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>缓存问题与性能优化</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>精通与架构</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/expert/%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>单线程模型与事件循环</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/expert/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>分布式锁与高可用架构</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-1df9f90f data-v-c87f25bf><div class="VPDoc has-sidebar has-aside" data-v-c87f25bf data-v-7011f0d8><!--[--><!--]--><div class="container" data-v-7011f0d8><div class="aside" data-v-7011f0d8><div class="aside-curtain" data-v-7011f0d8></div><div class="aside-container" data-v-7011f0d8><div class="aside-content" data-v-7011f0d8><div class="VPDocAside" data-v-7011f0d8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-60d5052e><div class="content" data-v-60d5052e><div class="outline-marker" data-v-60d5052e></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-60d5052e>目录</div><ul class="VPDocOutlineItem root" data-v-60d5052e data-v-1ce71065><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-7011f0d8><div class="content-container" data-v-7011f0d8><!--[--><!--]--><main class="main" data-v-7011f0d8><div style="position:relative;" class="vp-doc _blog_redis_basic_Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" data-v-7011f0d8><div><h1 id="redis-简介与环境搭建" tabindex="-1">Redis 简介与环境搭建 <a class="header-anchor" href="#redis-简介与环境搭建" aria-label="Permalink to “Redis 简介与环境搭建”">​</a></h1><h2 id="一、redis-的历史与发展" tabindex="-1">一、Redis 的历史与发展 <a class="header-anchor" href="#一、redis-的历史与发展" aria-label="Permalink to “一、Redis 的历史与发展”">​</a></h2><h3 id="_1-1-起源与早期发展" tabindex="-1">1.1 起源与早期发展 <a class="header-anchor" href="#_1-1-起源与早期发展" aria-label="Permalink to “1.1 起源与早期发展”">​</a></h3><p>Redis（Remote Dictionary Server）是一款开源的、基于内存的键值对存储系统，由意大利工程师 Salvatore Sanfilippo（笔名 antirez）于 2009 年开发。Redis 的开发源于 antirez 的一个个人项目——他在为意大利创业公司 Meridio 工作时，发现现有数据库无法满足高性能、低延迟的需求，于是决定从零开始编写一个内存数据库。</p><p>Redis 的名字来源于 <strong>R</strong>emote <strong>D</strong>ictionary <strong>S</strong>erver（远程字典服务器），这准确地描述了它的核心功能：一个网络访问的、基于字典（键值对）的内存存储系统。</p><p>2009 年 5 月，Redis 首次发布在 GitHub 上，立刻引起了开发者社区的广泛关注。它以极简的设计哲学、出色的性能和丰富的数据类型，迅速成为 NoSQL 数据库领域的明星项目。</p><h3 id="_1-2-关键里程碑" tabindex="-1">1.2 关键里程碑 <a class="header-anchor" href="#_1-2-关键里程碑" aria-label="Permalink to “1.2 关键里程碑”">​</a></h3><table tabindex="0"><thead><tr><th>时间</th><th>版本</th><th>关键事件</th></tr></thead><tbody><tr><td>2009 年 5 月</td><td>Redis 0.1</td><td>首次发布于 GitHub</td></tr><tr><td>2010 年</td><td>Redis 2.0</td><td>发布，引入虚拟内存支持、主动过期等特性</td></tr><tr><td>2011 年</td><td>Redis 2.2</td><td>引入 List/Set 优化、集群雏形</td></tr><tr><td>2013 年</td><td>Redis 2.6</td><td>引入 Lua 脚本支持、Keyspace Notification</td></tr><tr><td>2014 年</td><td>Redis 2.8</td><td>引入 RDB/AOF 持久化改进、IPv6 支持</td></tr><tr><td>2015 年</td><td>Redis 3.0</td><td>正式发布 Redis Cluster，支持分布式集群</td></tr><tr><td>2017 年</td><td>Redis 4.0</td><td>引入模块系统、新的持久化机制（混合 RDB-AOF）</td></tr><tr><td>2018 年</td><td>Redis 5.0</td><td>引入 Streams 数据类型、主动碎片整理</td></tr><tr><td>2020 年</td><td>Redis 6.0</td><td>引入多线程 I/O、客户端缓存、ACL</td></tr><tr><td>2022 年</td><td>Redis 7.0</td><td>引入函数（Function）增强、Sharded Pub/Sub</td></tr><tr><td>2023 年</td><td>Redis 7.2</td><td>引入更完善的 ACL、超时增强、一致性哈希优化</td></tr><tr><td>2024 年</td><td>Redis 8.0（Redis 分支）</td><td>性能大幅提升、新数据结构</td></tr></tbody></table><h3 id="_1-3-redis-与-redis-labs-的分道扬镳" tabindex="-1">1.3 Redis 与 Redis Labs 的分道扬镳 <a class="header-anchor" href="#_1-3-redis-与-redis-labs-的分道扬镳" aria-label="Permalink to “1.3 Redis 与 Redis Labs 的分道扬镳”">​</a></h3><p>2015 年，antirez 与其他核心贡献者成立了 Redis Labs（现改名为 Redis Ltd.），推出了 Redis Enterprise 商业产品。2020 年，Redis 与 Redis Labs 在许可证上产生分歧，Redis Labs 将其部分模块改为 SSPL 许可证，引发社区争议。</p><p>此后，Redis 社区分叉出多个分支：</p><ul><li><strong>Redis 开源版</strong>（由 antirez 主导）：保持 BSD 许可证，完全开源</li><li><strong>Redis Enterprise</strong>（Redis Ltd. 商业版）：包含企业级特性，采用商业许可证</li><li><strong>Valkey</strong>（Linux 基金会）：2024 年由 Google、Oracle、Snap 等公司联合创建的 Redis 分支</li></ul><p>目前，Redis 仍然是全球最受欢迎的 NoSQL 数据库之一，被 Twitter、GitHub、Instagram、美团、阿里巴巴、腾讯等众多知名公司广泛使用。</p><hr><h2 id="二、redis-核心特点" tabindex="-1">二、Redis 核心特点 <a class="header-anchor" href="#二、redis-核心特点" aria-label="Permalink to “二、Redis 核心特点”">​</a></h2><h3 id="_2-1-极致的高性能" tabindex="-1">2.1 极致的高性能 <a class="header-anchor" href="#_2-1-极致的高性能" aria-label="Permalink to “2.1 极致的高性能”">​</a></h3><p>Redis 的性能表现是其最突出的优势之一。官方基准测试显示，Redis 在普通硬件上可以达到：</p><ul><li><strong>读操作</strong>：110,000+ QPS（每秒查询数）</li><li><strong>写操作</strong>：81,000+ QPS</li><li><strong>延迟</strong>：亚毫秒级（0.1ms 以内）</li></ul><p>Redis 高性能的原因主要在于：</p><p><strong>纯内存操作</strong>：Redis 将数据完全存储在内存中，避免了磁盘 I/O 瓶颈。内存访问速度约为磁盘的 100,000 倍。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>存储介质访问速度对比：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>CPU 缓存 L1:  ~1 ns    (10^-9 秒)</span></span>
+<span class="line"><span>CPU 缓存 L2:  ~4 ns    (4 x 10^-9 秒)</span></span>
+<span class="line"><span>内存:         ~100 ns  (10^-7 秒)</span></span>
+<span class="line"><span>SSD 硬盘:     ~100 μs  (10^-4 秒)</span></span>
+<span class="line"><span>HDD 机械硬盘: ~5 ms    (5 x 10^-3 秒)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Redis 操作内存，比传统数据库的磁盘操作快 4~5 个数量级</span></span></code></pre></div><p><strong>高效的数据结构</strong>：Redis 内部使用了多种针对不同场景优化的数据结构，包括：</p><ul><li><strong>简单动态字符串（SDS）</strong>：自适应内存管理，支持二进制安全</li><li><strong>跳表（Skip List）</strong>：用于有序集合，平均 O(log n) 查询</li><li><strong>压缩列表（ziplist）</strong>：用于小集合的紧凑存储</li><li><strong>快速列表（quicklist）</strong>：Redis 3.2+ 中列表的底层实现，结合链表和压缩列表的优点</li><li><strong>整数集合（intset）</strong>：用于只包含整数的小集合</li><li><strong>哈希表（hashtable）</strong>：字典的基础，支持渐进式 rehash</li></ul><p><strong>单线程模型</strong>：Redis 核心命令执行采用单线程模型，避免了多线程的上下文切换和锁竞争开销。</p><h3 id="_2-2-内存数据库" tabindex="-1">2.2 内存数据库 <a class="header-anchor" href="#_2-2-内存数据库" aria-label="Permalink to “2.2 内存数据库”">​</a></h3><p>Redis 是一个以内存为核心的数据存储系统：</p><p><strong>全内存存储</strong>：所有数据驻留在物理内存中，提供极高的访问速度。</p><p><strong>内存管理</strong>：Redis 实现了自己的内存分配器，支持：</p><ul><li>内存使用监控（<code>INFO memory</code> 命令）</li><li>内存淘汰策略（当内存满时自动清理旧数据）</li><li>jemalloc 内存分配器（默认）或 libc 分配器</li></ul><p><strong>内存优化</strong>：Redis 会根据数据大小自动选择最优的底层编码格式：</p><ul><li>小哈希表 → 压缩列表或嵌入编码</li><li>小集合 → 整数集合</li><li>小列表 → 压缩列表</li><li>小有序集合 → 压缩列表</li></ul><h3 id="_2-3-丰富的数据类型" tabindex="-1">2.3 丰富的数据类型 <a class="header-anchor" href="#_2-3-丰富的数据类型" aria-label="Permalink to “2.3 丰富的数据类型”">​</a></h3><p>Redis 支持 10+ 种数据类型，远超传统的键值存储系统：</p><table tabindex="0"><thead><tr><th>类型</th><th>说明</th><th>常用场景</th></tr></thead><tbody><tr><td><strong>String</strong></td><td>字符串，可存储文本、数字、二进制</td><td>缓存、计数器、配置信息</td></tr><tr><td><strong>Hash</strong></td><td>哈希表，键值对集合</td><td>用户信息、对象存储</td></tr><tr><td><strong>List</strong></td><td>列表，有序可重复</td><td>消息队列、最新动态</td></tr><tr><td><strong>Set</strong></td><td>集合，无序不重复</td><td>标签、共同好友、去重</td></tr><tr><td><strong>ZSet</strong></td><td>有序集合，带分数排序</td><td>排行榜、延迟队列</td></tr><tr><td><strong>HyperLogLog</strong></td><td>基数估算</td><td>UV 统计（近似去重）</td></tr><tr><td><strong>Bitmap</strong></td><td>位图</td><td>布隆过滤器、在线状态</td></tr><tr><td><strong>Geospatial</strong></td><td>地理位置</td><td>附近的人、地理围栏</td></tr><tr><td><strong>Stream</strong></td><td>流，消息队列</td><td>实时消息、事件驱动</td></tr><tr><td><strong>Module</strong></td><td>扩展模块</td><td>搜索、图数据库、时序数据</td></tr></tbody></table><h3 id="_2-4-单线程与事件循环" tabindex="-1">2.4 单线程与事件循环 <a class="header-anchor" href="#_2-4-单线程与事件循环" aria-label="Permalink to “2.4 单线程与事件循环”">​</a></h3><p>Redis 6.0 之前，核心命令执行完全是单线程的：</p><p><strong>单线程执行的优势</strong>：</p><ul><li>避免锁竞争，无需加锁</li><li>避免上下文切换开销</li><li>代码实现简单可靠</li><li>对于内存操作，单线程性能足够</li></ul><p><strong>Redis 6.0 的多线程改进</strong>： Redis 6.0 引入了 I/O 多线程，但命令执行仍然是单线程的：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│                  Redis 进程                     │</span></span>
+<span class="line"><span>├───────────────────────────────────────────────┤</span></span>
+<span class="line"><span>│  I/O 线程组（Redis 6.0+）                       │</span></span>
+<span class="line"><span>│  ┌─────┐ ┌─────┐ ┌─────┐                      │</span></span>
+<span class="line"><span>│  │IO-1 │ │IO-2 │ │IO-N │  读取请求、写入响应    │</span></span>
+<span class="line"><span>│  └──┬──┘ └──┬──┘ └──┬──┘                      │</span></span>
+<span class="line"><span>│     │        │        │                       │</span></span>
+<span class="line"><span>│     └────────┼────────┘                       │</span></span>
+<span class="line"><span>│              ▼                                │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────────┐      │</span></span>
+<span class="line"><span>│  │         单线程事件循环（主线程）       │      │</span></span>
+<span class="line"><span>│  │  1. 解析命令                         │      │</span></span>
+<span class="line"><span>│  │  2. 执行命令（读写内存）               │      │</span></span>
+<span class="line"><span>│  │  3. 将结果返回 I/O 线程               │      │</span></span>
+<span class="line"><span>│  └─────────────────────────────────────┘      │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────┘</span></span></code></pre></div><p>这种设计使得 Redis 既保持了单线程的简单性，又通过多线程 I/O 提升了网络读写性能。</p><h3 id="_2-5-持久化机制" tabindex="-1">2.5 持久化机制 <a class="header-anchor" href="#_2-5-持久化机制" aria-label="Permalink to “2.5 持久化机制”">​</a></h3><p>Redis 提供两种持久化方式，确保数据在重启后不丢失：</p><p><strong>RDB（Redis Database）</strong>：</p><ul><li>在指定时间间隔内，将内存中的数据快照写入磁盘</li><li>优点：文件紧凑，恢复速度快</li><li>缺点：可能丢失最后一次快照后的数据</li></ul><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># RDB 文件示例</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">dump.rdb</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 二进制格式的 Redis 数据快照</span></span></code></pre></div><p><strong>AOF（Append Only File）</strong>：</p><ul><li>将每个写命令追加到日志文件</li><li>优点：数据安全性高，最多丢失 1 秒数据</li><li>缺点：文件体积较大，恢复速度较慢</li></ul><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># AOF 文件示例</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">appendonly.aof</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # Redis 命令日志（协议格式）</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># AOF 重写（压缩）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">bgrewriteaof</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # 后台压缩 AOF 文件</span></span></code></pre></div><p><strong>混合持久化（Redis 4.0+）</strong>：</p><ul><li>结合 RDB 和 AOF 的优点</li><li>重启时先加载 RDB 部分，再增量加载 AOF 部分</li><li>兼顾了恢复速度和数据安全</li></ul><h3 id="_2-6-高可用与分布式" tabindex="-1">2.6 高可用与分布式 <a class="header-anchor" href="#_2-6-高可用与分布式" aria-label="Permalink to “2.6 高可用与分布式”">​</a></h3><p><strong>主从复制</strong>：</p><ul><li>一个主节点（Master），多个从节点（Slave）</li><li>主节点处理写操作，从节点处理读操作</li><li>实现数据冗余和读写分离</li></ul><p><strong>哨兵模式（Sentinel）</strong>：</p><ul><li>自动监控主从节点状态</li><li>主节点故障时自动故障转移</li><li>提供配置发现和通知</li></ul><p><strong>集群模式（Cluster）</strong>：</p><ul><li>16384 个槽（slot）分布在多个节点</li><li>水平扩展存储和计算能力</li><li>支持自动故障转移</li></ul><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>Redis Cluster 架构示例：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>┌──────────┐  ┌──────────┐  ┌──────────┐</span></span>
+<span class="line"><span>│ 节点 A   │  │ 节点 B   │  │ 节点 C   │</span></span>
+<span class="line"><span>│ 槽 0-5460│  │ 槽5461-10922│ │ 槽10923-16383│</span></span>
+<span class="line"><span>└────┬─────┘  └────┬─────┘  └────┬─────┘</span></span>
+<span class="line"><span>     │              │              │</span></span>
+<span class="line"><span>     │ 复制          │ 复制          │ 复制</span></span>
+<span class="line"><span>     ▼              ▼              ▼</span></span>
+<span class="line"><span>┌──────────┐  ┌──────────┐  ┌──────────┐</span></span>
+<span class="line"><span>│ 节点 A&#39;  │  │ 节点 B&#39;  │  │ 节点 C&#39;  │</span></span>
+<span class="line"><span>│ （从节点）│  │ （从节点）│  │ （从节点）│</span></span>
+<span class="line"><span>└──────────┘  └──────────┘  └──────────┘</span></span></code></pre></div><hr><h2 id="三、为什么选择-redis" tabindex="-1">三、为什么选择 Redis <a class="header-anchor" href="#三、为什么选择-redis" aria-label="Permalink to “三、为什么选择 Redis”">​</a></h2><h3 id="_3-1-与-mysql-对比" tabindex="-1">3.1 与 MySQL 对比 <a class="header-anchor" href="#_3-1-与-mysql-对比" aria-label="Permalink to “3.1 与 MySQL 对比”">​</a></h3><p>Redis 和 MySQL 并非竞争关系，而是互补关系：</p><table tabindex="0"><thead><tr><th>对比维度</th><th>Redis</th><th>MySQL</th></tr></thead><tbody><tr><td>数据存储</td><td>内存为主</td><td>磁盘为主（内存缓存）</td></tr><tr><td>数据结构</td><td>键值对、列表、集合等</td><td>表（关系型）</td></tr><tr><td>查询语言</td><td>Redis Protocol（简单命令）</td><td>SQL（完整查询语言）</td></tr><tr><td>持久化</td><td>RDB/AOF（可选）</td><td>强制持久化</td></tr><tr><td>事务支持</td><td>有限（单命令原子）</td><td>完整 ACID</td></tr><tr><td>数据一致性</td><td>最终一致性为主</td><td>强一致性</td></tr><tr><td>查询能力</td><td>O(1) 级别简单操作</td><td>复杂关联查询</td></tr><tr><td>适用场景</td><td>高频读写缓存、实时数据</td><td>持久化业务数据</td></tr></tbody></table><p><strong>实际使用建议</strong>：在大多数业务系统中，Redis 作为 MySQL 的补充，形成「MySQL + Redis」的黄金组合：</p><ul><li>MySQL 存储持久化的业务数据</li><li>Redis 存储热点数据和临时数据</li></ul><h3 id="_3-2-与-memcached-对比" tabindex="-1">3.2 与 Memcached 对比 <a class="header-anchor" href="#_3-2-与-memcached-对比" aria-label="Permalink to “3.2 与 Memcached 对比”">​</a></h3><p>Memcached 是另一个经典的内存缓存系统，Redis 相对于它的优势：</p><table tabindex="0"><thead><tr><th>对比维度</th><th>Redis</th><th>Memcached</th></tr></thead><tbody><tr><td>数据类型</td><td>String、Hash、List、Set、ZSet 等</td><td>仅 String</td></tr><tr><td>持久化</td><td>支持（RDB/AOF）</td><td>不支持</td></tr><tr><td>分布式</td><td>原生集群支持</td><td>需要客户端分片</td></tr><tr><td>发布订阅</td><td>原生支持</td><td>不支持</td></tr><tr><td>Lua 脚本</td><td>支持</td><td>不支持</td></tr><tr><td>地理空间</td><td>支持</td><td>不支持</td></tr><tr><td>内存效率</td><td>高（多种编码优化）</td><td>一般</td></tr><tr><td>社区活跃度</td><td>非常活跃</td><td>较低</td></tr></tbody></table><p><strong>结论</strong>：Redis 在功能丰富度和扩展性上全面超越 Memcached，已成为内存缓存的首选方案。</p><h3 id="_3-3-为什么选择-redis" tabindex="-1">3.3 为什么选择 Redis <a class="header-anchor" href="#_3-3-为什么选择-redis" aria-label="Permalink to “3.3 为什么选择 Redis”">​</a></h3><p><strong>开发体验</strong>：</p><ul><li>简单易学，命令直观</li><li>官方客户端覆盖几乎所有主流语言</li><li>详细的中文文档和活跃的社区</li></ul><p><strong>性能表现</strong>：</p><ul><li>单节点 10 万+ QPS</li><li>亚毫秒级延迟</li><li>稳定可靠，经过大规模生产验证</li></ul><p><strong>功能丰富</strong>：</p><ul><li>多种数据类型，覆盖大部分业务场景</li><li>发布订阅、Lua 脚本、事务等实用功能</li><li>模块化架构，可扩展性强</li></ul><p><strong>生态完善</strong>：</p><ul><li>与 Spring、Django、Laravel 等主流框架深度集成</li><li>丰富的运维工具和监控方案</li><li>云厂商（AWS、Azure、阿里云）全托 Redis 服务</li></ul><hr><h2 id="四、redis-应用场景" tabindex="-1">四、Redis 应用场景 <a class="header-anchor" href="#四、redis-应用场景" aria-label="Permalink to “四、Redis 应用场景”">​</a></h2><h3 id="_4-1-缓存" tabindex="-1">4.1 缓存 <a class="header-anchor" href="#_4-1-缓存" aria-label="Permalink to “4.1 缓存”">​</a></h3><p>缓存是 Redis 最经典的应用场景。将数据库中的热点数据缓存到 Redis，大幅提升读取性能。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>缓存工作流程：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户请求 → 应用服务 → Redis 缓存</span></span>
+<span class="line"><span>                          │</span></span>
+<span class="line"><span>                    ┌─────┴─────┐</span></span>
+<span class="line"><span>                    │ 命中       │ 未命中</span></span>
+<span class="line"><span>                    ▼           ▼</span></span>
+<span class="line"><span>                返回结果    查询数据库</span></span>
+<span class="line"><span>                               │</span></span>
+<span class="line"><span>                               ▼</span></span>
+<span class="line"><span>                           写入 Redis</span></span>
+<span class="line"><span>                               │</span></span>
+<span class="line"><span>                               ▼</span></span>
+<span class="line"><span>                           返回结果</span></span></code></pre></div><p><strong>实战案例</strong>：</p><ul><li>电商系统中的商品信息、库存缓存</li><li>社交网络中的用户资料、关系缓存</li><li>门户网站的文章、评论缓存</li></ul><p><strong>关键配置</strong>：</p><ul><li>设置合理的过期时间（TTL）</li><li>保证缓存与数据库的一致性</li><li>处理缓存穿透、击穿、雪崩问题</li></ul><h3 id="_4-2-会话管理" tabindex="-1">4.2 会话管理 <a class="header-anchor" href="#_4-2-会话管理" aria-label="Permalink to “4.2 会话管理”">​</a></h3><p>使用 Redis 存储用户会话信息，实现分布式会话共享。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 存储会话</span></span>
+<span class="line"><span>SET session:user:1001 &#39;{&quot;userId&quot;:1001,&quot;role&quot;:&quot;admin&quot;,&quot;loginTime&quot;:&quot;2024-01-01T10:00:00&quot;}&#39; EX 7200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取会话</span></span>
+<span class="line"><span>GET session:user:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 续期会话</span></span>
+<span class="line"><span>EXPIRE session:user:1001 7200</span></span></code></pre></div><p><strong>优势</strong>：</p><ul><li>多实例部署时会话共享</li><li>支持会话过期自动清理</li><li>减轻服务器内存压力</li></ul><h3 id="_4-3-排行榜" tabindex="-1">4.3 排行榜 <a class="header-anchor" href="#_4-3-排行榜" aria-label="Permalink to “4.3 排行榜”">​</a></h3><p>利用 Redis 的有序集合（ZSet），轻松实现各种排行榜功能。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 添加用户分数（用户A 得到 100 分）</span></span>
+<span class="line"><span>ZADD game:ranking 100 &quot;user:A&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 添加更多用户</span></span>
+<span class="line"><span>ZADD game:ranking 95 &quot;user:B&quot; 88 &quot;user:C&quot; 120 &quot;user:D&quot; 70 &quot;user:E&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取排行榜前 3（降序）</span></span>
+<span class="line"><span>ZREVRANGE game:ranking 0 2 WITHSCORES</span></span>
+<span class="line"><span># 输出: user:D (120), user:A (100), user:B (95)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取用户 A 的排名</span></span>
+<span class="line"><span>ZREVRANK game:ranking &quot;user:A&quot;</span></span>
+<span class="line"><span># 输出: 1（第 2 名，从 0 开始）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取分数在 80-100 之间的用户</span></span>
+<span class="line"><span>ZRANGEBYSCORE game:ranking 80 100</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>游戏积分榜、等级榜</li><li>电商销量排行</li><li>直播打赏排行</li><li>学习进度排行</li></ul><h3 id="_4-4-计数器" tabindex="-1">4.4 计数器 <a class="header-anchor" href="#_4-4-计数器" aria-label="Permalink to “4.4 计数器”">​</a></h3><p>利用 Redis 的原子操作，实现各种计数功能。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 文章浏览量计数（原子递增）</span></span>
+<span class="line"><span>INCR article:view:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 每次浏览增加 1</span></span>
+<span class="line"><span>INCR article:view:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 查看当前浏览量</span></span>
+<span class="line"><span>GET article:view:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 限制计数器：每分钟最多访问 100 次（滑动窗口思路）</span></span>
+<span class="line"><span>INCR rate_limit:user:1001</span></span>
+<span class="line"><span>EXPIRE rate_limit:user:1001 60</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>页面浏览量、点赞数、评论数</li><li>接口访问频率限制</li><li>在线人数统计</li><li>投票计数</li></ul><h3 id="_4-5-消息队列" tabindex="-1">4.5 消息队列 <a class="header-anchor" href="#_4-5-消息队列" aria-label="Permalink to “4.5 消息队列”">​</a></h3><p>利用 Redis 的 List 数据类型实现简单的消息队列。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 生产者：将消息推入队列右侧</span></span>
+<span class="line"><span>RPUSH task:queue &quot;send_email:user:A&quot;</span></span>
+<span class="line"><span>RPUSH task:queue &quot;send_email:user:B&quot;</span></span>
+<span class="line"><span>RPUSH task:queue &quot;generate_report:daily&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 消费者：从队列左侧取出消息（阻塞式）</span></span>
+<span class="line"><span>BLPOP task:queue 0</span></span>
+<span class="line"><span># 输出: task:queue, send_email:user:A</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 多个消费者可同时阻塞等待，实现负载均衡</span></span>
+<span class="line"><span># 消费者1: BLPOP task:queue 0</span></span>
+<span class="line"><span># 消费者2: BLPOP task:queue 0</span></span>
+<span class="line"><span># 谁先取到消息谁处理</span></span></code></pre></div><p><strong>进阶方案</strong>：Redis Stream（5.0+）提供了更强大的消息队列功能：</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 创建流并添加消息</span></span>
+<span class="line"><span>XADD mystream * type:email recipient:userA subject:welcome</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 消费消息（从最新开始）</span></span>
+<span class="line"><span>XREAD COUNT 10 STREAMS mystream $</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 创建消费组</span></span>
+<span class="line"><span>XGROUP CREATE mystream mygroup</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 组内消费</span></span>
+<span class="line"><span>XREADGROUP GROUP mygroup consumer1 COUNT 1 STREAMS mystream &gt;</span></span></code></pre></div><h3 id="_4-6-分布式锁" tabindex="-1">4.6 分布式锁 <a class="header-anchor" href="#_4-6-分布式锁" aria-label="Permalink to “4.6 分布式锁”">​</a></h3><p>利用 Redis 的原子 SET 命令实现分布式互斥锁。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 获取锁（原子操作：键不存在时设置成功）</span></span>
+<span class="line"><span>SET lock:order:1001 unique_value NX PX 30000</span></span>
+<span class="line"><span># NX: 仅当键不存在时设置</span></span>
+<span class="line"><span># PX: 设置过期时间（毫秒）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 释放锁（Lua 脚本保证原子性）</span></span>
+<span class="line"><span>if redis.call(&quot;get&quot;, KEYS[1]) == ARGV[1] then</span></span>
+<span class="line"><span>    return redis.call(&quot;del&quot;, KEYS[1])</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>    return 0</span></span>
+<span class="line"><span>end</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>分布式环境下的订单创建</li><li>定时任务的单点执行</li><li>资源的互斥访问控制</li></ul><h3 id="_4-7-地理位置" tabindex="-1">4.7 地理位置 <a class="header-anchor" href="#_4-7-地理位置" aria-label="Permalink to “4.7 地理位置”">​</a></h3><p>利用 Redis 的 Geospatial 数据类型实现地理位置相关功能。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 添加地理位置坐标（经度、纬度、名称）</span></span>
+<span class="line"><span>GEOADD cities 116.404 39.915 &quot;北京&quot; 121.473 31.230 &quot;上海&quot; 113.264 23.129 &quot;广州&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 计算两点之间的距离</span></span>
+<span class="line"><span>GEODIST cities 北京 上海 km</span></span>
+<span class="line"><span># 输出: 1068.20 (公里)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 查找某坐标附近的城市</span></span>
+<span class="line"><span>GEOSEARCH cities FROMLONLAT 116.4 39.9 BYRADIUS 200 km ASC</span></span>
+<span class="line"><span># 输出: 北京</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取坐标</span></span>
+<span class="line"><span>GEOPOS cities 北京</span></span>
+<span class="line"><span># 输出: 116.404, 39.915</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 将地理位置转为 ZSet（可用于范围查询和排序）</span></span>
+<span class="line"><span>ZRANGE cities 0 -1 WITHSCORES</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>附近的人/店铺搜索</li><li>地理围栏</li><li>物流轨迹追踪</li><li>城市范围统计</li></ul><hr><h2 id="五、redis-安装" tabindex="-1">五、Redis 安装 <a class="header-anchor" href="#五、redis-安装" aria-label="Permalink to “五、Redis 安装”">​</a></h2><h3 id="_5-1-windows-安装-wsl-方式" tabindex="-1">5.1 Windows 安装（WSL 方式） <a class="header-anchor" href="#_5-1-windows-安装-wsl-方式" aria-label="Permalink to “5.1 Windows 安装（WSL 方式）”">​</a></h3><p>由于 Redis 官方不再提供原生 Windows 版本，推荐使用 WSL（Windows Subsystem for Linux）或 Docker。</p><p><strong>步骤一：安装 WSL</strong></p><div class="language-powershell"><button title="Copy Code" class="copy"></button><span class="lang">powershell</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 以管理员身份运行 PowerShell</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">wsl </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">--</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">install</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 重启计算机</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装 Ubuntu 发行版</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">wsl </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">--</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">install </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d Ubuntu</span></span></code></pre></div><p><strong>步骤二：在 WSL 中安装 Redis</strong></p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 更新包管理器</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> update</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装 Redis</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 验证安装</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-server</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ping</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 输出: PONG</span></span></code></pre></div><h3 id="_5-2-windows-原生安装-第三方移植" tabindex="-1">5.2 Windows 原生安装（第三方移植） <a class="header-anchor" href="#_5-2-windows-原生安装-第三方移植" aria-label="Permalink to “5.2 Windows 原生安装（第三方移植）”">​</a></h3><p>如果必须使用 Windows 原生版本，可以使用 Microsoft 维护的分支：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 方式一：从 GitHub 下载</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 访问 https://github.com/tporadowski/redis/releases</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 下载 Redis-x64-5.0.14.1.msi 安装包</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 方式二：使用 Chocolatey</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">choco</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-64</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装完成后</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 服务默认运行在 localhost:6379</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ping</span></span></code></pre></div><p><strong>注意</strong>：第三方 Windows 版本为 Redis 5.0，不支持 6.0+ 的新特性（多线程 I/O、ACL 等）。</p><h3 id="_5-3-docker-方式-推荐" tabindex="-1">5.3 Docker 方式（推荐） <a class="header-anchor" href="#_5-3-docker-方式-推荐" aria-label="Permalink to “5.3 Docker 方式（推荐）”">​</a></h3><p>Docker 是最简单、最可靠的跨平台安装方式。</p><p><strong>基本使用</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 拉取最新 Redis 镜像</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> pull</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis:latest</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 运行 Redis 容器</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> run</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -d</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --name</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> my-redis</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 6379:6379</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis:latest</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 验证运行</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> exec</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -it</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> my-redis</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ping</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 输出: PONG</span></span></code></pre></div><p><strong>带配置的运行</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 创建自定义配置文件</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /path/to/redis/conf</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /path/to/redis/data</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 运行时挂载配置和数据目录</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> run</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -d</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    --name</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> my-redis</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 6379:6379</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    -v</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /path/to/redis/conf/redis.conf:/etc/redis/redis.conf</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    -v</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /path/to/redis/data:/data</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    redis:latest</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /etc/redis/redis.conf</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 查看日志</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> logs</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> my-redis</span></span></code></pre></div><p><strong>使用 Docker Compose</strong>：</p><div class="language-yaml"><button title="Copy Code" class="copy"></button><span class="lang">yaml</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># docker-compose.yml</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;3.8&#39;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">services</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  redis</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">redis:7-alpine</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    container_name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">my-redis</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    ports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;6379:6379&quot;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./conf/redis.conf:/etc/redis/redis.conf</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./data:/data</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">redis-server /etc/redis/redis.conf</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span></code></pre></div><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 启动</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker-compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> up</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -d</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 停止</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker-compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> down</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 连接</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> exec</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -it</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> my-redis</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-cli</span></span></code></pre></div><h3 id="_5-4-linux-安装" tabindex="-1">5.4 Linux 安装 <a class="header-anchor" href="#_5-4-linux-安装" aria-label="Permalink to “5.4 Linux 安装”">​</a></h3><p><strong>Ubuntu/Debian（apt）</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 更新包索引</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> update</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装 Redis</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 查看 Redis 状态</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> status</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 启动/停止/重启</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> start</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> stop</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> restart</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 设置开机自启</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span></code></pre></div><p><strong>CentOS/RHEL（yum/dnf）</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># CentOS 7</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> yum</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> epel-release</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> yum</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># CentOS 8+/RHEL 8+</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 启动服务</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> start</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 设置开机自启</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 查看版本</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-server</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span></code></pre></div><p><strong>从源代码编译安装（进阶）</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装编译依赖</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> build-essential</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> tcl</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 下载 Redis 源码</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /tmp</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">wget</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://github.com/redis/redis/archive/refs/tags/7.2.4.tar.gz</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">tar</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -xzf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 7.2.4.tar.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-7.2.4</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 编译（使用多核加速）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -j$(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">nproc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 运行测试（可选，需要几分钟）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> test</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装到指定目录</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> make</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> PREFIX=/usr/local/redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 创建配置目录</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /usr/local/redis/conf</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> cp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis.conf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /usr/local/redis/conf/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 启动 Redis</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">/usr/local/redis/bin/redis-server</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /usr/local/redis/conf/redis.conf</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 验证</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">/usr/local/redis/bin/redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ping</span></span></code></pre></div><h3 id="_5-5-macos-安装" tabindex="-1">5.5 macOS 安装 <a class="header-anchor" href="#_5-5-macos-安装" aria-label="Permalink to “5.5 macOS 安装”">​</a></h3><p>使用 Homebrew 是 macOS 上最方便的安装方式：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装 Homebrew（如果未安装）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">/bin/bash</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -c</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;$(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -fsSL</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 安装 Redis</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">brew</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 启动 Redis（前台运行）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 后台运行（作为服务）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">brew</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> services</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> start</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 查看服务状态</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">brew</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> services</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> list</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 停止服务</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">brew</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> services</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> stop</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 验证安装</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ping</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 输出: PONG</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 查看版本</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-server</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span></code></pre></div><h3 id="_5-6-各安装方式对比" tabindex="-1">5.6 各安装方式对比 <a class="header-anchor" href="#_5-6-各安装方式对比" aria-label="Permalink to “5.6 各安装方式对比”">​</a></h3><table tabindex="0"><thead><tr><th>方式</th><th>适用场景</th><th>优点</th><th>缺点</th></tr></thead><tbody><tr><td><strong>Docker</strong></td><td>开发、测试、生产</td><td>简单、可移植、版本可控</td><td>需要 Docker 环境</td></tr><tr><td><strong>apt/yum</strong></td><td>Linux 服务器</td><td>简单、自动管理</td><td>版本可能不是最新</td></tr><tr><td><strong>源码编译</strong></td><td>生产环境、定制化</td><td>最新版本、高度定制</td><td>编译耗时、维护复杂</td></tr><tr><td><strong>Homebrew</strong></td><td>macOS 开发</td><td>简单、与系统集成</td><td>仅适用于 macOS</td></tr><tr><td><strong>WSL</strong></td><td>Windows 开发</td><td>完整 Linux 环境</td><td>性能略低</td></tr></tbody></table><hr><h2 id="六、redis-配置文件详解" tabindex="-1">六、Redis 配置文件详解 <a class="header-anchor" href="#六、redis-配置文件详解" aria-label="Permalink to “六、Redis 配置文件详解”">​</a></h2><h3 id="_6-1-配置文件位置" tabindex="-1">6.1 配置文件位置 <a class="header-anchor" href="#_6-1-配置文件位置" aria-label="Permalink to “6.1 配置文件位置”">​</a></h3><p>Redis 配置文件的默认位置：</p><table tabindex="0"><thead><tr><th>安装方式</th><th>配置文件路径</th></tr></thead><tbody><tr><td>apt 安装</td><td><code>/etc/redis/redis.conf</code></td></tr><tr><td>源码安装</td><td><code>/usr/local/redis/conf/redis.conf</code></td></tr><tr><td>Docker</td><td>容器内 <code>/etc/redis/redis.conf</code>，通过 volume 挂载</td></tr><tr><td>brew 安装</td><td><code>/usr/local/etc/redis.conf</code> (Intel Mac) 或 <code>/opt/homebrew/etc/redis.conf</code> (Apple Silicon)</td></tr></tbody></table><h3 id="_6-2-基础配置" tabindex="-1">6.2 基础配置 <a class="header-anchor" href="#_6-2-基础配置" aria-label="Permalink to “6.2 基础配置”">​</a></h3><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># Redis 监听端口，默认 6379</span></span>
+<span class="line"><span>port 6379</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 绑定地址（默认 127.0.0.1，仅允许本地连接）</span></span>
+<span class="line"><span># 如需远程访问，改为 0.0.0.0（注意安全）</span></span>
+<span class="line"><span>bind 127.0.0.1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 是否开启保护模式（默认开启）</span></span>
+<span class="line"><span># 开启后，未设置密码且绑定非本地地址时，拒绝外部连接</span></span>
+<span class="line"><span>protected-mode yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 配置文件位置（通常不需要修改）</span></span>
+<span class="line"><span># config /etc/redis/redis.conf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 以守护进程方式运行（后台运行）</span></span>
+<span class="line"><span>daemonize yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 进程 PID 文件路径（守护进程模式下）</span></span>
+<span class="line"><span>pidfile /var/run/redis_6379.pid</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 日志级别：debug, verbose, notice, warning</span></span>
+<span class="line"><span>loglevel notice</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 日志文件路径（空字符串表示输出到标准输出）</span></span>
+<span class="line"><span>logfile &quot;&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 数据库数量（默认 16）</span></span>
+<span class="line"><span>databases 16</span></span></code></pre></div><h3 id="_6-3-内存配置" tabindex="-1">6.3 内存配置 <a class="header-anchor" href="#_6-3-内存配置" aria-label="Permalink to “6.3 内存配置”">​</a></h3><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 最大内存限制（建议根据服务器内存设置）</span></span>
+<span class="line"><span># 例如设置 2GB：maxmemory 2gb</span></span>
+<span class="line"><span>maxmemory 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 内存淘汰策略（当达到最大内存时）</span></span>
+<span class="line"><span># noeviction: 不淘汰，写入时报错</span></span>
+<span class="line"><span># allkeys-lru: 淘汰最近最少使用的 key（所有 key）</span></span>
+<span class="line"><span># volatile-lru: 淘汰最近最少使用的 key（仅设置了过期时间的 key）</span></span>
+<span class="line"><span># allkeys-lfu: 淘汰最不经常使用的 key</span></span>
+<span class="line"><span># volatile-lfu: 淘汰最不经常使用的 key（仅设置了过期时间的 key）</span></span>
+<span class="line"><span># allkeys-random: 随机淘汰一个 key</span></span>
+<span class="line"><span># volatile-random: 随机淘汰一个设置了过期时间的 key</span></span>
+<span class="line"><span># volatile-ttl: 淘汰剩余时间最短的 key</span></span>
+<span class="line"><span>maxmemory-policy allkeys-lru</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 内存使用超过该比例时，开始主动碎片整理（Redis 4.0+）</span></span>
+<span class="line"><span>activedefrag yes</span></span></code></pre></div><h3 id="_6-4-持久化配置" tabindex="-1">6.4 持久化配置 <a class="header-anchor" href="#_6-4-持久化配置" aria-label="Permalink to “6.4 持久化配置”">​</a></h3><p><strong>RDB 持久化</strong>：</p><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># RDB 保存规则（满足任一条件即触发保存）</span></span>
+<span class="line"><span># 3600 秒内至少 1 次写操作 → 保存</span></span>
+<span class="line"><span>save 3600 1</span></span>
+<span class="line"><span># 300 秒内至少 10 次写操作 → 保存</span></span>
+<span class="line"><span>save 300 10</span></span>
+<span class="line"><span># 60 秒内至少 10000 次写操作 → 保存</span></span>
+<span class="line"><span>save 60 10000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># RDB 文件名</span></span>
+<span class="line"><span>dbfilename dump.rdb</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># RDB 文件保存目录</span></span>
+<span class="line"><span>dir /var/lib/redis</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 在保存 RDB 时是否压缩（使用 LZF 压缩算法）</span></span>
+<span class="line"><span>rdbcompression yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># RDB 文件是否校验</span></span>
+<span class="line"><span>rdbchecksum yes</span></span></code></pre></div><p><strong>AOF 持久化</strong>：</p><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 开启 AOF 持久化</span></span>
+<span class="line"><span>appendonly yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># AOF 文件名</span></span>
+<span class="line"><span>appendfilename &quot;appendonly.aof&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># AOF 同步策略</span></span>
+<span class="line"><span># always: 每次写操作都同步到磁盘（最安全，最慢）</span></span>
+<span class="line"><span># everysec: 每秒同步一次（推荐，平衡性能和安全）</span></span>
+<span class="line"><span># no: 由操作系统决定同步时机（最快，最不安全）</span></span>
+<span class="line"><span>appendfsync everysec</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># AOF 重写配置</span></span>
+<span class="line"><span>auto-aof-rewrite-percentage 100  # AOF 文件增长 100% 时触发重写</span></span>
+<span class="line"><span>auto-aof-rewrite-min-size 64mb   # AOF 文件最小时重写阈值</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Redis 4.0+ 混合持久化</span></span>
+<span class="line"><span>aof-use-rdb-preamble yes</span></span></code></pre></div><h3 id="_6-5-主从复制配置" tabindex="-1">6.5 主从复制配置 <a class="header-anchor" href="#_6-5-主从复制配置" aria-label="Permalink to “6.5 主从复制配置”">​</a></h3><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 复制相关</span></span>
+<span class="line"><span># 复制缓冲区大小</span></span>
+<span class="line"><span>repl-backlog-size 1mb</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 复制缓冲区过期时间</span></span>
+<span class="line"><span>repl-backlog-ttl 3600</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 从节点只读模式</span></span>
+<span class="line"><span>replica-read-only yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 从节点向主节点发送 ping 的间隔</span></span>
+<span class="line"><span>repl-ping-replica-period 10</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 主节点超时时间（秒）</span></span>
+<span class="line"><span>repl-timeout 60</span></span></code></pre></div><p><strong>设置从节点</strong>：</p><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 在从节点的 redis.conf 中添加</span></span>
+<span class="line"><span>replicaof 192.168.1.100 6379</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 如果主节点有密码</span></span>
+<span class="line"><span>masterauth &quot;your-master-password&quot;</span></span></code></pre></div><h3 id="_6-6-安全配置" tabindex="-1">6.6 安全配置 <a class="header-anchor" href="#_6-6-安全配置" aria-label="Permalink to “6.6 安全配置”">​</a></h3><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 设置 Redis 密码（强烈建议在生产环境中设置）</span></span>
+<span class="line"><span>requirepass &quot;your-secure-password&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 主节点密码（从节点连接主节点时使用）</span></span>
+<span class="line"><span>masterauth &quot;your-master-password&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 重命名或禁用危险命令</span></span>
+<span class="line"><span># 禁用 FLUSHALL 命令</span></span>
+<span class="line"><span>rename-command FLUSHALL &quot;&quot;</span></span>
+<span class="line"><span># 禁用 FLUSHDB 命令</span></span>
+<span class="line"><span>rename-command FLUSHDB &quot;&quot;</span></span>
+<span class="line"><span># 禁用 CONFIG 命令</span></span>
+<span class="line"><span>rename-command CONFIG &quot;&quot;</span></span>
+<span class="line"><span># 重命名 DEBUG 命令</span></span>
+<span class="line"><span>rename-command DEBUG &quot;DEBUG_a1b2c3d4e5f6&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 绑定地址（限制网络访问）</span></span>
+<span class="line"><span>bind 127.0.0.1</span></span></code></pre></div><h3 id="_6-7-网络配置" tabindex="-1">6.7 网络配置 <a class="header-anchor" href="#_6-7-网络配置" aria-label="Permalink to “6.7 网络配置”">​</a></h3><div class="language-conf"><button title="Copy Code" class="copy"></button><span class="lang">conf</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># TCP 最大连接数</span></span>
+<span class="line"><span>tcp-backlog 511</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 客户端空闲超时时间（0 表示永不超时）</span></span>
+<span class="line"><span>timeout 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># TCP keepalive 间隔</span></span>
+<span class="line"><span>tcp-keepalive 300</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 最大客户端连接数</span></span>
+<span class="line"><span>maxclients 10000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 客户端输出缓冲区限制</span></span>
+<span class="line"><span># 普通客户端</span></span>
+<span class="line"><span>client-output-buffer-limit normal 0 0 0</span></span>
+<span class="line"><span># 从节点</span></span>
+<span class="line"><span>client-output-buffer-limit replica 256mb 64mb 60</span></span>
+<span class="line"><span># 发布订阅</span></span>
+<span class="line"><span>client-output-buffer-limit pubsub 32mb 8mb 60</span></span></code></pre></div><h3 id="_6-8-配置修改与生效" tabindex="-1">6.8 配置修改与生效 <a class="header-anchor" href="#_6-8-配置修改与生效" aria-label="Permalink to “6.8 配置修改与生效”">​</a></h3><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 动态查看配置</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> CONFIG</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> GET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> maxmemory</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 动态修改配置（运行时修改，无需重启）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> CONFIG</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> SET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> maxmemory</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 1gb</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 修改配置文件后重启生效</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Linux</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> restart</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> redis-server</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 或</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> SHUTDOWN</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-server</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /etc/redis/redis.conf</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 验证配置</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> INFO</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> server</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> INFO</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> memory</span></span></code></pre></div><hr><h2 id="七、redis-基本使用" tabindex="-1">七、Redis 基本使用 <a class="header-anchor" href="#七、redis-基本使用" aria-label="Permalink to “七、Redis 基本使用”">​</a></h2><h3 id="_7-1-redis-cli-客户端" tabindex="-1">7.1 redis-cli 客户端 <a class="header-anchor" href="#_7-1-redis-cli-客户端" aria-label="Permalink to “7.1 redis-cli 客户端”">​</a></h3><p>redis-cli 是 Redis 自带的命令行客户端工具。</p><p><strong>连接 Redis</strong>：</p><div class="language-bash"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 连接本地 Redis（默认 localhost:6379）</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 连接远程 Redis</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -h</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 192.168.1.100</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6379</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 带密码连接</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -h</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 192.168.1.100</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6379</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -a</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> your_password</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 切换数据库</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">redis-cli</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -n</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 默认使用数据库 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 进入交互模式后</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">127.0.0.1:6379</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt; </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">PING</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 输出: PONG</span></span></code></pre></div><p><strong>基本交互</strong>：</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 查看服务器信息</span></span>
+<span class="line"><span>INFO server</span></span>
+<span class="line"><span>INFO memory</span></span>
+<span class="line"><span>INFO persistence</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 查看所有 key</span></span>
+<span class="line"><span>KEYS *</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 模糊匹配 key</span></span>
+<span class="line"><span>KEYS user:*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 统计 key 总数</span></span>
+<span class="line"><span>DBSIZE</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 清空当前数据库</span></span>
+<span class="line"><span>FLUSHDB</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 清空所有数据库</span></span>
+<span class="line"><span>FLUSHALL</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 退出</span></span>
+<span class="line"><span>EXIT</span></span>
+<span class="line"><span>QUIT</span></span></code></pre></div><h3 id="_7-2-string-类型常用命令" tabindex="-1">7.2 String 类型常用命令 <a class="header-anchor" href="#_7-2-string-类型常用命令" aria-label="Permalink to “7.2 String 类型常用命令”">​</a></h3><p>String 是 Redis 最基础的类型，可以存储字符串、整数、浮点数甚至二进制数据。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 设置值</span></span>
+<span class="line"><span>SET name &quot;Redis&quot;</span></span>
+<span class="line"><span>SET counter 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取值</span></span>
+<span class="line"><span>GET name</span></span>
+<span class="line"><span># 输出: &quot;Redis&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 设置过期时间（秒）</span></span>
+<span class="line"><span>SET token &quot;abc123&quot; EX 3600</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 仅当 key 不存在时设置（用于分布式锁）</span></span>
+<span class="line"><span>SET lock:resource unique_key NX</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 仅当 key 存在时设置</span></span>
+<span class="line"><span>SET name &quot;Redis New&quot; XX</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 原子递增</span></span>
+<span class="line"><span>INCR counter        # counter: 1</span></span>
+<span class="line"><span>INCRBY counter 10   # counter: 11</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 原子递减</span></span>
+<span class="line"><span>DECR counter        # counter: 10</span></span>
+<span class="line"><span>DECRBY counter 5    # counter: 5</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 追加内容</span></span>
+<span class="line"><span>APPEND name &quot; is great&quot;  # name: &quot;Redis is great&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取字符串长度</span></span>
+<span class="line"><span>STRLEN name  # 输出: 15</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取子串</span></span>
+<span class="line"><span>GETRANGE name 0 4  # 输出: &quot;Redis&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 设置子串</span></span>
+<span class="line"><span>SETRANGE name 6 &quot;awesome&quot;  # name: &quot;Redis awesome&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 同时设置多个 key</span></span>
+<span class="line"><span>MSET key1 &quot;val1&quot; key2 &quot;val2&quot; key3 &quot;val3&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 同时获取多个 key</span></span>
+<span class="line"><span>MGET key1 key2 key3</span></span></code></pre></div><h3 id="_7-3-hash-类型常用命令" tabindex="-1">7.3 Hash 类型常用命令 <a class="header-anchor" href="#_7-3-hash-类型常用命令" aria-label="Permalink to “7.3 Hash 类型常用命令”">​</a></h3><p>Hash 是键值对集合，适合存储对象。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 设置字段</span></span>
+<span class="line"><span>HSET user:1001 name &quot;张三&quot; age 25 email &quot;zhangsan@example.com&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取字段</span></span>
+<span class="line"><span>HGET user:1001 name  # 输出: &quot;张三&quot;</span></span>
+<span class="line"><span>HGETALL user:1001    # 获取所有字段</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 仅设置不存在的字段</span></span>
+<span class="line"><span>HSETNX user:1001 name &quot;张三&quot;  # 如果 name 已存在则不设置</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 同时设置多个字段</span></span>
+<span class="line"><span>HMSET user:1001 address &quot;北京市&quot; phone &quot;13800138000&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 同时获取多个字段</span></span>
+<span class="line"><span>HMGET user:1001 name age</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 字段递增</span></span>
+<span class="line"><span>HINCRBY user:1001 age 1  # age: 26</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取所有字段名</span></span>
+<span class="line"><span>HKEYS user:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取所有字段值</span></span>
+<span class="line"><span>HVALS user:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取字段数量</span></span>
+<span class="line"><span>HLEN user:1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 检查字段是否存在</span></span>
+<span class="line"><span>HEXISTS user:1001 name  # 输出: 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 删除字段</span></span>
+<span class="line"><span>HDEL user:1001 email</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 遍历哈希（大数据量）</span></span>
+<span class="line"><span>HSCAN user:1001 0 COUNT 10</span></span></code></pre></div><h3 id="_7-4-list-类型常用命令" tabindex="-1">7.4 List 类型常用命令 <a class="header-anchor" href="#_7-4-list-类型常用命令" aria-label="Permalink to “7.4 List 类型常用命令”">​</a></h3><p>List 是有序可重复的字符串列表，可作为队列或栈使用。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 从右侧推入（常用作队列）</span></span>
+<span class="line"><span>RPUSH queue:task &quot;任务1&quot; &quot;任务2&quot; &quot;任务3&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 从左侧推入（用作栈时）</span></span>
+<span class="line"><span>LPUSH stack:task &quot;任务0&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 从左侧弹出</span></span>
+<span class="line"><span>LPOP queue:task  # 输出: &quot;任务1&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 从右侧弹出</span></span>
+<span class="line"><span>RPOP queue:task</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 阻塞弹出（等待队列有数据）</span></span>
+<span class="line"><span>BLPOP queue:task 0  # 0 表示永久等待</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取列表长度</span></span>
+<span class="line"><span>LLEN queue:task</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取指定范围的元素</span></span>
+<span class="line"><span>LRANGE queue:task 0 -1  # 获取全部</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取指定索引的元素</span></span>
+<span class="line"><span>LINDEX queue:task 0  # 第一个元素</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 插入元素</span></span>
+<span class="line"><span>LINSERT queue:task BEFORE &quot;任务2&quot; &quot;任务1.5&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 移除元素</span></span>
+<span class="line"><span>LREM queue:task 0 &quot;任务1&quot;  # 移除所有匹配元素</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 裁剪列表</span></span>
+<span class="line"><span>LTRIM queue:task 0 4  # 只保留前 5 个元素</span></span></code></pre></div><h3 id="_7-5-set-类型常用命令" tabindex="-1">7.5 Set 类型常用命令 <a class="header-anchor" href="#_7-5-set-类型常用命令" aria-label="Permalink to “7.5 Set 类型常用命令”">​</a></h3><p>Set 是无序不重复的集合，支持集合运算。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 添加元素</span></span>
+<span class="line"><span>SADD tag:article:1 &quot;技术&quot; &quot;数据库&quot; &quot;Redis&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取所有元素</span></span>
+<span class="line"><span>SMEMBERS tag:article:1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 随机获取元素</span></span>
+<span class="line"><span>SRANDMEMBER tag:article:1 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 检查元素是否存在</span></span>
+<span class="line"><span>SISMEMBER tag:article:1 &quot;Redis&quot;  # 输出: 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取集合大小</span></span>
+<span class="line"><span>SCARD tag:article:1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 删除元素</span></span>
+<span class="line"><span>SREM tag:article:1 &quot;Redis&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 集合运算</span></span>
+<span class="line"><span>SADD set1 &quot;a&quot; &quot;b&quot; &quot;c&quot;</span></span>
+<span class="line"><span>SADD set2 &quot;b&quot; &quot;c&quot; &quot;d&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 交集</span></span>
+<span class="line"><span>SINTER set1 set2  # 输出: &quot;b&quot;, &quot;c&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 并集</span></span>
+<span class="line"><span>SUNION set1 set2  # 输出: &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 差集（set1 - set2）</span></span>
+<span class="line"><span>SDIFF set1 set2  # 输出: &quot;a&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 判断集合关系</span></span>
+<span class="line"><span>SADD user:follows:A &quot;B&quot; &quot;C&quot; &quot;D&quot;</span></span>
+<span class="line"><span>SADD user:follows:B &quot;A&quot; &quot;C&quot; &quot;D&quot;</span></span>
+<span class="line"><span>SINTER user:follows:A user:follows:B  # 共同关注: &quot;C&quot;, &quot;D&quot;</span></span></code></pre></div><h3 id="_7-6-zset-类型常用命令" tabindex="-1">7.6 ZSet 类型常用命令 <a class="header-anchor" href="#_7-6-zset-类型常用命令" aria-label="Permalink to “7.6 ZSet 类型常用命令”">​</a></h3><p>ZSet 是有序集合，每个元素关联一个分数。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 添加元素（用户排行榜）</span></span>
+<span class="line"><span>ZADD ranking 100 &quot;user:A&quot; 95 &quot;user:B&quot; 120 &quot;user:C&quot; 88 &quot;user:D&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取排名（升序，0 起始）</span></span>
+<span class="line"><span>ZRANGE ranking 0 -1 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取排名（降序）</span></span>
+<span class="line"><span>ZREVRANGE ranking 0 2 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取分数范围</span></span>
+<span class="line"><span>ZRANGEBYSCORE ranking 90 110</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取元素排名</span></span>
+<span class="line"><span>ZRANK ranking &quot;user:A&quot;    # 升序排名</span></span>
+<span class="line"><span>ZREVRANK ranking &quot;user:C&quot;  # 降序排名</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取元素分数</span></span>
+<span class="line"><span>ZSCORE ranking &quot;user:A&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 增加分数</span></span>
+<span class="line"><span>ZINCRBY ranking 5 &quot;user:A&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 移除元素</span></span>
+<span class="line"><span>ZREM ranking &quot;user:D&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 获取集合大小</span></span>
+<span class="line"><span>ZCARD ranking</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 统计分数范围内的元素数量</span></span>
+<span class="line"><span>ZCOUNT ranking 90 110</span></span></code></pre></div><h3 id="_7-7-其他实用命令" tabindex="-1">7.7 其他实用命令 <a class="header-anchor" href="#_7-7-其他实用命令" aria-label="Permalink to “7.7 其他实用命令”">​</a></h3><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 设置过期时间</span></span>
+<span class="line"><span>SET resource &quot;data&quot;</span></span>
+<span class="line"><span>EXPIRE resource 3600  # 1 小时后过期</span></span>
+<span class="line"><span>TTL resource           # 查看剩余时间（秒）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 查看剩余生存时间</span></span>
+<span class="line"><span>TTL resource    # 返回剩余秒数；-1 表示永不过期；-2 表示不存在</span></span>
+<span class="line"><span>PTTL resource   # 毫秒级精度</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 取消过期（变为永久）</span></span>
+<span class="line"><span>PERSIST resource</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 重命名 key</span></span>
+<span class="line"><span>RENAME old_key new_key</span></span>
+<span class="line"><span>RENAMENX old_key new_key  # 仅当 new_key 不存在时重命名</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 检查 key 是否存在</span></span>
+<span class="line"><span>EXISTS resource  # 返回 1 存在，0 不存在</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 移动 key 到另一个数据库</span></span>
+<span class="line"><span>MOVE resource 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 随机获取一个 key</span></span>
+<span class="line"><span>RANDOMKEY</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 序列化/反序列化</span></span>
+<span class="line"><span>DUMP resource   # 序列化</span></span>
+<span class="line"><span>RESTORE new_key 0 &lt;serialized_value&gt;  # 反序列化</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 匹配 key（不阻塞）</span></span>
+<span class="line"><span>SCAN 0 MATCH user:* COUNT 100</span></span></code></pre></div><h3 id="_7-8-发布订阅" tabindex="-1">7.8 发布订阅 <a class="header-anchor" href="#_7-8-发布订阅" aria-label="Permalink to “7.8 发布订阅”">​</a></h3><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># 订阅频道</span></span>
+<span class="line"><span>SUBSCRIBE news:technology news:finance</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 订阅模式（使用通配符）</span></span>
+<span class="line"><span>PSUBSCRIBE news:*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 向频道发布消息</span></span>
+<span class="line"><span>PUBLISH news:technology &quot;Redis 7.2 发布了！&quot;</span></span>
+<span class="line"><span># 所有订阅该频道的客户端都会收到消息，返回接收者数量</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 取消订阅</span></span>
+<span class="line"><span>UNSUBSCRIBE news:technology</span></span>
+<span class="line"><span>PUNSUBSCRIBE news:*</span></span></code></pre></div><hr><h2 id="八、redis-架构概览" tabindex="-1">八、Redis 架构概览 <a class="header-anchor" href="#八、redis-架构概览" aria-label="Permalink to “八、Redis 架构概览”">​</a></h2><h3 id="_8-1-整体架构" tabindex="-1">8.1 整体架构 <a class="header-anchor" href="#_8-1-整体架构" aria-label="Permalink to “8.1 整体架构”">​</a></h3><p>Redis 的整体架构可以分为以下几个核心部分：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌─────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│                     客户端应用                            │</span></span>
+<span class="line"><span>│  ┌──────────┐  ┌──────────┐  ┌──────────┐              │</span></span>
+<span class="line"><span>│  │  Web App │  │ Mobile   │  │ 其他服务  │              │</span></span>
+<span class="line"><span>│  └─────┬────┘  └─────┬────┘  └─────┬────┘              │</span></span>
+<span class="line"><span>├────────┼─────────────┼─────────────┼────────────────────┤</span></span>
+<span class="line"><span>│        ▼             ▼             ▼                    │</span></span>
+<span class="line"><span>│  ┌──────────────────────────────────────────────┐      │</span></span>
+<span class="line"><span>│  │           网络层 (Network Layer)               │      │</span></span>
+<span class="line"><span>│  │  TCP 协议 → Redis 协议 → 连接管理              │      │</span></span>
+<span class="line"><span>│  └────────────────────┬─────────────────────────┘      │</span></span>
+<span class="line"><span>├────────────────────────┼────────────────────────────────┤</span></span>
+<span class="line"><span>│                        ▼                                │</span></span>
+<span class="line"><span>│  ┌──────────────────────────────────────────────┐      │</span></span>
+<span class="line"><span>│  │         事件循环层 (Event Loop)                │      │</span></span>
+<span class="line"><span>│  │  I/O 多路复用 → 文件事件 → 时间事件             │      │</span></span>
+<span class="line"><span>│  └────────────────────┬─────────────────────────┘      │</span></span>
+<span class="line"><span>├────────────────────────┼────────────────────────────────┤</span></span>
+<span class="line"><span>│                        ▼                                │</span></span>
+<span class="line"><span>│  ┌──────────────────────────────────────────────┐      │</span></span>
+<span class="line"><span>│  │        命令执行层 (Command Execution)          │      │</span></span>
+<span class="line"><span>│  │  命令解析 → 命令路由 → 命令执行                 │      │</span></span>
+<span class="line"><span>│  └────────────────────┬─────────────────────────┘      │</span></span>
+<span class="line"><span>├────────────────────────┼────────────────────────────────┤</span></span>
+<span class="line"><span>│                        ▼                                │</span></span>
+<span class="line"><span>│  ┌──────────────────────────────────────────────┐      │</span></span>
+<span class="line"><span>│  │         数据管理层 (Data Management)           │      │</span></span>
+<span class="line"><span>│  │  内存管理 → 数据结构 → 持久化 → 复制           │      │</span></span>
+<span class="line"><span>│  └──────────────────────────────────────────────┘      │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────┘</span></span></code></pre></div><h3 id="_8-2-事件循环" tabindex="-1">8.2 事件循环 <a class="header-anchor" href="#_8-2-事件循环" aria-label="Permalink to “8.2 事件循环”">​</a></h3><p>Redis 的事件循环是其高性能的核心，基于 I/O 多路复用技术实现。</p><p><strong>I/O 多路复用</strong>： Redis 使用操作系统提供的 I/O 多路复用机制（epoll on Linux, kqueue on macOS/BSD, select on others），在单线程中同时处理数千个并发连接。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>Redis 事件循环流程：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                    ┌──────────────┐</span></span>
+<span class="line"><span>                    │  等待事件     │</span></span>
+<span class="line"><span>                    │ (I/O 多路复用)│</span></span>
+<span class="line"><span>                    └──────┬───────┘</span></span>
+<span class="line"><span>                           │</span></span>
+<span class="line"><span>                    ┌──────▼───────┐</span></span>
+<span class="line"><span>                    │ 处理文件事件  │◄── 客户端请求到达</span></span>
+<span class="line"><span>                    │ (socket 读写) │</span></span>
+<span class="line"><span>                    └──────┬───────┘</span></span>
+<span class="line"><span>                           │</span></span>
+<span class="line"><span>                    ┌──────▼───────┐</span></span>
+<span class="line"><span>                    │ 处理时间事件  │◄── 定时任务（过期、复制等）</span></span>
+<span class="line"><span>                    │ (serverCron)  │</span></span>
+<span class="line"><span>                    └──────┬───────┘</span></span>
+<span class="line"><span>                           │</span></span>
+<span class="line"><span>                    ┌──────▼───────┐</span></span>
+<span class="line"><span>                    │ 执行命令     │</span></span>
+<span class="line"><span>                    │ (读写内存)    │</span></span>
+<span class="line"><span>                    └──────┬───────┘</span></span>
+<span class="line"><span>                           │</span></span>
+<span class="line"><span>                    ┌──────▼───────┐</span></span>
+<span class="line"><span>                    │ 返回结果     │</span></span>
+<span class="line"><span>                    │ (协议序列化)  │</span></span>
+<span class="line"><span>                    └──────────────┘</span></span></code></pre></div><p><strong>两种事件类型</strong>：</p><ul><li><strong>文件事件（File Event）</strong>：与 socket 操作相关，包括客户端的连接、数据读写等</li><li><strong>时间事件（Time Event）</strong>：定时任务，包括 key 过期检查、复制超时检测、持久化触发等</li></ul><h3 id="_8-3-内存结构" tabindex="-1">8.3 内存结构 <a class="header-anchor" href="#_8-3-内存结构" aria-label="Permalink to “8.3 内存结构”">​</a></h3><p>Redis 的内存结构分为以下几个主要部分：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>Redis 内存布局：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>┌─────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│                  Redis 进程内存               │</span></span>
+<span class="line"><span>├─────────────────────────────────────────────┤</span></span>
+<span class="line"><span>│                                             │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │            数据区 (Dataset)           │   │</span></span>
+<span class="line"><span>│  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐   │   │</span></span>
+<span class="line"><span>│  │  │Key- │ │Key- │ │Key- │ │Key- │   │   │</span></span>
+<span class="line"><span>│  │  │Value│ │Value│ │Value│ │Value│   │   │</span></span>
+<span class="line"><span>│  │  └──┬──┘ └──┬──┘ └──┬──┘ └──┬──┘   │   │</span></span>
+<span class="line"><span>│  │     │       │       │       │       │   │</span></span>
+<span class="line"><span>│  │  ┌──▼──┐ ┌──▼──┐ ┌──▼──┐ ┌──▼──┐   │   │</span></span>
+<span class="line"><span>│  │  │String│ │Hash │ │List │ │ Set │   │   │</span></span>
+<span class="line"><span>│  │  └─────┘ └─────┘ └─────┘ └─────┘   │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                             │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │          持久化缓冲区                 │   │</span></span>
+<span class="line"><span>│  │  RDB 缓冲区 │ AOF 缓冲区 │ 复制缓冲区  │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                             │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │          客户端输出缓冲区             │   │</span></span>
+<span class="line"><span>│  │  client 1 │ client 2 │ ...           │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                             │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │          内存管理开销                 │   │</span></span>
+<span class="line"><span>│  │  jemalloc 元数据 │ 碎片整理          │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                             │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>字典结构</strong>： Redis 使用字典（Dict）作为核心数据结构，存储所有 key-value 对。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>Redis 字典结构：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>┌─────────────────────────────────────────┐</span></span>
+<span class="line"><span>│              Redis Dict                  │</span></span>
+<span class="line"><span>├─────────────────────────────────────────┤</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │           Hash Table 0          │   │</span></span>
+<span class="line"><span>│  │  ┌───┬───┬───┬───┬───┬───┬─┐  │   │</span></span>
+<span class="line"><span>│  │  │ 0 │ 1 │ 2 │ 3 │...│n-1│ │  │   │</span></span>
+<span class="line"><span>│  │  └─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┴─┘  │   │</span></span>
+<span class="line"><span>│  │    │   │   │   │   │   │          │   │</span></span>
+<span class="line"><span>│  │    ▼   ▼   ▼   ▼   ▼   ▼          │   │</span></span>
+<span class="line"><span>│  │  ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐        │   │</span></span>
+<span class="line"><span>│  │  │K│ │K│ │K│ │K│ │K│ │K│        │   │</span></span>
+<span class="line"><span>│  │  │V│ │V│ │V│ │V│ │V│ │V│        │   │</span></span>
+<span class="line"><span>│  │  └─┘ └─┘ └─┘ └─┘ └─┘ └─┘        │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                         │</span></span>
+<span class="line"><span>│  ┌─────────────────────────────────┐   │</span></span>
+<span class="line"><span>│  │           Hash Table 1          │   │</span></span>
+<span class="line"><span>│  │  （用于渐进式 rehash）           │   │</span></span>
+<span class="line"><span>│  └─────────────────────────────────┘   │</span></span>
+<span class="line"><span>│                                         │</span></span>
+<span class="line"><span>│  rehashidx: 0  ← 正在 rehash 的位置    │</span></span>
+<span class="line"><span>│  size/mask: 哈希表大小                │</span></span>
+<span class="line"><span>└─────────────────────────────────────────┘</span></span></code></pre></div><p><strong>渐进式 Rehash</strong>： Redis 采用渐进式 rehash 策略来扩展哈希表，避免一次性 rehash 造成阻塞：</p><ol><li>分配新的哈希表（容量是旧表的 2 倍）</li><li>每次 rehash 只迁移一个索引位置的所有键</li><li>rehash 期间，查询操作同时在两个表中查找</li><li>rehash 完成后，释放旧表</li></ol><h3 id="_8-4-数据过期" tabindex="-1">8.4 数据过期 <a class="header-anchor" href="#_8-4-数据过期" aria-label="Permalink to “8.4 数据过期”">​</a></h3><p>Redis 支持 key 的自动过期机制：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>过期检查流程：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>┌─────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│            定期检查 (serverCron)              │</span></span>
+<span class="line"><span>├─────────────────────────────────────────────┤</span></span>
+<span class="line"><span>│  1. 每 100ms 执行一次                        │</span></span>
+<span class="line"><span>│  2. 随机抽取 20 个设置了过期时间的 key        │</span></span>
+<span class="line"><span>│  3. 检查是否过期，删除已过期的 key            │</span></span>
+<span class="line"><span>│  4. 如果过期比例超过 25%，重复步骤 2-3        │</span></span>
+<span class="line"><span>│  5. 时间复杂度：O(N)，但 N 通常很小          │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────┘</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>┌─────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│            惰性删除 (Lazy Expire)            │</span></span>
+<span class="line"><span>├─────────────────────────────────────────────┤</span></span>
+<span class="line"><span>│  1. 客户端访问 key 时检查是否过期            │</span></span>
+<span class="line"><span>│  2. 如果过期，先删除 key，再返回 nil          │</span></span>
+<span class="line"><span>│  3. 优点：CPU 友好，不主动消耗 CPU           │</span></span>
+<span class="line"><span>│  4. 缺点：如果 key 不再被访问，会一直占用内存 │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────┘</span></span></code></pre></div><h3 id="_8-5-单进程架构的优缺点" tabindex="-1">8.5 单进程架构的优缺点 <a class="header-anchor" href="#_8-5-单进程架构的优缺点" aria-label="Permalink to “8.5 单进程架构的优缺点”">​</a></h3><p><strong>优点</strong>：</p><ul><li>简单可靠：无锁竞争，无死锁问题</li><li>性能稳定：亚毫秒级延迟</li><li>易于实现：代码逻辑清晰</li></ul><p><strong>缺点</strong>：</p><ul><li>无法利用多核 CPU</li><li>单节点内存受限（32~64GB）</li><li>单点故障风险</li></ul><p><strong>解决方案</strong>：</p><ul><li>主从复制：读写分离，提升读性能</li><li>集群分片：水平扩展，提升容量和性能</li><li>Redis 6.0 I/O 多线程：网络 I/O 使用多线程</li><li>Redis 8.0（商业版）：部分操作支持多线程</li></ul><hr><h2 id="本章小结" tabindex="-1">本章小结 <a class="header-anchor" href="#本章小结" aria-label="Permalink to “本章小结”">​</a></h2><p>本章我们全面介绍了 Redis 的历史发展、核心特点、应用场景、安装配置和架构设计。重点包括：</p><ol><li><strong>Redis 核心优势</strong>：极致性能（10万+ QPS）、丰富数据类型、单线程架构</li><li><strong>应用场景</strong>：缓存、会话管理、排行榜、计数器、消息队列、分布式锁、地理位置</li><li><strong>安装部署</strong>：推荐 Docker 方式，支持 Windows（WSL）、Linux、macOS</li><li><strong>配置调优</strong>：通过 <code>redis.conf</code> 配置持久化、内存、安全等关键参数</li><li><strong>架构理解</strong>：事件循环 → 单线程执行 → 内存管理，形成 Redis 的高性能内核</li></ol><p>在接下来的章节中，我们将深入学习 Redis 的数据类型、持久化机制、主从复制、集群模式等核心内容。</p></div></div></main><footer class="VPDocFooter" data-v-7011f0d8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><!----></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/blog/redis/basic/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4.html" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>数据类型与基础命令</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"ai_advanced_agent开发.md\":\"eQlOBCDK\",\"ai_advanced_rag实战.md\":\"MZsj1Wbl\",\"ai_advanced_多模态应用.md\":\"BYz5GSl5\",\"ai_advanced_性能优化.md\":\"TwZmcarV\",\"ai_api_claude_api详解.md\":\"0HIO0cyN\",\"ai_api_openai_api详解.md\":\"CcM3IH8U\",\"ai_basic_prompt工程基础.md\":\"BYqYf4qr\",\"ai_basic_大模型概述.md\":\"ChV7taP9\",\"ai_basic_环境搭建.md\":\"Dau_WHr4\",\"ai_expert_模型微调.md\":\"Di7C1DUj\",\"ai_expert_生产部署.md\":\"CA9mrnXW\",\"ai_framework_langchain入门.md\":\"lw5WGBbf\",\"ai_framework_本地模型部署.md\":\"CmfZOEzE\",\"ai_projects_代码助手.md\":\"Djak3WHb\",\"ai_projects_数据分析助手.md\":\"C0G9UTmw\",\"ai_projects_智能客服系统.md\":\"rVnR6rjl\",\"browser_浏览器渲染原理.md\":\"B7v9RQ57\",\"browser_浏览器输入url后回车会发生什么.md\":\"B8FApKyO\",\"css_gpu加速.md\":\"lCh4btKs\",\"css_伪类和伪元素.md\":\"BAOIiTnb\",\"css_包含块.md\":\"DdJtrNrj\",\"css_响应式网页设计和媒体查询.md\":\"CQq1SmT9\",\"css_层叠、优先级与继承.md\":\"DeQtur6u\",\"css_层叠上下文.md\":\"vIV1F6dT\",\"css_属性计算过程.md\":\"BfvkV_JE\",\"css_布局.md\":\"DxQd8oQE\",\"css_引入方式与优先级.md\":\"Bx90Hus5\",\"css_格式化上下文.md\":\"4hX23ur6\",\"css_溢出.md\":\"DM4MXi9i\",\"css_盒模型.md\":\"q-Ux-PBm\",\"css_选择器.md\":\"BsubPA4z\",\"css_重排与重绘.md\":\"D4th5SPA\",\"docker_01-别再纠结环境问题了-一文带你看懂docker究竟是什么.md\":\"cZIVncca\",\"docker_02-零基础docker极速入门-10分钟跑起你的第一个nginx容器.md\":\"ahT2wkre\",\"docker_03-秒杀虚拟机-docker与虚拟机的核心区别.md\":\"CFFt4nmp\",\"docker_04-告别我本地跑得好好的-用docker彻底解决开发环境不一致的痛点.md\":\"D1x4_LPp\",\"docker_05-程序员高效神器-docker常用命令实战速查（附记忆口诀）.md\":\"vRla9p-X\",\"docker_06-从打镜像到精简优化-手把手教你写生产级dockerfile.md\":\"ZrlE_V_s\",\"docker_07-docker数据卷管理实战-持久化再也不怕.md\":\"CxwzNX5c\",\"docker_08-docker网络模型详解-bridge-host-overlay.md\":\"DwhpE1CG\",\"docker_09-如何将镜像体积缩小90%-多阶段构建与alpine镜像调优指南.md\":\"BPYR4HQe\",\"docker_10-docker环境变量与config文件注入全攻略.md\":\"DbjQdne7\",\"docker_11-单机容器编排实战-docker-compose搭建lnmp-springcloud全流程.md\":\"Bs6B_Y_T\",\"docker_12-docker依赖控制与healthcheck最佳实践.md\":\"ChTxvdX7\",\"docker_13-docker-swarm-从零搭建生产可用的高可用容器集群.md\":\"DSvKfiOr\",\"docker_14-滚动更新与回滚-docker服务零宕机发布策略详解.md\":\"DZEkm4MI\",\"docker_15-容器监控-cadvisor-prometheus-grafana.md\":\"HVaKKWlW\",\"docker_16-docker容器资源隔离-cgroups-namespace底层原理深剖.md\":\"DJIWJ4SY\",\"docker_17-dockerignore与build-cache构建效率提升指南.md\":\"DSgkejWy\",\"docker_18-容器漂移与注册中心-consul-nacos适配.md\":\"CBCkK3DF\",\"docker_19-docker安全全景扫描-rootless模式与镜像漏洞检测实战.md\":\"BLRrqmjU\",\"docker_20-从传统物理机到docker化改造的8个避坑指南.md\":\"B-CxFqEw\",\"engineering_css模块化.md\":\"BxvG7ovj\",\"engineering_husky.md\":\"CMXvFx_M\",\"engineering_js模块化.md\":\"B9zT61pI\",\"engineering_代码规范：eslint _ prettier 在前端工程化中的最佳实践.md\":\"DIdsmzte\",\"engineering_前端工程化.md\":\"CpT9iwgv\",\"engineering_前端工程化必备：husky _ lint-staged 实战指南.md\":\"DW3P6P1Z\",\"index.md\":\"BGMoi_3m\",\"java_advanced_io与nio.md\":\"DwVU1-5P\",\"java_advanced_java8新特性.md\":\"AZN8izuk\",\"java_advanced_jvm内存模型与gc.md\":\"BrlqyjHb\",\"java_advanced_并发编程.md\":\"BfnNDpw7\",\"java_advanced_序列化.md\":\"DepwFnh4\",\"java_basic_基础语法.md\":\"U1dbZegg\",\"java_basic_数组与字符串.md\":\"BnMoFh2W\",\"java_basic_环境搭建.md\":\"CKHiRKKo\",\"java_core_异常处理.md\":\"CIJ7g1Yc\",\"java_core_泛型.md\":\"CtFklX5J\",\"java_core_注解与反射.md\":\"DaH817-4\",\"java_core_集合框架.md\":\"DopTBz9r\",\"java_core_面向对象编程.md\":\"DomB2DXC\",\"java_expert_jvm调优.md\":\"V2bgFzS8\",\"java_expert_并发编程深入.md\":\"vIAiO9Ne\",\"java_expert_设计模式.md\":\"CxtiIu9q\",\"java_frameworks_mybatis_mybatis入门与核心概念.md\":\"BTeFhHtA\",\"java_frameworks_mybatis_mybatis核心原理.md\":\"DkkJksjB\",\"java_frameworks_mybatis_动态sql与缓存机制.md\":\"ITymWGJQ\",\"java_frameworks_spring_aop面向切面编程.md\":\"ChRZb5KT\",\"java_frameworks_spring_bean生命周期与作用域.md\":\"CC7IhZRG\",\"java_frameworks_spring_spring事务管理.md\":\"CIpwyZRH\",\"java_frameworks_spring_spring入门与ioc控制反转.md\":\"BK-hsfE9\",\"java_frameworks_spring_spring核心原理.md\":\"CQKvSbV5\",\"java_frameworks_springboot_springboot入门与核心特性.md\":\"C_qMXj8P\",\"java_frameworks_springboot_springboot核心原理.md\":\"CVKk042X\",\"java_frameworks_springboot_springboot自动配置原理.md\":\"DzZrJ-BH\",\"java_frameworks_springboot_配置文件与环境管理.md\":\"DqvDFVkx\",\"java_frameworks_springmvc_springmvc入门与请求处理流程.md\":\"BObvm39O\",\"java_frameworks_springmvc_参数绑定与数据校验.md\":\"JQ30tFRv\",\"java_frameworks_springmvc_异常处理机制.md\":\"DTzGVk7E\",\"java_frameworks_springmvc_拦截器与过滤器.md\":\"Cs_7BZN9\",\"javascript_basic_严格模式.md\":\"C2YJXxAm\",\"javascript_basic_数据类型.md\":\"CvfmjX8V\",\"javascript_basic_相等性比较.md\":\"DRVCyMg-\",\"javascript_basic_类型转换.md\":\"Df6b3WZp\",\"javascript_core_this.md\":\"Bv3hB_gK\",\"javascript_core_事件循环.md\":\"ATFbN01X\",\"javascript_core_作用域.md\":\"DnxWnBi-\",\"javascript_core_原型.md\":\"Dx09eKtj\",\"javascript_core_执行上下文.md\":\"C14KPDZ7\",\"javascript_core_提升.md\":\"C4W0nw1h\",\"javascript_core_继承.md\":\"Wci4FsS-\",\"javascript_core_闭包.md\":\"ZUOIrzw_\",\"javascript_es6_箭头函数.md\":\"Dr9imCbX\",\"javascript_other_微前端iframe架构通讯方式.md\":\"03VeOXZH\",\"javascript_other_深拷贝与浅拷贝.md\":\"DHHMV7ZH\",\"javascript_other_编辑器撤销重做功能.md\":\"DlDbrHNw\",\"mysql_advanced_sql优化实战.md\":\"B2zaONSw\",\"mysql_advanced_主从复制原理.md\":\"FG8bfNPo\",\"mysql_advanced_分库分表策略.md\":\"AJewfqEN\",\"mysql_advanced_性能调优实战.md\":\"nvSrFhyA\",\"mysql_basic_mysql简介与环境搭建.md\":\"B0mXK9Lz\",\"mysql_basic_sql基础语法.md\":\"JSFuOFvt\",\"mysql_basic_数据查询与操作.md\":\"CX2FezlU\",\"mysql_basic_数据类型与表结构.md\":\"Bt_oye0O\",\"mysql_core_事务与acid特性.md\":\"emEajFWt\",\"mysql_core_存储引擎详解.md\":\"DIg_iTrJ\",\"mysql_core_索引原理与应用.md\":\"MTzYDes5\",\"mysql_core_锁机制与并发控制.md\":\"C0vDKi8P\",\"mysql_expert_innodb存储引擎深度剖析.md\":\"BfOnnbWA\",\"mysql_expert_mysql高可用架构.md\":\"76eP_3B5\",\"mysql_expert_日志系统与恢复机制.md\":\"BwsYiGlE\",\"mysql_expert_查询优化器原理.md\":\"B5x0jrkR\",\"other_资源.md\":\"D_OE9DkM\",\"performance_vendor文件体积过大如何解决.md\":\"C2DjRHaw\",\"python_advanced_lambda 表达式.md\":\"BWYapYD3\",\"python_advanced_上下文管理器.md\":\"BMpFSV9r\",\"python_advanced_元编程.md\":\"PeAr7sWC\",\"python_advanced_并发编程.md\":\"muRg8CUk\",\"python_advanced_异步编程.md\":\"f2368y5O\",\"python_advanced_推导式.md\":\"COAu7r_v\",\"python_advanced_正则表达式.md\":\"ifd5cooy\",\"python_advanced_生成器与迭代器.md\":\"Bv7kVi8W\",\"python_advanced_装饰器.md\":\"CYOsQFrs\",\"python_advanced_闭包.md\":\"CrEDVQtY\",\"python_basic_列表与元组.md\":\"CJygAZDW\",\"python_basic_变量与数据类型.md\":\"s9VnD6A-\",\"python_basic_字典与集合.md\":\"DPa2KICV\",\"python_basic_字符串.md\":\"Dafq5cud\",\"python_basic_循环语句.md\":\"DWjlcCYK\",\"python_basic_条件语句.md\":\"CDrAshJY\",\"python_basic_环境搭建.md\":\"Cr35dXxd\",\"python_basic_运算符.md\":\"y8bdRnM4\",\"python_core_作用域与命名空间.md\":\"Cv_nwQQC\",\"python_core_函数基础.md\":\"jAX5D0hA\",\"python_core_参数传递.md\":\"C2D2_krf\",\"python_core_异常处理.md\":\"HaQJpIdk\",\"python_core_文件操作.md\":\"qQkFJeR-\",\"python_core_模块与包.md\":\"D83U6aJr\",\"python_core_类与对象.md\":\"vS8IqQmm\",\"python_core_继承与多态.md\":\"C1KXy4bO\",\"python_core_面向对象基础.md\":\"_0ZwgCdo\",\"python_core_魔术方法.md\":\"BRKjPPxM\",\"python_expert_gil 全局解释器锁.md\":\"qAdMxyKB\",\"python_expert_内存管理.md\":\"z2aPhwfr\",\"python_expert_性能优化.md\":\"BEF59zBP\",\"python_expert_测试与调试.md\":\"Wfw1JyWL\",\"python_expert_类型提示.md\":\"CDeSSK4f\",\"python_expert_设计模式.md\":\"BxuLHNlz\",\"python_tools_pip.md\":\"CupnCbKI\",\"python_tools_代码规范.md\":\"DckvCy5V\",\"python_tools_虚拟环境.md\":\"BkedGAfT\",\"react_fiber.md\":\"CwiUrkIf\",\"react_自动批处理.md\":\"BhbeXKPF\",\"redis_advanced_主从复制与集群.md\":\"BCnt_YGz\",\"redis_advanced_缓存问题与性能优化.md\":\"D0D3PTOq\",\"redis_basic_redis简介与环境搭建.md\":\"DkyTvIN5\",\"redis_basic_数据类型与基础命令.md\":\"BQzqOJkp\",\"redis_core_内存管理与淘汰策略.md\":\"DEQEc746\",\"redis_core_发布订阅与事务.md\":\"DsxNNMwC\",\"redis_core_持久化机制.md\":\"CO-6zC3Q\",\"redis_core_数据结构底层实现.md\":\"x4LOlYof\",\"redis_expert_分布式锁与高可用架构.md\":\"DSz0VAk2\",\"redis_expert_单线程模型与事件循环.md\":\"ByvEwYV5\",\"vue_diff算法.md\":\"D8N7_zlN\",\"vue_new vue()和createapp()的区别.md\":\"CSXj7jzN\",\"vue_vue2源码执行流程.md\":\"gRfykG9X\",\"vue_vue3响应式源码.md\":\"OoUrgUWY\",\"vue_vue3新特性.md\":\"CpDvonIQ\",\"vue_响应式原理.md\":\"YCccUd1E\",\"vue_虚拟dom.md\":\"B8aWN7YF\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"博客\",\"description\":\"苏子龙博客\",\"base\":\"/blog/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"outline\":{\"level\":[2,3],\"label\":\"目录\"},\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"Css\",\"link\":\"/css/引入方式与优先级\"},{\"text\":\"JavaScript\",\"link\":\"/javascript/basic/数据类型\"},{\"text\":\"浏览器\",\"link\":\"/browser/浏览器渲染原理\"},{\"text\":\"工程化\",\"link\":\"/engineering/前端工程化\"},{\"text\":\"框架\",\"items\":[{\"text\":\"Vue\",\"link\":\"/vue/Vue3新特性\"},{\"text\":\"React\",\"link\":\"/react/Fiber\"}]},{\"text\":\"性能\",\"link\":\"/performance/vendor文件体积过大如何解决\"},{\"text\":\"其他\",\"link\":\"/other/资源\"},{\"text\":\"Python\",\"link\":\"/python/basic/环境搭建\"},{\"text\":\"Java\",\"link\":\"/java/basic/环境搭建\"},{\"text\":\"AI\",\"link\":\"/ai/basic/大模型概述\"},{\"text\":\"MySQL\",\"link\":\"/mysql/basic/MySQL简介与环境搭建\"},{\"text\":\"Redis\",\"link\":\"/redis/basic/Redis简介与环境搭建\"}],\"sidebar\":{\"browser\":[{\"text\":\"浏览器\",\"items\":[{\"text\":\"浏览器渲染原理\",\"link\":\"/browser/浏览器渲染原理\"},{\"text\":\"浏览器输入URL后回车会发生什么\",\"link\":\"/browser/浏览器输入URL后回车会发生什么\"}]}],\"html\":[{\"text\":\"Html\",\"items\":[{\"text\":\"浏览器渲染原理\",\"link\":\"/browser/浏览器渲染原理\"}]}],\"css\":[{\"text\":\"Css\",\"items\":[{\"text\":\"引入方式与优先级\",\"link\":\"/css/引入方式与优先级\"},{\"text\":\"选择器\",\"link\":\"/css/选择器\"},{\"text\":\"伪类和伪元素\",\"link\":\"/css/伪类和伪元素\"},{\"text\":\"格式化上下文\",\"link\":\"/css/格式化上下文\"},{\"text\":\"层叠、优先级与继承\",\"link\":\"/css/层叠、优先级与继承\"},{\"text\":\"盒模型\",\"link\":\"/css/盒模型\"},{\"text\":\"布局\",\"link\":\"/css/布局\"},{\"text\":\"响应式网页设计和媒体查询\",\"link\":\"/css/响应式网页设计和媒体查询\"},{\"text\":\"溢出\",\"link\":\"/css/溢出\"},{\"text\":\"层叠上下文\",\"link\":\"/css/层叠上下文\"},{\"text\":\"重排与重绘\",\"link\":\"/css/重排与重绘\"},{\"text\":\"GPU加速\",\"link\":\"/css/GPU加速\"},{\"text\":\"属性计算过程\",\"link\":\"/css/属性计算过程\"},{\"text\":\"包含块\",\"link\":\"/css/包含块\"}]}],\"javascript\":[{\"text\":\"基础知识\",\"items\":[{\"text\":\"数据类型\",\"link\":\"/javascript/basic/数据类型\"},{\"text\":\"类型转换\",\"link\":\"/javascript/basic/类型转换\"},{\"text\":\"相等性比较\",\"link\":\"/javascript/basic/相等性比较\"},{\"text\":\"严格模式\",\"link\":\"/javascript/basic/严格模式\"}]},{\"text\":\"核心概念\",\"items\":[{\"text\":\"作用域\",\"link\":\"/javascript/core/作用域\"},{\"text\":\"提升\",\"link\":\"/javascript/core/提升\"},{\"text\":\"闭包\",\"link\":\"/javascript/core/闭包\"},{\"text\":\"执行上下文\",\"link\":\"/javascript/core/执行上下文\"},{\"text\":\"this\",\"link\":\"/javascript/core/this\"},{\"text\":\"原型\",\"link\":\"/javascript/core/原型\"},{\"text\":\"继承\",\"link\":\"/javascript/core/继承\"},{\"text\":\"事件循环\",\"link\":\"/javascript/core/事件循环\"}]},{\"text\":\"其他\",\"items\":[{\"text\":\"深拷贝与浅拷贝\",\"link\":\"/javascript/other/深拷贝与浅拷贝\"},{\"text\":\"编辑器撤销重做功能\",\"link\":\"/javascript/other/编辑器撤销重做功能\"},{\"text\":\"微前端iframe架构通讯方式\",\"link\":\"/javascript/other/微前端iframe架构通讯方式\"}]},{\"text\":\"高级主题\",\"items\":[]},{\"text\":\"ES6\",\"items\":[{\"text\":\"箭头函数\",\"link\":\"/javascript/es6/箭头函数\"}]}],\"vue\":[{\"text\":\"基础\",\"items\":[{\"text\":\"Vue3新特性\",\"link\":\"/vue/Vue3新特性\"},{\"text\":\"new Vue()和createApp()的区别\",\"link\":\"/vue/new Vue()和createApp()的区别\"},{\"text\":\"Vue2源码执行流程\",\"link\":\"/vue/Vue2源码执行流程\"},{\"text\":\"响应式原理\",\"link\":\"/vue/响应式原理\"},{\"text\":\"虚拟Dom\",\"link\":\"/vue/虚拟Dom\"},{\"text\":\"Diff算法\",\"link\":\"/vue/Diff算法\"},{\"text\":\"key的作用\",\"link\":\"/vue/key的作用\"}]}],\"react\":[{\"text\":\"react\",\"items\":[{\"text\":\"Fiber\",\"link\":\"/react/Fiber\"},{\"text\":\"自动批处理\",\"link\":\"/react/自动批处理\"}]}],\"engineering\":[{\"text\":\"前端工程化\",\"items\":[{\"text\":\"前端工程化介绍\",\"link\":\"/engineering/前端工程化\"}]},{\"text\":\"模块化与组件化\",\"items\":[{\"text\":\"JS模块化\",\"link\":\"/engineering/JS模块化\"},{\"text\":\"CSS模块化\",\"link\":\"/engineering/CSS模块化\"}]},{\"text\":\"开发效率与构建工具\"},{\"text\":\"代码质量与规范\",\"items\":[{\"text\":\"代码规范：ESLint + Prettier 在前端工程化中的最佳实践\",\"link\":\"/engineering/代码规范：ESLint + Prettier 在前端工程化中的最佳实践\"},{\"text\":\"前端工程化必备：husky + lint-staged 实战指南\",\"link\":\"/engineering/前端工程化必备：husky + lint-staged 实战指南\"}]},{\"text\":\"测试与质量保障\"},{\"text\":\"部署与运维\"},{\"text\":\"性能优化\"}],\"资源\":[{\"text\":\"资源\",\"items\":[{\"text\":\"资源\",\"link\":\"/other/资源\"}]}],\"python\":[{\"text\":\"基础\",\"items\":[{\"text\":\"环境搭建\",\"link\":\"/python/basic/环境搭建\"},{\"text\":\"变量与数据类型\",\"link\":\"/python/basic/变量与数据类型\"},{\"text\":\"运算符\",\"link\":\"/python/basic/运算符\"},{\"text\":\"条件语句\",\"link\":\"/python/basic/条件语句\"},{\"text\":\"循环语句\",\"link\":\"/python/basic/循环语句\"},{\"text\":\"字符串\",\"link\":\"/python/basic/字符串\"},{\"text\":\"列表与元组\",\"link\":\"/python/basic/列表与元组\"},{\"text\":\"字典与集合\",\"link\":\"/python/basic/字典与集合\"}]},{\"text\":\"核心\",\"items\":[{\"text\":\"函数基础\",\"link\":\"/python/core/函数基础\"},{\"text\":\"参数传递\",\"link\":\"/python/core/参数传递\"},{\"text\":\"作用域与命名空间\",\"link\":\"/python/core/作用域与命名空间\"},{\"text\":\"模块与包\",\"link\":\"/python/core/模块与包\"},{\"text\":\"文件操作\",\"link\":\"/python/core/文件操作\"},{\"text\":\"异常处理\",\"link\":\"/python/core/异常处理\"},{\"text\":\"面向对象基础\",\"link\":\"/python/core/面向对象基础\"},{\"text\":\"类与对象\",\"link\":\"/python/core/类与对象\"},{\"text\":\"继承与多态\",\"link\":\"/python/core/继承与多态\"},{\"text\":\"魔术方法\",\"link\":\"/python/core/魔术方法\"}]},{\"text\":\"进阶\",\"items\":[{\"text\":\"装饰器\",\"link\":\"/python/advanced/装饰器\"},{\"text\":\"生成器与迭代器\",\"link\":\"/python/advanced/生成器与迭代器\"},{\"text\":\"上下文管理器\",\"link\":\"/python/advanced/上下文管理器\"},{\"text\":\"闭包\",\"link\":\"/python/advanced/闭包\"},{\"text\":\"Lambda 表达式\",\"link\":\"/python/advanced/Lambda 表达式\"},{\"text\":\"推导式\",\"link\":\"/python/advanced/推导式\"},{\"text\":\"正则表达式\",\"link\":\"/python/advanced/正则表达式\"},{\"text\":\"并发编程\",\"link\":\"/python/advanced/并发编程\"},{\"text\":\"异步编程\",\"link\":\"/python/advanced/异步编程\"},{\"text\":\"元编程\",\"link\":\"/python/advanced/元编程\"}]},{\"text\":\"高级\",\"items\":[{\"text\":\"内存管理\",\"link\":\"/python/expert/内存管理\"},{\"text\":\"GIL 全局解释器锁\",\"link\":\"/python/expert/GIL 全局解释器锁\"},{\"text\":\"性能优化\",\"link\":\"/python/expert/性能优化\"},{\"text\":\"设计模式\",\"link\":\"/python/expert/设计模式\"},{\"text\":\"类型提示\",\"link\":\"/python/expert/类型提示\"},{\"text\":\"测试与调试\",\"link\":\"/python/expert/测试与调试\"}]},{\"text\":\"工具\",\"items\":[{\"text\":\"pip\",\"link\":\"/python/tools/pip\"},{\"text\":\"虚拟环境\",\"link\":\"/python/tools/虚拟环境\"},{\"text\":\"代码规范\",\"link\":\"/python/tools/代码规范\"}]}],\"java\":[{\"text\":\"基础\",\"items\":[{\"text\":\"环境搭建\",\"link\":\"/java/basic/环境搭建\"},{\"text\":\"基础语法\",\"link\":\"/java/basic/基础语法\"},{\"text\":\"数组与字符串\",\"link\":\"/java/basic/数组与字符串\"}]},{\"text\":\"核心\",\"items\":[{\"text\":\"面向对象编程\",\"link\":\"/java/core/面向对象编程\"},{\"text\":\"集合框架\",\"link\":\"/java/core/集合框架\"},{\"text\":\"异常处理\",\"link\":\"/java/core/异常处理\"},{\"text\":\"泛型\",\"link\":\"/java/core/泛型\"},{\"text\":\"注解与反射\",\"link\":\"/java/core/注解与反射\"}]},{\"text\":\"进阶\",\"items\":[{\"text\":\"JVM内存模型与GC\",\"link\":\"/java/advanced/JVM内存模型与GC\"},{\"text\":\"并发编程\",\"link\":\"/java/advanced/并发编程\"},{\"text\":\"Java 8+新特性\",\"link\":\"/java/advanced/Java8新特性\"},{\"text\":\"IO与NIO\",\"link\":\"/java/advanced/IO与NIO\"},{\"text\":\"序列化\",\"link\":\"/java/advanced/序列化\"}]},{\"text\":\"高级\",\"items\":[{\"text\":\"JVM调优\",\"link\":\"/java/expert/JVM调优\"},{\"text\":\"并发编程深入\",\"link\":\"/java/expert/并发编程深入\"},{\"text\":\"设计模式\",\"link\":\"/java/expert/设计模式\"}]},{\"text\":\"Spring\",\"items\":[{\"text\":\"Spring入门与IoC控制反转\",\"link\":\"/java/frameworks/spring/Spring入门与IoC控制反转\"},{\"text\":\"Bean生命周期与作用域\",\"link\":\"/java/frameworks/spring/Bean生命周期与作用域\"},{\"text\":\"AOP面向切面编程\",\"link\":\"/java/frameworks/spring/AOP面向切面编程\"},{\"text\":\"Spring事务管理\",\"link\":\"/java/frameworks/spring/Spring事务管理\"},{\"text\":\"Spring核心原理\",\"link\":\"/java/frameworks/spring/Spring核心原理\"}]},{\"text\":\"SpringMVC\",\"items\":[{\"text\":\"SpringMVC入门与请求处理流程\",\"link\":\"/java/frameworks/springmvc/SpringMVC入门与请求处理流程\"},{\"text\":\"参数绑定与数据校验\",\"link\":\"/java/frameworks/springmvc/参数绑定与数据校验\"},{\"text\":\"异常处理机制\",\"link\":\"/java/frameworks/springmvc/异常处理机制\"},{\"text\":\"拦截器与过滤器\",\"link\":\"/java/frameworks/springmvc/拦截器与过滤器\"}]},{\"text\":\"MyBatis\",\"items\":[{\"text\":\"MyBatis入门与核心概念\",\"link\":\"/java/frameworks/mybatis/MyBatis入门与核心概念\"},{\"text\":\"动态SQL与缓存机制\",\"link\":\"/java/frameworks/mybatis/动态SQL与缓存机制\"},{\"text\":\"MyBatis核心原理\",\"link\":\"/java/frameworks/mybatis/MyBatis核心原理\"}]},{\"text\":\"SpringBoot\",\"items\":[{\"text\":\"SpringBoot入门与核心特性\",\"link\":\"/java/frameworks/springboot/SpringBoot入门与核心特性\"},{\"text\":\"SpringBoot自动配置原理\",\"link\":\"/java/frameworks/springboot/SpringBoot自动配置原理\"},{\"text\":\"配置文件与环境管理\",\"link\":\"/java/frameworks/springboot/配置文件与环境管理\"},{\"text\":\"SpringBoot核心原理\",\"link\":\"/java/frameworks/springboot/SpringBoot核心原理\"}]}],\"ai\":[{\"text\":\"第一阶段：基础入门\",\"items\":[{\"text\":\"大模型概述\",\"link\":\"/ai/basic/大模型概述\"},{\"text\":\"Prompt工程基础\",\"link\":\"/ai/basic/Prompt工程基础\"},{\"text\":\"环境搭建\",\"link\":\"/ai/basic/环境搭建\"}]},{\"text\":\"第二阶段：核心API与框架\",\"items\":[{\"text\":\"OpenAI API详解\",\"link\":\"/ai/api/OpenAI_API详解\"},{\"text\":\"Claude API详解\",\"link\":\"/ai/api/Claude_API详解\"},{\"text\":\"LangChain入门\",\"link\":\"/ai/framework/LangChain入门\"},{\"text\":\"本地模型部署\",\"link\":\"/ai/framework/本地模型部署\"}]},{\"text\":\"第三阶段：高级应用开发\",\"items\":[{\"text\":\"RAG实战\",\"link\":\"/ai/advanced/RAG实战\"},{\"text\":\"Agent开发\",\"link\":\"/ai/advanced/Agent开发\"},{\"text\":\"多模态应用\",\"link\":\"/ai/advanced/多模态应用\"},{\"text\":\"性能优化\",\"link\":\"/ai/advanced/性能优化\"}]},{\"text\":\"第四阶段：实战项目\",\"items\":[{\"text\":\"智能客服系统\",\"link\":\"/ai/projects/智能客服系统\"},{\"text\":\"代码助手\",\"link\":\"/ai/projects/代码助手\"},{\"text\":\"数据分析助手\",\"link\":\"/ai/projects/数据分析助手\"}]},{\"text\":\"第五阶段：进阶与部署\",\"items\":[{\"text\":\"模型微调\",\"link\":\"/ai/expert/模型微调\"},{\"text\":\"生产部署\",\"link\":\"/ai/expert/生产部署\"}]}],\"mysql\":[{\"text\":\"入门\",\"items\":[{\"text\":\"MySQL简介与环境搭建\",\"link\":\"/mysql/basic/MySQL简介与环境搭建\"},{\"text\":\"SQL基础语法\",\"link\":\"/mysql/basic/SQL基础语法\"},{\"text\":\"数据类型与表结构\",\"link\":\"/mysql/basic/数据类型与表结构\"},{\"text\":\"数据查询与操作\",\"link\":\"/mysql/basic/数据查询与操作\"}]},{\"text\":\"核心原理\",\"items\":[{\"text\":\"索引原理与应用\",\"link\":\"/mysql/core/索引原理与应用\"},{\"text\":\"事务与ACID特性\",\"link\":\"/mysql/core/事务与ACID特性\"},{\"text\":\"存储引擎详解\",\"link\":\"/mysql/core/存储引擎详解\"},{\"text\":\"锁机制与并发控制\",\"link\":\"/mysql/core/锁机制与并发控制\"}]},{\"text\":\"进阶实战\",\"items\":[{\"text\":\"SQL优化实战\",\"link\":\"/mysql/advanced/SQL优化实战\"},{\"text\":\"主从复制原理\",\"link\":\"/mysql/advanced/主从复制原理\"},{\"text\":\"分库分表策略\",\"link\":\"/mysql/advanced/分库分表策略\"},{\"text\":\"性能调优实战\",\"link\":\"/mysql/advanced/性能调优实战\"}]},{\"text\":\"精通与架构\",\"items\":[{\"text\":\"InnoDB存储引擎深度剖析\",\"link\":\"/mysql/expert/InnoDB存储引擎深度剖析\"},{\"text\":\"查询优化器原理\",\"link\":\"/mysql/expert/查询优化器原理\"},{\"text\":\"日志系统与恢复机制\",\"link\":\"/mysql/expert/日志系统与恢复机制\"},{\"text\":\"MySQL高可用架构\",\"link\":\"/mysql/expert/MySQL高可用架构\"}]}],\"redis\":[{\"text\":\"入门\",\"items\":[{\"text\":\"Redis简介与环境搭建\",\"link\":\"/redis/basic/Redis简介与环境搭建\"},{\"text\":\"数据类型与基础命令\",\"link\":\"/redis/basic/数据类型与基础命令\"}]},{\"text\":\"核心原理\",\"items\":[{\"text\":\"数据结构底层实现\",\"link\":\"/redis/core/数据结构底层实现\"},{\"text\":\"持久化机制\",\"link\":\"/redis/core/持久化机制\"},{\"text\":\"内存管理与淘汰策略\",\"link\":\"/redis/core/内存管理与淘汰策略\"},{\"text\":\"发布订阅与事务\",\"link\":\"/redis/core/发布订阅与事务\"}]},{\"text\":\"进阶实战\",\"items\":[{\"text\":\"主从复制与集群\",\"link\":\"/redis/advanced/主从复制与集群\"},{\"text\":\"缓存问题与性能优化\",\"link\":\"/redis/advanced/缓存问题与性能优化\"}]},{\"text\":\"精通与架构\",\"items\":[{\"text\":\"单线程模型与事件循环\",\"link\":\"/redis/expert/单线程模型与事件循环\"},{\"text\":\"分布式锁与高可用架构\",\"link\":\"/redis/expert/分布式锁与高可用架构\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/vuejs/vitepress\"}]},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false,\"additionalConfig\":{}}");</script>
+    
+  </body>
+</html>

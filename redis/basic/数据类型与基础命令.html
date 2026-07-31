@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>数据类型与基础命令 | 博客</title>
+    <meta name="description" content="苏子龙博客">
+    <meta name="generator" content="VitePress v2.0.0-alpha.15">
+    <link rel="preload stylesheet" href="/blog/assets/style.CATQHecQ.css" as="style">
+    <link rel="preload stylesheet" href="/blog/vp-icons.css" as="style">
+    
+    <script type="module" src="/blog/assets/app.C5rY1Z9v.js"></script>
+    <link rel="preload" href="/blog/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/blog/assets/chunks/theme.DAmqxd4Q.js">
+    <link rel="modulepreload" href="/blog/assets/chunks/framework.CPHJ30oF.js">
+    <link rel="modulepreload" href="/blog/assets/redis_basic_数据类型与基础命令.md.BQzqOJkp.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-1df9f90f><!--[--><!--]--><!--[--><span tabindex="-1" data-v-331ec75c></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-331ec75c>Skip to content</a><!--]--><!----><header class="VPNav" data-v-1df9f90f data-v-da52a441><div class="VPNavBar" data-v-da52a441 data-v-70946a35><div class="wrapper" data-v-70946a35><div class="container" data-v-70946a35><div class="title" data-v-70946a35><div class="VPNavBarTitle has-sidebar" data-v-70946a35 data-v-1e38c6bc><a class="title" href="/blog/" data-v-1e38c6bc><!--[--><!--]--><!----><span data-v-1e38c6bc>博客</span><!--[--><!--]--></a></div></div><div class="content" data-v-70946a35><div class="content-body" data-v-70946a35><!--[--><!--]--><div class="VPNavBarSearch search" data-v-70946a35><!----></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-70946a35 data-v-39714824><span id="main-nav-aria-label" class="visually-hidden" data-v-39714824> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/css/%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Css</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/javascript/basic/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>JavaScript</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>浏览器</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/engineering/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>工程化</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-39714824 data-v-42cb505d><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-42cb505d><span class="text" data-v-42cb505d><!----><span data-v-42cb505d>框架</span><span class="vpi-chevron-down text-icon" data-v-42cb505d></span></span></button><div class="menu" data-v-42cb505d><div class="VPMenu" data-v-42cb505d data-v-25a6cce8><div class="items" data-v-25a6cce8><!--[--><!--[--><div class="VPMenuLink" data-v-25a6cce8 data-v-faf5b206><a class="VPLink link" href="/blog/vue/Vue3%E6%96%B0%E7%89%B9%E6%80%A7.html" data-v-faf5b206><!--[--><span data-v-faf5b206>Vue</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-25a6cce8 data-v-faf5b206><a class="VPLink link" href="/blog/react/Fiber.html" data-v-faf5b206><!--[--><span data-v-faf5b206>React</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/performance/vendor%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF%E8%BF%87%E5%A4%A7%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>性能</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/other/%E8%B5%84%E6%BA%90.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>其他</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/python/basic/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Python</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/java/basic/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Java</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/ai/basic/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>AI</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/mysql/basic/MySQL%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>MySQL</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/blog/redis/basic/Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" tabindex="0" data-v-39714824 data-v-52a1d768><!--[--><span data-v-52a1d768>Redis</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-70946a35 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-70946a35 data-v-0394ad82 data-v-d07f11e6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/vuejs/vitepress" aria-label="github" target="_blank" rel="me noopener" data-v-d07f11e6 data-v-591a6b30><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-70946a35 data-v-bf2fac68 data-v-42cb505d><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-42cb505d><span class="vpi-more-horizontal icon" data-v-42cb505d></span></button><div class="menu" data-v-42cb505d><div class="VPMenu" data-v-42cb505d data-v-25a6cce8><!----><!--[--><!--[--><!----><div class="group" data-v-bf2fac68><div class="item appearance" data-v-bf2fac68><p class="label" data-v-bf2fac68>Appearance</p><div class="appearance-action" data-v-bf2fac68><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bf2fac68 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bf2fac68><div class="item social-links" data-v-bf2fac68><div class="VPSocialLinks social-links-list" data-v-bf2fac68 data-v-d07f11e6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/vuejs/vitepress" aria-label="github" target="_blank" rel="me noopener" data-v-d07f11e6 data-v-591a6b30><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-70946a35 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-70946a35><div class="divider-line" data-v-70946a35></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-1df9f90f data-v-db738f89><div class="container" data-v-db738f89><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-db738f89><span class="vpi-align-left menu-icon" data-v-db738f89></span><span class="menu-text" data-v-db738f89>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-db738f89 data-v-0bf0e06f><button data-v-0bf0e06f>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-1df9f90f data-v-af661f50><div class="curtain" data-v-af661f50></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-af661f50><span class="visually-hidden" id="sidebar-aria-label" data-v-af661f50> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0 has-active" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>入门</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/basic/Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>Redis简介与环境搭建</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/basic/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>数据类型与基础命令</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>核心原理</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>数据结构底层实现</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>持久化机制</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%8E%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>内存管理与淘汰策略</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/core/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E4%B8%8E%E4%BA%8B%E5%8A%A1.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>发布订阅与事务</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>进阶实战</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/advanced/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%9B%86%E7%BE%A4.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>主从复制与集群</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/advanced/%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>缓存问题与性能优化</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-8d50c081><section class="VPSidebarItem level-0" data-v-8d50c081 data-v-d81de50c><div class="item" role="button" tabindex="0" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><h2 class="text" data-v-d81de50c>精通与架构</h2><!----></div><div class="items" data-v-d81de50c><!--[--><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/expert/%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>单线程模型与事件循环</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-d81de50c data-v-d81de50c><div class="item" data-v-d81de50c><div class="indicator" data-v-d81de50c></div><a class="VPLink link link" href="/blog/redis/expert/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84.html" data-v-d81de50c><!--[--><p class="text" data-v-d81de50c>分布式锁与高可用架构</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-1df9f90f data-v-c87f25bf><div class="VPDoc has-sidebar has-aside" data-v-c87f25bf data-v-7011f0d8><!--[--><!--]--><div class="container" data-v-7011f0d8><div class="aside" data-v-7011f0d8><div class="aside-curtain" data-v-7011f0d8></div><div class="aside-container" data-v-7011f0d8><div class="aside-content" data-v-7011f0d8><div class="VPDocAside" data-v-7011f0d8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-60d5052e><div class="content" data-v-60d5052e><div class="outline-marker" data-v-60d5052e></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-60d5052e>目录</div><ul class="VPDocOutlineItem root" data-v-60d5052e data-v-1ce71065><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-7011f0d8><div class="content-container" data-v-7011f0d8><!--[--><!--]--><main class="main" data-v-7011f0d8><div style="position:relative;" class="vp-doc _blog_redis_basic_%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4" data-v-7011f0d8><div><h1 id="数据类型与基础命令" tabindex="-1">数据类型与基础命令 <a class="header-anchor" href="#数据类型与基础命令" aria-label="Permalink to “数据类型与基础命令”">​</a></h1><h2 id="一、redis-数据类型总览" tabindex="-1">一、Redis 数据类型总览 <a class="header-anchor" href="#一、redis-数据类型总览" aria-label="Permalink to “一、Redis 数据类型总览”">​</a></h2><h3 id="_1-1-redis-核心数据类型" tabindex="-1">1.1 Redis 核心数据类型 <a class="header-anchor" href="#_1-1-redis-核心数据类型" aria-label="Permalink to “1.1 Redis 核心数据类型”">​</a></h3><p>Redis 提供了丰富的数据类型，每种类型都有其独特的底层实现和适用场景。熟练掌握这些数据类型是高效使用 Redis 的基础。</p><table tabindex="0"><thead><tr><th>类型</th><th>英文名称</th><th>底层实现</th><th>说明</th></tr></thead><tbody><tr><td>String</td><td>字符串</td><td>SDS（简单动态字符串）</td><td>最基础的类型，可存储字符串、整数、浮点数、二进制数据</td></tr><tr><td>Hash</td><td>哈希</td><td>ziplist / hashtable</td><td>键值对集合，适合存储对象</td></tr><tr><td>List</td><td>列表</td><td>ziplist / linkedlist</td><td>有序字符串列表，支持从两端推入和弹出</td></tr><tr><td>Set</td><td>集合</td><td>intset / hashtable</td><td>无序不重复字符串集合，支持集合运算</td></tr><tr><td>ZSet</td><td>有序集合</td><td>ziplist / skiplist+hashtable</td><td>每个元素关联一个分数，按分数排序</td></tr><tr><td>HyperLogLog</td><td>超日志</td><td>概率数据结构</td><td>用于基数统计，精度约 0.81%</td></tr><tr><td>Bitmap</td><td>位图</td><td>位数组</td><td>按位操作，节省空间</td></tr><tr><td>Geo</td><td>地理坐标</td><td>Sorted Set</td><td>存储地理位置并进行距离计算</td></tr><tr><td>Stream</td><td>流</td><td>类 Kafka 日志</td><td>消息队列，支持消费者组</td></tr></tbody></table><h3 id="_1-2-各类型使用场景概览" tabindex="-1">1.2 各类型使用场景概览 <a class="header-anchor" href="#_1-2-各类型使用场景概览" aria-label="Permalink to “1.2 各类型使用场景概览”">​</a></h3><table tabindex="0"><thead><tr><th>类型</th><th>典型应用场景</th></tr></thead><tbody><tr><td>String</td><td>缓存、计数器、分布式锁、共享 Session</td></tr><tr><td>Hash</td><td>用户信息、商品属性、配置缓存</td></tr><tr><td>List</td><td>消息队列、最新消息排行、时间线</td></tr><tr><td>Set</td><td>标签系统、共同好友、去重</td></tr><tr><td>ZSet</td><td>排行榜、评分系统、延迟队列</td></tr><tr><td>HyperLogLog</td><td>UV 统计、独立访客计数</td></tr><tr><td>Bitmap</td><td>签到打卡、在线状态、用户活跃标记</td></tr><tr><td>Geo</td><td>附近的人、地理位置搜索</td></tr><tr><td>Stream</td><td>消息队列、事件溯源、实时数据流</td></tr></tbody></table><h3 id="_1-3-redis-键的命名规范" tabindex="-1">1.3 Redis 键的命名规范 <a class="header-anchor" href="#_1-3-redis-键的命名规范" aria-label="Permalink to “1.3 Redis 键的命名规范”">​</a></h3><p>在学习各种数据类型之前，先了解 Redis 键的命名规范：</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 推荐使用 &quot;业务:对象:唯一标识&quot; 的格式</span></span>
+<span class="line"><span>SET user:1001:name &quot;张三&quot;</span></span>
+<span class="line"><span>SET product:2001:price 99.9</span></span>
+<span class="line"><span>SET order:3001:status &quot;paid&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 使用冒号分隔符（也可用其他分隔符，如 &quot;.&quot;、&quot;-&quot;）</span></span>
+<span class="line"><span>SET user:1001:profile &#39;{&quot;name&quot;:&quot;张三&quot;,&quot;age&quot;:25}&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 键名大小写敏感</span></span>
+<span class="line"><span>SET User:1001 &quot;value1&quot;</span></span>
+<span class="line"><span>SET user:1001 &quot;value2&quot;</span></span>
+<span class="line"><span>GET User:1001  // &quot;value1&quot;</span></span>
+<span class="line"><span>GET user:1001   // &quot;value2&quot;</span></span></code></pre></div><p><strong>键的命名建议</strong>：</p><ul><li>具有可读性：<code>user:1001:name</code> 比 <code>u1001n</code> 更好</li><li>控制长度：过长的键名会消耗内存</li><li>保持一致性：在整个项目中使用统一的命名格式</li><li>避免特殊字符：尽量使用字母、数字和分隔符</li></ul><hr><h2 id="二、string-类型" tabindex="-1">二、String 类型 <a class="header-anchor" href="#二、string-类型" aria-label="Permalink to “二、String 类型”">​</a></h2><h3 id="_2-1-底层实现-sds-字符串" tabindex="-1">2.1 底层实现（SDS 字符串） <a class="header-anchor" href="#_2-1-底层实现-sds-字符串" aria-label="Permalink to “2.1 底层实现（SDS 字符串）”">​</a></h3><p>Redis 的 String 类型底层使用 <strong>SDS（Simple Dynamic String）</strong> 实现，而非 C 语言原生字符串。</p><p><strong>C 字符串的问题</strong>：</p><ul><li>获取字符串长度需要遍历，时间复杂度为 O(N)</li><li>二进制不安全，遇到 <code>\0</code> 会被截断</li><li>缓冲区溢出风险，修改字符串前需要手动分配内存</li></ul><p><strong>SDS 的结构</strong>：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────┐</span></span>
+<span class="line"><span>│  free (len)   │  len (len)   │  flags (1)   │  buf[]       │  &#39;\0&#39; 终止符        │</span></span>
+<span class="line"><span>└──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────┘</span></span></code></pre></div><ul><li><code>free</code>：已分配但未使用的字节数</li><li><code>len</code>：字符串实际长度</li><li><code>flags</code>：SDS 类型标识（SDS_TYPE_5、SDS_TYPE_8、SDS_TYPE_16、SDS_TYPE_32、SDS_TYPE_64）</li><li><code>buf[]</code>：存储实际数据的字节数组</li></ul><p><strong>SDS 的优势</strong>：</p><ul><li><strong>常数复杂度获取长度</strong>：直接读取 <code>len</code> 字段，O(1)</li><li><strong>二进制安全</strong>：通过 <code>len</code> 判断字符串结束，而非 <code>\0</code></li><li><strong>减少内存分配次数</strong>：预分配策略，修改字符串时减少 realloc 次数</li><li><strong>兼容 C 字符串</strong>：仍以 <code>\0</code> 结尾，可以直接使用 C 字符串函数</li></ul><h3 id="_2-2-常用命令" tabindex="-1">2.2 常用命令 <a class="header-anchor" href="#_2-2-常用命令" aria-label="Permalink to “2.2 常用命令”">​</a></h3><h4 id="set-get-设置与获取值" tabindex="-1">SET / GET：设置与获取值 <a class="header-anchor" href="#set-get-设置与获取值" aria-label="Permalink to “SET / GET：设置与获取值”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 基本设置</span></span>
+<span class="line"><span>SET name &quot;张三&quot;</span></span>
+<span class="line"><span>GET name  // &quot;张三&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 设置并指定过期时间（秒）</span></span>
+<span class="line"><span>SET token &quot;abc123&quot; EX 3600</span></span>
+<span class="line"><span>SET token &quot;abc123&quot; PX 3600000  // 毫秒</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 仅当键不存在时设置</span></span>
+<span class="line"><span>SETNX counter 0  // 键不存在时设置，返回 1；已存在时返回 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 同时设置多个键</span></span>
+<span class="line"><span>MSET user:1:name &quot;张三&quot; user:1:age 25 user:1:city &quot;北京&quot;</span></span>
+<span class="line"><span>MGET user:1:name user:1:age user:1:city  // 返回所有值</span></span></code></pre></div><h4 id="set-系列命令对比" tabindex="-1">SET 系列命令对比 <a class="header-anchor" href="#set-系列命令对比" aria-label="Permalink to “SET 系列命令对比”">​</a></h4><table tabindex="0"><thead><tr><th>命令</th><th>说明</th><th>时间复杂度</th></tr></thead><tbody><tr><td><code>SET key value</code></td><td>设置值，覆盖已存在的键</td><td>O(1)</td></tr><tr><td><code>SETNX key value</code></td><td>键不存在时才设置</td><td>O(1)</td></tr><tr><td><code>SETEX key seconds value</code></td><td>设置值并指定过期时间（秒）</td><td>O(1)</td></tr><tr><td><code>PSETEX key milliseconds value</code></td><td>设置值并指定过期时间（毫秒）</td><td>O(1)</td></tr><tr><td><code>SETRANGE key offset value</code></td><td>从指定偏移量开始覆盖字符串</td><td>O(M)，M 为新值长度</td></tr><tr><td><code>GETRANGE key start end</code></td><td>获取指定范围的子字符串</td><td>O(N)，N 为范围长度</td></tr><tr><td><code>GETSET key value</code></td><td>设置新值并返回旧值</td><td>O(1)</td></tr></tbody></table><h4 id="自增自减命令" tabindex="-1">自增自减命令 <a class="header-anchor" href="#自增自减命令" aria-label="Permalink to “自增自减命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 整数自增</span></span>
+<span class="line"><span>SET page_view 100</span></span>
+<span class="line"><span>INCR page_view       // 101</span></span>
+<span class="line"><span>INCR page_view       // 102</span></span>
+<span class="line"><span>INCRBY page_view 10  // 112</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 自减</span></span>
+<span class="line"><span>DECR page_view       // 111</span></span>
+<span class="line"><span>DECRBY page_view 5   // 106</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 浮点数自增（Redis 2.6+）</span></span>
+<span class="line"><span>SET balance 100.50</span></span>
+<span class="line"><span>INCRBYFLOAT balance 10.25  // 110.75</span></span>
+<span class="line"><span>INCRBYFLOAT balance -5.50  // 105.25</span></span></code></pre></div><p><strong>INCR 命令的原子性</strong>： INCR 命令是原子操作，即使在多客户端并发访问的情况下也能保证数据正确性。这是 Redis 作为计数器的基础。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 应用场景：统计页面访问量</span></span>
+<span class="line"><span>// 多个客户端同时执行 INCR page_view，不会出现竞态条件</span></span></code></pre></div><h4 id="字符串操作命令" tabindex="-1">字符串操作命令 <a class="header-anchor" href="#字符串操作命令" aria-label="Permalink to “字符串操作命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 追加内容</span></span>
+<span class="line"><span>SET greeting &quot;Hello&quot;</span></span>
+<span class="line"><span>APPEND greeting &quot; World&quot;  // &quot;Hello World&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取字符串长度</span></span>
+<span class="line"><span>STRLEN greeting  // 11</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取子字符串</span></span>
+<span class="line"><span>GETRANGE greeting 0 4     // &quot;Hello&quot;</span></span>
+<span class="line"><span>GETRANGE greeting 6 10    // &quot;World&quot;</span></span>
+<span class="line"><span>GETRANGE greeting 0 -1    // &quot;Hello World&quot;（-1 表示最后一个字符）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 设置子字符串</span></span>
+<span class="line"><span>SETRANGE greeting 6 &quot;Redis&quot;  // &quot;Hello Redis&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 位操作</span></span>
+<span class="line"><span>SETBIT bitmap 0 1   // 在偏移量 0 设置位为 1</span></span>
+<span class="line"><span>SETBIT bitmap 1 0   // 在偏移量 1 设置位为 0</span></span>
+<span class="line"><span>GETBIT bitmap 0     // 获取偏移量 0 的位值</span></span>
+<span class="line"><span>BITCOUNT bitmap     // 统计位图中值为 1 的位数量</span></span></code></pre></div><h4 id="字符串其他常用命令" tabindex="-1">字符串其他常用命令 <a class="header-anchor" href="#字符串其他常用命令" aria-label="Permalink to “字符串其他常用命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 字符串长度</span></span>
+<span class="line"><span>STRLEN key</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 追加内容</span></span>
+<span class="line"><span>APPEND key value</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 设置并返回旧值</span></span>
+<span class="line"><span>GETSET key new_value</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 键的过期时间设置</span></span>
+<span class="line"><span>EXPIRE key seconds      // 秒级过期</span></span>
+<span class="line"><span>PEXPIRE key milliseconds  // 毫秒级过期</span></span>
+<span class="line"><span>EXPIREAT key timestamp  // 指定时间戳过期</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查看剩余存活时间</span></span>
+<span class="line"><span>TTL key    // 秒级，-1 表示永不过期，-2 表示键不存在</span></span>
+<span class="line"><span>PTTL key   // 毫秒级</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 移除过期时间</span></span>
+<span class="line"><span>PERSIST key</span></span></code></pre></div><h3 id="_2-3-应用场景" tabindex="-1">2.3 应用场景 <a class="header-anchor" href="#_2-3-应用场景" aria-label="Permalink to “2.3 应用场景”">​</a></h3><h4 id="场景一-缓存" tabindex="-1">场景一：缓存 <a class="header-anchor" href="#场景一-缓存" aria-label="Permalink to “场景一：缓存”">​</a></h4><p>将数据库查询结果缓存到 Redis 中，减轻数据库压力。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 缓存用户信息</span></span>
+<span class="line"><span>SET user:1001:info &#39;{&quot;name&quot;:&quot;张三&quot;,&quot;email&quot;:&quot;zhangsan@example.com&quot;,&quot;role&quot;:&quot;admin&quot;}&#39; EX 3600</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 读取缓存</span></span>
+<span class="line"><span>GET user:1001:info</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 缓存商品详情</span></span>
+<span class="line"><span>SET product:2001:detail &#39;{&quot;name&quot;:&quot;MacBook Pro&quot;,&quot;price&quot;:19999,&quot;stock&quot;:50}&#39; EX 600</span></span></code></pre></div><h4 id="场景二-计数器" tabindex="-1">场景二：计数器 <a class="header-anchor" href="#场景二-计数器" aria-label="Permalink to “场景二：计数器”">​</a></h4><p>利用 INCR 命令的原子性实现各种计数器。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 文章阅读量统计</span></span>
+<span class="line"><span>INCR article:1001:view_count</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 用户在线人数统计</span></span>
+<span class="line"><span>SET online_users 0</span></span>
+<span class="line"><span>INCR online_users   // 用户上线</span></span>
+<span class="line"><span>DECR online_users   // 用户下线</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 限流器（基于计数器）</span></span>
+<span class="line"><span>// 实现接口访问频率限制：1 秒内最多访问 100 次</span></span>
+<span class="line"><span>SET rate_limit:user:1001 100 EX 1</span></span>
+<span class="line"><span>DECR rate_limit:user:1001  // 每次请求递减</span></span></code></pre></div><h4 id="场景三-分布式锁" tabindex="-1">场景三：分布式锁 <a class="header-anchor" href="#场景三-分布式锁" aria-label="Permalink to “场景三：分布式锁”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取锁（SETNX 保证原子性）</span></span>
+<span class="line"><span>SETNX lock:order:3001 1</span></span>
+<span class="line"><span>// 获取成功返回 1，失败返回 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 释放锁</span></span>
+<span class="line"><span>DEL lock:order:3001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 更安全的方式：使用唯一值 + 过期时间</span></span>
+<span class="line"><span>SET lock:order:3001 unique_value NX EX 30</span></span>
+<span class="line"><span>// 释放时验证值</span></span>
+<span class="line"><span>// if redis.get(&quot;lock:order:3001&quot;) == unique_value:</span></span>
+<span class="line"><span>//     redis.del(&quot;lock:order:3001&quot;)</span></span></code></pre></div><h4 id="场景四-共享信息" tabindex="-1">场景四：共享信息 <a class="header-anchor" href="#场景四-共享信息" aria-label="Permalink to “场景四：共享信息”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 存储 Session 信息</span></span>
+<span class="line"><span>SET session:token:abc123 &#39;{&quot;userId&quot;:1001,&quot;role&quot;:&quot;admin&quot;,&quot;loginTime&quot;:&quot;2024-01-15T10:30:00&quot;}&#39; EX 7200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 存储配置信息</span></span>
+<span class="line"><span>SET config:site:title &quot;我的博客&quot;</span></span>
+<span class="line"><span>SET config:site:description &quot;一个技术博客&quot;</span></span>
+<span class="line"><span>SET config:site:keywords &quot;Redis,MySQL,Java&quot;</span></span></code></pre></div><hr><h2 id="三、hash-类型" tabindex="-1">三、Hash 类型 <a class="header-anchor" href="#三、hash-类型" aria-label="Permalink to “三、Hash 类型”">​</a></h2><h3 id="_3-1-底层实现" tabindex="-1">3.1 底层实现 <a class="header-anchor" href="#_3-1-底层实现" aria-label="Permalink to “3.1 底层实现”">​</a></h3><p>Hash 类型根据元素数量和元素大小动态选择两种底层实现：</p><h4 id="ziplist-压缩列表" tabindex="-1">ziplist（压缩列表） <a class="header-anchor" href="#ziplist-压缩列表" aria-label="Permalink to “ziplist（压缩列表）”">​</a></h4><p>当满足以下条件时，Hash 使用 ziplist 编码：</p><ul><li>元素数量小于 <code>hash-max-ziplist-entries</code>（默认 512 个）</li><li>所有元素的键和值长度都小于 <code>hash-max-ziplist-value</code>（默认 64 字节）</li></ul><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  zlentry 1: [key1][value1]                            │</span></span>
+<span class="line"><span>│  zlentry 2: [key2][value2]                            │</span></span>
+<span class="line"><span>│  ...                                                   │</span></span>
+<span class="line"><span>│  zlentry N: [keyN][valueN]                            │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>ziplist 的优势</strong>：</p><ul><li>内存紧凑，无需指针，节省内存</li><li>元素有序排列，可利用局部性原理提升缓存效率</li><li>适合小哈希场景</li></ul><p><strong>ziplist 的劣势</strong>：</p><ul><li>插入和删除需要内存移动，时间复杂度 O(N)</li><li>元素过多时性能下降</li></ul><h4 id="hashtable-哈希表" tabindex="-1">hashtable（哈希表） <a class="header-anchor" href="#hashtable-哈希表" aria-label="Permalink to “hashtable（哈希表）”">​</a></h4><p>当不满足 ziplist 条件时，Hash 自动转换为 hashtable 编码。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  table[0] → [entry1] → [entry2] → NULL               │</span></span>
+<span class="line"><span>│  table[1] → [entry3] → NULL                           │</span></span>
+<span class="line"><span>│  table[2] → NULL                                      │</span></span>
+<span class="line"><span>│  ...                                                   │</span></span>
+<span class="line"><span>│  table[N] → [entry4] → [entry5] → NULL               │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>hashtable 的优势</strong>：</p><ul><li>平均 O(1) 的查找和插入性能</li><li>支持快速定位任意元素</li></ul><p><strong>hashtable 的劣势</strong>：</p><ul><li>内存占用比 ziplist 大</li><li>存在哈希冲突</li></ul><h4 id="编码转换规则" tabindex="-1">编码转换规则 <a class="header-anchor" href="#编码转换规则" aria-label="Permalink to “编码转换规则”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>ziplist → hashtable（自动转换）</span></span>
+<span class="line"><span>  当元素数量 &gt; 512，或任一元素长度 &gt; 64 字节时</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>hashtable → ziplist（自动转换）</span></span>
+<span class="line"><span>  当元素数量 &lt;= 512，且所有元素长度 &lt;= 64 字节时</span></span></code></pre></div><h3 id="_3-2-常用命令" tabindex="-1">3.2 常用命令 <a class="header-anchor" href="#_3-2-常用命令" aria-label="Permalink to “3.2 常用命令”">​</a></h3><h4 id="hset-hget-设置与获取字段" tabindex="-1">HSET / HGET：设置与获取字段 <a class="header-anchor" href="#hset-hget-设置与获取字段" aria-label="Permalink to “HSET / HGET：设置与获取字段”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 设置单个字段</span></span>
+<span class="line"><span>HSET user:1001:profile name &quot;张三&quot;</span></span>
+<span class="line"><span>HSET user:1001:profile age 25</span></span>
+<span class="line"><span>HSET user:1001:profile city &quot;北京&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取单个字段</span></span>
+<span class="line"><span>HGET user:1001:profile name    // &quot;张三&quot;</span></span>
+<span class="line"><span>HGET user:1001:profile age     // &quot;25&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 批量设置和获取</span></span>
+<span class="line"><span>HMSET user:1001:profile email &quot;zhangsan@example.com&quot; phone &quot;13800138000&quot;</span></span>
+<span class="line"><span>HMGET user:1001:profile name age email phone</span></span>
+<span class="line"><span>// 返回 [&quot;张三&quot;, &quot;25&quot;, &quot;zhangsan@example.com&quot;, &quot;13800138000&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 当字段不存在时才设置</span></span>
+<span class="line"><span>HSETNX user:1001:profile name &quot;李四&quot;  // 已存在，返回 0</span></span></code></pre></div><h4 id="获取所有字段" tabindex="-1">获取所有字段 <a class="header-anchor" href="#获取所有字段" aria-label="Permalink to “获取所有字段”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取所有键</span></span>
+<span class="line"><span>HKEYS user:1001:profile</span></span>
+<span class="line"><span>// 返回 [&quot;name&quot;, &quot;age&quot;, &quot;city&quot;, &quot;email&quot;, &quot;phone&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取所有值</span></span>
+<span class="line"><span>HVALS user:1001:profile</span></span>
+<span class="line"><span>// 返回 [&quot;张三&quot;, &quot;25&quot;, &quot;北京&quot;, &quot;zhangsan@example.com&quot;, &quot;13800138000&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取所有键值对</span></span>
+<span class="line"><span>HGETALL user:1001:profile</span></span>
+<span class="line"><span>// 返回 [&quot;name&quot;, &quot;张三&quot;, &quot;age&quot;, &quot;25&quot;, &quot;city&quot;, &quot;北京&quot;, ...]</span></span></code></pre></div><h4 id="字段操作" tabindex="-1">字段操作 <a class="header-anchor" href="#字段操作" aria-label="Permalink to “字段操作”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 判断字段是否存在</span></span>
+<span class="line"><span>HEXISTS user:1001:profile name   // 1</span></span>
+<span class="line"><span>HEXISTS user:1001:profile gender  // 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 删除字段</span></span>
+<span class="line"><span>HDEL user:1001:profile city</span></span>
+<span class="line"><span>HDEL user:1001:profile email phone  // 支持批量删除</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取 Hash 中字段数量</span></span>
+<span class="line"><span>HLEN user:1001:profile  // 3 (name, age, phone)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取字段值的长度</span></span>
+<span class="line"><span>HSTRLEN user:1001:profile name  // 6 (&quot;张三&quot; 的 UTF-8 编码长度)</span></span></code></pre></div><h4 id="自增自减命令-1" tabindex="-1">自增自减命令 <a class="header-anchor" href="#自增自减命令-1" aria-label="Permalink to “自增自减命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 整数字段自增</span></span>
+<span class="line"><span>HSET product:2001 stock 50</span></span>
+<span class="line"><span>HINCRBY product:2001 stock -5   // 45（库存减少 5）</span></span>
+<span class="line"><span>HINCRBY product:2001 stock 10   // 55（库存增加 10）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 浮点数字段自增</span></span>
+<span class="line"><span>HSET product:2001 rating 4.5</span></span>
+<span class="line"><span>HINCRBYFLOAT product:2001 rating 0.3  // 4.8</span></span>
+<span class="line"><span>HINCRBYFLOAT product:2001 rating -0.1  // 4.7</span></span></code></pre></div><h4 id="遍历-hash-字段" tabindex="-1">遍历 Hash 字段 <a class="header-anchor" href="#遍历-hash-字段" aria-label="Permalink to “遍历 Hash 字段”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 使用 HSCAN 遍历（适合大数据量）</span></span>
+<span class="line"><span>HSCAN user:1001:profile 0 COUNT 100</span></span>
+<span class="line"><span>// 返回 [cursor, [key1, value1, key2, value2, ...]]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 从指定 cursor 继续遍历</span></span>
+<span class="line"><span>HSCAN user:1001:profile 1 COUNT 100</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// HSCAN 的优势：</span></span>
+<span class="line"><span>// 1. 基于游标的迭代，不会阻塞 Redis</span></span>
+<span class="line"><span>// 2. 支持 COUNT 参数控制每次返回数量</span></span>
+<span class="line"><span>// 3. 遍历结果可能重复，需要应用层处理</span></span></code></pre></div><h4 id="hash-常用命令汇总" tabindex="-1">Hash 常用命令汇总 <a class="header-anchor" href="#hash-常用命令汇总" aria-label="Permalink to “Hash 常用命令汇总”">​</a></h4><table tabindex="0"><thead><tr><th>命令</th><th>说明</th><th>时间复杂度</th></tr></thead><tbody><tr><td><code>HSET key field value</code></td><td>设置字段值</td><td>O(1)</td></tr><tr><td><code>HSETNX key field value</code></td><td>字段不存在时设置</td><td>O(1)</td></tr><tr><td><code>HMSET key f1 v1 f2 v2 ...</code></td><td>批量设置字段</td><td>O(N)，N 为字段数</td></tr><tr><td><code>HGET key field</code></td><td>获取字段值</td><td>O(1)</td></tr><tr><td><code>HMGET key f1 f2 ...</code></td><td>批量获取字段</td><td>O(N)</td></tr><tr><td><code>HGETALL key</code></td><td>获取所有字段和值</td><td>O(N)</td></tr><tr><td><code>HKEYS key</code></td><td>获取所有字段名</td><td>O(N)</td></tr><tr><td><code>HVALS key</code></td><td>获取所有字段值</td><td>O(N)</td></tr><tr><td><code>HEXISTS key field</code></td><td>判断字段是否存在</td><td>O(1)</td></tr><tr><td><code>HDEL key f1 f2 ...</code></td><td>删除字段</td><td>O(N)</td></tr><tr><td><code>HLEN key</code></td><td>获取字段数量</td><td>O(1)</td></tr><tr><td><code>HSTRLEN key field</code></td><td>获取字段值长度</td><td>O(1)</td></tr><tr><td><code>HINCRBY key field increment</code></td><td>字段值自增（整数）</td><td>O(1)</td></tr><tr><td><code>HINCRBYFLOAT key field incr</code></td><td>字段值自增（浮点数）</td><td>O(1)</td></tr><tr><td><code>HSCAN key cursor</code></td><td>游标遍历 Hash</td><td>O(N)</td></tr></tbody></table><h3 id="_3-3-应用场景" tabindex="-1">3.3 应用场景 <a class="header-anchor" href="#_3-3-应用场景" aria-label="Permalink to “3.3 应用场景”">​</a></h3><h4 id="场景一-用户信息存储" tabindex="-1">场景一：用户信息存储 <a class="header-anchor" href="#场景一-用户信息存储" aria-label="Permalink to “场景一：用户信息存储”">​</a></h4><p>使用 Hash 存储用户信息，比使用 JSON 字符串更便于单独更新某个字段。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 使用 Hash 存储用户信息</span></span>
+<span class="line"><span>HSET user:1001:info</span></span>
+<span class="line"><span>    name &quot;张三&quot;</span></span>
+<span class="line"><span>    age 25</span></span>
+<span class="line"><span>    email &quot;zhangsan@example.com&quot;</span></span>
+<span class="line"><span>    phone &quot;13800138000&quot;</span></span>
+<span class="line"><span>    avatar &quot;/images/avatar/1001.jpg&quot;</span></span>
+<span class="line"><span>    bio &quot;一个热爱技术的开发者&quot;</span></span>
+<span class="line"><span>    level &quot;VIP&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 单独更新某个字段（无需读取整个值）</span></span>
+<span class="line"><span>HSET user:1001:info name &quot;张小明&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 只获取需要的字段</span></span>
+<span class="line"><span>HMGET user:1001:info name avatar level</span></span></code></pre></div><h4 id="场景二-商品属性" tabindex="-1">场景二：商品属性 <a class="header-anchor" href="#场景二-商品属性" aria-label="Permalink to “场景二：商品属性”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 存储商品规格</span></span>
+<span class="line"><span>HSET product:2001:spec</span></span>
+<span class="line"><span>    color &quot;星空灰&quot;</span></span>
+<span class="line"><span>    size &quot;15寸&quot;</span></span>
+<span class="line"><span>    cpu &quot;Intel i7-13700H&quot;</span></span>
+<span class="line"><span>    memory &quot;16GB&quot;</span></span>
+<span class="line"><span>    storage &quot;512GB SSD&quot;</span></span>
+<span class="line"><span>    weight &quot;1.8kg&quot;</span></span>
+<span class="line"><span>    warranty &quot;2年&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 库存管理</span></span>
+<span class="line"><span>HSET product:2001:stock</span></span>
+<span class="line"><span>    warehouse:beijing 50</span></span>
+<span class="line"><span>    warehouse:shanghai 30</span></span>
+<span class="line"><span>    warehouse:guangzhou 20</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 某个仓库出货</span></span>
+<span class="line"><span>HINCRBY product:2001:stock warehouse:beijing -1</span></span></code></pre></div><h4 id="场景三-配置缓存" tabindex="-1">场景三：配置缓存 <a class="header-anchor" href="#场景三-配置缓存" aria-label="Permalink to “场景三：配置缓存”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 系统配置</span></span>
+<span class="line"><span>HSET sys:config</span></span>
+<span class="line"><span>    max_upload_size &quot;100MB&quot;</span></span>
+<span class="line"><span>    session_timeout &quot;7200&quot;</span></span>
+<span class="line"><span>    max_login_attempts &quot;5&quot;</span></span>
+<span class="line"><span>    enable_captcha &quot;true&quot;</span></span>
+<span class="line"><span>    maintenance_mode &quot;false&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 读取单个配置</span></span>
+<span class="line"><span>HGET sys:config session_timeout  // &quot;7200&quot;</span></span></code></pre></div><hr><h2 id="四、list-类型" tabindex="-1">四、List 类型 <a class="header-anchor" href="#四、list-类型" aria-label="Permalink to “四、List 类型”">​</a></h2><h3 id="_4-1-底层实现" tabindex="-1">4.1 底层实现 <a class="header-anchor" href="#_4-1-底层实现" aria-label="Permalink to “4.1 底层实现”">​</a></h3><h4 id="ziplist-压缩列表-1" tabindex="-1">ziplist（压缩列表） <a class="header-anchor" href="#ziplist-压缩列表-1" aria-label="Permalink to “ziplist（压缩列表）”">​</a></h4><p>与 Hash 类型类似，当 List 满足以下条件时使用 ziplist：</p><ul><li>元素数量小于 <code>list-max-ziplist-entries</code>（默认 512 个）</li><li>每个元素长度小于 <code>list-max-ziplist-value</code>（默认 64 字节）</li></ul><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  zlentry 1: [element1]                                    │</span></span>
+<span class="line"><span>│  zlentry 2: [element2]                                    │</span></span>
+<span class="line"><span>│  ...                                                       │</span></span>
+<span class="line"><span>│  zlentry N: [elementN]                                    │</span></span>
+<span class="line"><span>│  [zlend] 结束标记                                         │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>ziplist 的特点</strong>：</p><ul><li>内存连续，无额外指针开销</li><li>支持双向遍历</li><li>适合小型列表</li></ul><h4 id="linkedlist-双向链表" tabindex="-1">linkedlist（双向链表） <a class="header-anchor" href="#linkedlist-双向链表" aria-label="Permalink to “linkedlist（双向链表）”">​</a></h4><p>当不满足 ziplist 条件时，List 转换为双向链表实现。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌─────────┐    ┌─────────┐    ┌─────────┐</span></span>
+<span class="line"><span>│  node1  │───▶│  node2  │───▶│  node3  │───▶ NULL</span></span>
+<span class="line"><span>└─────────┘    └─────────┘    └─────────┘</span></span>
+<span class="line"><span>    │              │              │</span></span>
+<span class="line"><span>    ▼              ▼              ▼</span></span>
+<span class="line"><span>  element1      element2      element3</span></span>
+<span class="line"><span>    │              │              │</span></span>
+<span class="line"><span>    └──────────prev────────────prev──┘</span></span></code></pre></div><p><strong>linkedlist 的特点</strong>：</p><ul><li>每个节点包含前驱和后继指针</li><li>插入和删除只需修改指针，O(1)</li><li>随机访问需要遍历，O(N)</li></ul><h4 id="quicklist-redis-3-2" tabindex="-1">quicklist（Redis 3.2+） <a class="header-anchor" href="#quicklist-redis-3-2" aria-label="Permalink to “quicklist（Redis 3.2+）”">​</a></h4><p>Redis 3.2 引入了 quicklist，作为 ziplist 和 linkedlist 的折中方案。quicklist 是一个双向链表，每个节点是一个 ziplist。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌─────────┐    ┌─────────┐    ┌─────────┐</span></span>
+<span class="line"><span>│  ziplist1│───▶│  ziplist2│───▶│  ziplist3│───▶ NULL</span></span>
+<span class="line"><span>│[e1][e2] │    │[e3][e4] │    │[e5][e6] │</span></span>
+<span class="line"><span>└─────────┘    └─────────┘    └─────────┘</span></span></code></pre></div><p><strong>quicklist 的优势</strong>：</p><ul><li>减少链表指针的内存开销</li><li>保持 ziplist 的内存紧凑性</li><li>插入和删除只需操作对应的 ziplist 节点</li></ul><h3 id="_4-2-常用命令" tabindex="-1">4.2 常用命令 <a class="header-anchor" href="#_4-2-常用命令" aria-label="Permalink to “4.2 常用命令”">​</a></h3><h4 id="推入和弹出命令" tabindex="-1">推入和弹出命令 <a class="header-anchor" href="#推入和弹出命令" aria-label="Permalink to “推入和弹出命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 从左端推入</span></span>
+<span class="line"><span>LPUSH tasks &quot;任务1&quot;</span></span>
+<span class="line"><span>LPUSH tasks &quot;任务2&quot; &quot;任务3&quot;  // 批量推入，顺序为 &quot;任务3&quot;、&quot;任务2&quot;、&quot;任务1&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 从右端推入</span></span>
+<span class="line"><span>RPUSH tasks &quot;任务4&quot;</span></span>
+<span class="line"><span>RPUSH tasks &quot;任务5&quot; &quot;任务6&quot;  // 批量推入，顺序为 &quot;任务5&quot;、&quot;任务6&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 从左端弹出</span></span>
+<span class="line"><span>LPOP tasks  // &quot;任务3&quot;（先进先出）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 从右端弹出</span></span>
+<span class="line"><span>RPOP tasks  // &quot;任务6&quot;（后进先出）</span></span></code></pre></div><p><strong>LPUSH + RPOP = 栈（Stack）</strong>：</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 实现栈：后进先出</span></span>
+<span class="line"><span>LPUSH stack &quot;元素1&quot;</span></span>
+<span class="line"><span>LPUSH stack &quot;元素2&quot;</span></span>
+<span class="line"><span>LPUSH stack &quot;元素3&quot;</span></span>
+<span class="line"><span>RPOP stack  // &quot;元素3&quot;</span></span>
+<span class="line"><span>RPOP stack  // &quot;元素2&quot;</span></span>
+<span class="line"><span>RPOP stack  // &quot;元素1&quot;</span></span></code></pre></div><p><strong>LPUSH + LPOP = 队列（Queue）</strong>：</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 实现队列：先进先出</span></span>
+<span class="line"><span>LPUSH queue &quot;消息1&quot;</span></span>
+<span class="line"><span>LPUSH queue &quot;消息2&quot;</span></span>
+<span class="line"><span>LPUSH queue &quot;消息3&quot;</span></span>
+<span class="line"><span>LPOP queue  // &quot;消息1&quot;</span></span>
+<span class="line"><span>LPOP queue  // &quot;消息2&quot;</span></span>
+<span class="line"><span>LPOP queue  // &quot;消息3&quot;</span></span></code></pre></div><h4 id="访问命令" tabindex="-1">访问命令 <a class="header-anchor" href="#访问命令" aria-label="Permalink to “访问命令”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取列表长度</span></span>
+<span class="line"><span>LLEN tasks</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 通过索引获取元素（索引从 0 开始）</span></span>
+<span class="line"><span>LINDEX tasks 0     // 第一个元素</span></span>
+<span class="line"><span>LINDEX tasks -1    // 最后一个元素</span></span>
+<span class="line"><span>LINDEX tasks 2     // 第三个元素</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取指定范围的元素（闭区间）</span></span>
+<span class="line"><span>LRANGE tasks 0 -1      // 获取所有元素</span></span>
+<span class="line"><span>LRANGE tasks 0 2       // 获取前三个元素</span></span>
+<span class="line"><span>LRANGE tasks -3 -1     // 获取最后三个元素</span></span>
+<span class="line"><span>LRANGE tasks 1 3       // 获取第 2 到第 4 个元素</span></span></code></pre></div><h4 id="插入和修改" tabindex="-1">插入和修改 <a class="header-anchor" href="#插入和修改" aria-label="Permalink to “插入和修改”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 在指定元素前或后插入</span></span>
+<span class="line"><span>LINSERT tasks BEFORE &quot;任务3&quot; &quot;新任务&quot;</span></span>
+<span class="line"><span>LINSERT tasks AFTER &quot;任务3&quot; &quot;另一个任务&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 通过索引设置元素值</span></span>
+<span class="line"><span>LSET tasks 0 &quot;修改后的任务&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 修剪列表（只保留指定范围内的元素）</span></span>
+<span class="line"><span>LTRIM tasks 0 4   // 只保留前 5 个元素</span></span>
+<span class="line"><span>LTRIM tasks -10 -1  // 只保留最后 10 个元素</span></span></code></pre></div><h4 id="阻塞弹出" tabindex="-1">阻塞弹出 <a class="header-anchor" href="#阻塞弹出" aria-label="Permalink to “阻塞弹出”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 阻塞弹出：当列表为空时等待，直到有新元素或超时</span></span>
+<span class="line"><span>BRPOP tasks 30           // 等待 tasks 列表，超时 30 秒</span></span>
+<span class="line"><span>BLPOP tasks queue 30     // 同时等待多个列表</span></span>
+<span class="line"><span>BRPOPLPUSH tasks completed 30  // 安全队列：弹出并推到另一个列表</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 返回值：[key, value] 或 nil（超时）</span></span>
+<span class="line"><span>// 当有元素时立即返回，否则等待</span></span></code></pre></div><h4 id="list-常用命令汇总" tabindex="-1">List 常用命令汇总 <a class="header-anchor" href="#list-常用命令汇总" aria-label="Permalink to “List 常用命令汇总”">​</a></h4><table tabindex="0"><thead><tr><th>命令</th><th>说明</th><th>时间复杂度</th></tr></thead><tbody><tr><td><code>LPUSH key v1 v2 ...</code></td><td>左端推入</td><td>O(N)，N 为推入数量</td></tr><tr><td><code>RPUSH key v1 v2 ...</code></td><td>右端推入</td><td>O(N)</td></tr><tr><td><code>LPOP key</code></td><td>左端弹出</td><td>O(1)</td></tr><tr><td><code>RPOP key</code></td><td>右端弹出</td><td>O(1)</td></tr><tr><td><code>BLPOP k1 k2 ... timeout</code></td><td>阻塞左端弹出</td><td>O(1)</td></tr><tr><td><code>BRPOP k1 k2 ... timeout</code></td><td>阻塞右端弹出</td><td>O(1)</td></tr><tr><td><code>LRANGE key start stop</code></td><td>获取范围元素</td><td>O(N)</td></tr><tr><td><code>LINDEX key index</code></td><td>获取指定索引元素</td><td>O(N)，小列表 O(1)</td></tr><tr><td><code>LSET key index value</code></td><td>设置指定索引元素</td><td>O(N)</td></tr><tr><td><code>LINSERT key BEFORE/AFTER pivot value</code></td><td>在指定元素前后插入</td><td>O(N)</td></tr><tr><td><code>LTRIM key start stop</code></td><td>修剪列表</td><td>O(N)</td></tr><tr><td><code>LLEN key</code></td><td>获取列表长度</td><td>O(1)</td></tr><tr><td><code>RPOPLPUSH source destination</code></td><td>安全队列（原子操作）</td><td>O(1)</td></tr></tbody></table><h3 id="_4-3-应用场景" tabindex="-1">4.3 应用场景 <a class="header-anchor" href="#_4-3-应用场景" aria-label="Permalink to “4.3 应用场景”">​</a></h3><h4 id="场景一-消息队列" tabindex="-1">场景一：消息队列 <a class="header-anchor" href="#场景一-消息队列" aria-label="Permalink to “场景一：消息队列”">​</a></h4><p>使用 List 实现简单的消息队列。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 生产者推入消息</span></span>
+<span class="line"><span>LPUSH queue:order</span></span>
+<span class="line"><span>    &#39;{&quot;orderId&quot;:&quot;3001&quot;,&quot;userId&quot;:1001,&quot;productId&quot;:2001}&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 消费者弹出消息</span></span>
+<span class="line"><span>BRPOP queue:order 30</span></span>
+<span class="line"><span>// 返回 [&quot;queue:order&quot;, &#39;{&quot;orderId&quot;:&quot;3001&quot;,...}&#39;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 更安全的做法：使用 RPOPLPUSH 实现可靠队列</span></span>
+<span class="line"><span>RPOPLPUSH queue:order queue:order:processing</span></span>
+<span class="line"><span>// 处理完成后从处理队列中移除</span></span>
+<span class="line"><span>LPOP queue:order:processing</span></span></code></pre></div><p><strong>可靠消息队列流程</strong>：</p><ol><li>生产者通过 <code>LPUSH</code> 推入消息</li><li>消费者通过 <code>BRPOPLPUSH</code> 原子地弹出并推到处理队列</li><li>消费者处理完成后通过 <code>LPOP</code> 从处理队列中移除</li><li>如果消费者崩溃，消息仍保留在处理队列中，可恢复</li></ol><h4 id="场景二-最新消息排行" tabindex="-1">场景二：最新消息排行 <a class="header-anchor" href="#场景二-最新消息排行" aria-label="Permalink to “场景二：最新消息排行”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 社交媒体的最新动态</span></span>
+<span class="line"><span>LPUSH user:1001:timeline</span></span>
+<span class="line"><span>    &#39;{&quot;type&quot;:&quot;post&quot;,&quot;content&quot;:&quot;今天天气不错&quot;,&quot;time&quot;:&quot;2024-01-15T10:30:00&quot;}&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 只保留最新的 100 条</span></span>
+<span class="line"><span>LTRIM user:1001:timeline 0 99</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取最新动态</span></span>
+<span class="line"><span>LRANGE user:1001:timeline 0 9   // 获取最新的 10 条</span></span></code></pre></div><h4 id="场景三-最新评论列表" tabindex="-1">场景三：最新评论列表 <a class="header-anchor" href="#场景三-最新评论列表" aria-label="Permalink to “场景三：最新评论列表”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 文章评论</span></span>
+<span class="line"><span>LPUSH article:1001:comments</span></span>
+<span class="line"><span>    &#39;{&quot;userId&quot;:1001,&quot;content&quot;:&quot;写得很好&quot;,&quot;time&quot;:&quot;2024-01-15T10:30:00&quot;}&#39;</span></span>
+<span class="line"><span>LPUSH article:1001:comments</span></span>
+<span class="line"><span>    &#39;{&quot;userId&quot;:1002,&quot;content&quot;:&quot;赞同观点&quot;,&quot;time&quot;:&quot;2024-01-15T10:35:00&quot;}&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 只保留最新 50 条</span></span>
+<span class="line"><span>LTRIM article:1001:comments 0 49</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 分页获取评论</span></span>
+<span class="line"><span>LRANGE article:1001:comments 0 9     // 第 1 页</span></span>
+<span class="line"><span>LRANGE article:1001:comments 10 19   // 第 2 页</span></span></code></pre></div><hr><h2 id="五、set-类型" tabindex="-1">五、Set 类型 <a class="header-anchor" href="#五、set-类型" aria-label="Permalink to “五、Set 类型”">​</a></h2><h3 id="_5-1-底层实现" tabindex="-1">5.1 底层实现 <a class="header-anchor" href="#_5-1-底层实现" aria-label="Permalink to “5.1 底层实现”">​</a></h3><h4 id="intset-整数集合" tabindex="-1">intset（整数集合） <a class="header-anchor" href="#intset-整数集合" aria-label="Permalink to “intset（整数集合）”">​</a></h4><p>当 Set 中的所有元素都是整数且元素数量小于 <code>set-max-intset-entries</code>（默认 512）时，使用 intset 编码。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  encoding: INTSET_ENC_INT16 / INT32 / INT64          │</span></span>
+<span class="line"><span>│  length: 元素数量                                     │</span></span>
+<span class="line"><span>│  contents: [1001, 1002, 1003, ...]  (有序、无重复)   │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>intset 的特点</strong>：</p><ul><li>内存紧凑，元素按升序排列</li><li>使用二分查找，查找效率为 O(log N)</li><li>不支持除整数外的其他类型</li><li>当整数范围溢出时自动升级编码</li></ul><h4 id="hashtable-哈希表-1" tabindex="-1">hashtable（哈希表） <a class="header-anchor" href="#hashtable-哈希表-1" aria-label="Permalink to “hashtable（哈希表）”">​</a></h4><p>当不满足 intset 条件时，Set 使用 hashtable 编码，与 Hash 类型的 hashtable 实现类似。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  table[0] → [element1] → [element2] → NULL           │</span></span>
+<span class="line"><span>│  table[1] → [element3] → NULL                        │</span></span>
+<span class="line"><span>│  ...                                                   │</span></span>
+<span class="line"><span>│  table[N] → [element4] → NULL                        │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>Set 的 hashtable 特点</strong>：</p><ul><li>只存储键，不存储值（值为 NULL）</li><li>平均 O(1) 的查找和插入性能</li><li>支持任意字符串元素</li></ul><h4 id="编码转换规则-1" tabindex="-1">编码转换规则 <a class="header-anchor" href="#编码转换规则-1" aria-label="Permalink to “编码转换规则”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>intset → hashtable（自动转换）</span></span>
+<span class="line"><span>  当元素数量 &gt; 512，或插入非整数值时</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>hashtable 不会自动转回 intset（即使删除元素后满足条件）</span></span></code></pre></div><h3 id="_5-2-常用命令" tabindex="-1">5.2 常用命令 <a class="header-anchor" href="#_5-2-常用命令" aria-label="Permalink to “5.2 常用命令”">​</a></h3><h4 id="sadd-srem-添加和删除元素" tabindex="-1">SADD / SREM：添加和删除元素 <a class="header-anchor" href="#sadd-srem-添加和删除元素" aria-label="Permalink to “SADD / SREM：添加和删除元素”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 添加元素</span></span>
+<span class="line"><span>SADD tags &quot;Redis&quot;</span></span>
+<span class="line"><span>SADD tags &quot;MySQL&quot; &quot;Java&quot; &quot;Python&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 删除元素</span></span>
+<span class="line"><span>SREM tags &quot;Python&quot;</span></span>
+<span class="line"><span>SREM tags &quot;Java&quot; &quot;MySQL&quot;  // 支持批量删除</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取集合中的元素数量</span></span>
+<span class="line"><span>SCARD tags  // 3 (Redis, MySQL, Java)</span></span></code></pre></div><h4 id="查询元素" tabindex="-1">查询元素 <a class="header-anchor" href="#查询元素" aria-label="Permalink to “查询元素”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 判断元素是否属于集合</span></span>
+<span class="line"><span>SISMEMBER tags &quot;Redis&quot;   // 1</span></span>
+<span class="line"><span>SISMEMBER tags &quot;Python&quot;  // 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取集合中所有元素</span></span>
+<span class="line"><span>SMEMBERS tags</span></span>
+<span class="line"><span>// 返回 [&quot;Redis&quot;, &quot;MySQL&quot;, &quot;Java&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 随机获取一个元素（不删除）</span></span>
+<span class="line"><span>SRANDMEMBER tags         // 随机返回一个元素</span></span>
+<span class="line"><span>SRANDMEMBER tags 3       // 随机返回 3 个不同元素</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 随机弹出元素</span></span>
+<span class="line"><span>SPOP tags                // 随机弹出并返回一个元素</span></span>
+<span class="line"><span>SPOP tags 2              // 随机弹出 2 个元素</span></span></code></pre></div><h4 id="集合运算" tabindex="-1">集合运算 <a class="header-anchor" href="#集合运算" aria-label="Permalink to “集合运算”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 创建两个集合</span></span>
+<span class="line"><span>SADD set1 &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</span></span>
+<span class="line"><span>SADD set2 &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 交集</span></span>
+<span class="line"><span>SINTER set1 set2</span></span>
+<span class="line"><span>// 返回 [&quot;c&quot;, &quot;d&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 并集</span></span>
+<span class="line"><span>SUNION set1 set2</span></span>
+<span class="line"><span>// 返回 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 差集（set1 中有但 set2 中没有的）</span></span>
+<span class="line"><span>SDIFF set1 set2</span></span>
+<span class="line"><span>// 返回 [&quot;a&quot;, &quot;b&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 对称差集（两个集合的并集减去交集）</span></span>
+<span class="line"><span>// 注意：Redis 没有直接的对称差集命令，可用 SDIFF + SUNION 组合</span></span>
+<span class="line"><span>SUNION SDIFF set1 set2, SDIFF set2 set1</span></span>
+<span class="line"><span>// 返回 [&quot;a&quot;, &quot;b&quot;, &quot;e&quot;, &quot;f&quot;]</span></span></code></pre></div><h4 id="集合运算存储" tabindex="-1">集合运算存储 <a class="header-anchor" href="#集合运算存储" aria-label="Permalink to “集合运算存储”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 将交集存储到新集合</span></span>
+<span class="line"><span>SINTERSET set1 set2 result</span></span>
+<span class="line"><span>SMEMBERS result  // [&quot;c&quot;, &quot;d&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 将并集存储到新集合</span></span>
+<span class="line"><span>SUNIONSET set1 set2 result</span></span>
+<span class="line"><span>SMEMBERS result  // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 将差集存储到新集合</span></span>
+<span class="line"><span>SDIFFSET set1 set2 result</span></span>
+<span class="line"><span>SMEMBERS result  // [&quot;a&quot;, &quot;b&quot;]</span></span></code></pre></div><h4 id="遍历集合" tabindex="-1">遍历集合 <a class="header-anchor" href="#遍历集合" aria-label="Permalink to “遍历集合”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 使用 SSCAN 遍历（适合大数据量）</span></span>
+<span class="line"><span>SSCAN tags 0 COUNT 100</span></span>
+<span class="line"><span>// 返回 [cursor, [element1, element2, ...]]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// SSCAN 的优势：</span></span>
+<span class="line"><span>// 1. 基于游标的迭代</span></span>
+<span class="line"><span>// 2. 不会阻塞 Redis</span></span>
+<span class="line"><span>// 3. 遍历结果可能重复，需要应用层处理</span></span></code></pre></div><h4 id="set-常用命令汇总" tabindex="-1">Set 常用命令汇总 <a class="header-anchor" href="#set-常用命令汇总" aria-label="Permalink to “Set 常用命令汇总”">​</a></h4><table tabindex="0"><thead><tr><th>命令</th><th>说明</th><th>时间复杂度</th></tr></thead><tbody><tr><td><code>SADD key m1 m2 ...</code></td><td>添加元素</td><td>O(N)，N 为添加数量</td></tr><tr><td><code>SREM key m1 m2 ...</code></td><td>删除元素</td><td>O(N)</td></tr><tr><td><code>SMEMBERS key</code></td><td>获取所有元素</td><td>O(N)</td></tr><tr><td><code>SISMEMBER key member</code></td><td>判断元素是否存在</td><td>O(1)</td></tr><tr><td><code>SCARD key</code></td><td>获取集合大小</td><td>O(1)</td></tr><tr><td><code>SMISMEMBER key m1 m2 ...</code></td><td>批量判断元素是否存在</td><td>O(N)</td></tr><tr><td><code>SRANDMEMBER key [count]</code></td><td>随机获取元素</td><td>O(N)</td></tr><tr><td><code>SPOP key [count]</code></td><td>随机弹出元素</td><td>O(N)</td></tr><tr><td><code>SDIFF key1 key2 ...</code></td><td>差集运算</td><td>O(N)</td></tr><tr><td><code>SDIFFSET dest key1 key2 ...</code></td><td>差集运算并存储</td><td>O(N)</td></tr><tr><td><code>SINTER key1 key2 ...</code></td><td>交集运算</td><td>O(N)</td></tr><tr><td><code>SINTERSET dest key1 key2 ...</code></td><td>交集运算并存储</td><td>O(N)</td></tr><tr><td><code>SUNION key1 key2 ...</code></td><td>并集运算</td><td>O(N)</td></tr><tr><td><code>SUNIONSET dest key1 key2 ...</code></td><td>并集运算并存储</td><td>O(N)</td></tr><tr><td><code>SSCAN key cursor</code></td><td>游标遍历集合</td><td>O(N)</td></tr></tbody></table><h3 id="_5-3-应用场景" tabindex="-1">5.3 应用场景 <a class="header-anchor" href="#_5-3-应用场景" aria-label="Permalink to “5.3 应用场景”">​</a></h3><h4 id="场景一-标签系统" tabindex="-1">场景一：标签系统 <a class="header-anchor" href="#场景一-标签系统" aria-label="Permalink to “场景一：标签系统”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 为文章添加标签</span></span>
+<span class="line"><span>SADD article:1001:tags &quot;Redis&quot; &quot;数据库&quot; &quot;后端&quot; &quot;缓存&quot;</span></span>
+<span class="line"><span>SADD article:1002:tags &quot;MySQL&quot; &quot;数据库&quot; &quot;SQL&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取文章的所有标签</span></span>
+<span class="line"><span>SMEMBERS article:1001:tags</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查找包含 &quot;数据库&quot; 标签的所有文章</span></span>
+<span class="line"><span>// 需要在应用层维护反向索引或使用其他数据结构</span></span>
+<span class="line"><span>SISMEMBER article:1001:tags &quot;数据库&quot;  // 1</span></span>
+<span class="line"><span>SISMEMBER article:1002:tags &quot;数据库&quot;  // 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查找同时包含 &quot;Redis&quot; 和 &quot;后端&quot; 标签的文章</span></span>
+<span class="line"><span>SINTER article:1001:tags article:1002:tags</span></span>
+<span class="line"><span>// 返回 [&quot;数据库&quot;]（两篇文章共有的标签）</span></span></code></pre></div><h4 id="场景二-共同好友" tabindex="-1">场景二：共同好友 <a class="header-anchor" href="#场景二-共同好友" aria-label="Permalink to “场景二：共同好友”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 用户 A 的好友</span></span>
+<span class="line"><span>SADD user:A:friends &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 用户 B 的好友</span></span>
+<span class="line"><span>SADD user:B:friends &quot;A&quot; &quot;C&quot; &quot;D&quot; &quot;F&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// A 和 B 的共同好友</span></span>
+<span class="line"><span>SINTER user:A:friends user:B:friends</span></span>
+<span class="line"><span>// 返回 [&quot;C&quot;, &quot;D&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// A 的独有关注（不是 B 的好友）</span></span>
+<span class="line"><span>SDIFF user:A:friends user:B:friends</span></span>
+<span class="line"><span>// 返回 [&quot;E&quot;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 可能认识的人（共同好友的好友）</span></span>
+<span class="line"><span>SISMEMBER user:C:friends &quot;F&quot;  // 判断 C 是否和 F 为好友</span></span></code></pre></div><h4 id="场景三-去重" tabindex="-1">场景三：去重 <a class="header-anchor" href="#场景三-去重" aria-label="Permalink to “场景三：去重”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 文章访问者去重</span></span>
+<span class="line"><span>SADD article:1001:visitors &quot;user:1001&quot;</span></span>
+<span class="line"><span>SADD article:1001:visitors &quot;user:1002&quot;</span></span>
+<span class="line"><span>SADD article:1001:visitors &quot;user:1001&quot;  // 重复，自动忽略</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取独立访客数</span></span>
+<span class="line"><span>SCARD article:1001:visitors  // 2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 全局在线用户</span></span>
+<span class="line"><span>SADD online:users &quot;user:1001&quot; &quot;user:1002&quot; &quot;user:1003&quot;</span></span>
+<span class="line"><span>SREM online:users &quot;user:1002&quot;  // 用户下线</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取在线人数</span></span>
+<span class="line"><span>SCARD online:users  // 2</span></span></code></pre></div><hr><h2 id="六、zset-类型" tabindex="-1">六、ZSet 类型 <a class="header-anchor" href="#六、zset-类型" aria-label="Permalink to “六、ZSet 类型”">​</a></h2><h3 id="_6-1-底层实现" tabindex="-1">6.1 底层实现 <a class="header-anchor" href="#_6-1-底层实现" aria-label="Permalink to “6.1 底层实现”">​</a></h3><h4 id="ziplist-压缩列表-2" tabindex="-1">ziplist（压缩列表） <a class="header-anchor" href="#ziplist-压缩列表-2" aria-label="Permalink to “ziplist（压缩列表）”">​</a></h4><p>当满足以下条件时，ZSet 使用 ziplist 编码：</p><ul><li>元素数量小于 <code>zset-max-ziplist-entries</code>（默认 128 个）</li><li>每个元素长度小于 <code>zset-max-ziplist-value</code>（默认 64 字节）</li></ul><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>┌───────────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  zlentry 1: [member1][score1]                                    │</span></span>
+<span class="line"><span>│  zlentry 2: [member2][score2]                                    │</span></span>
+<span class="line"><span>│  ...                                                               │</span></span>
+<span class="line"><span>│  zlentry N: [memberN][scoreN]                                    │</span></span>
+<span class="line"><span>└───────────────────────────────────────────────────────────────────┘</span></span></code></pre></div><p><strong>ziplist 的特点</strong>：</p><ul><li>紧凑存储，节省内存</li><li>按 score 排序存储</li><li>适合小型有序集合</li></ul><h4 id="skiplist-hashtable-跳表-哈希表" tabindex="-1">skiplist + hashtable（跳表 + 哈希表） <a class="header-anchor" href="#skiplist-hashtable-跳表-哈希表" aria-label="Permalink to “skiplist + hashtable（跳表 + 哈希表）”">​</a></h4><p>当不满足 ziplist 条件时，ZSet 使用跳表和哈希表的组合实现。</p><p><strong>跳表（skiplist）结构</strong>：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>Level 3:  [  1  ] ──────────────────────────► [  5  ] ─────────────────► NULL</span></span>
+<span class="line"><span>Level 2:  [  1  ] ─────────────► [  3  ] ──► [  5  ] ─────► [  7  ] ──► NULL</span></span>
+<span class="line"><span>Level 1:  [  1  ] ──► [  2  ] ──► [  3  ] ──► [  4  ] ──► [  5  ] ──► [  6  ] ──► [  7  ] ──► NULL</span></span>
+<span class="line"><span>Level 0:  [  1  ] ──► [  2  ] ──► [  3  ] ──► [  4  ] ──► [  5  ] ──► [  6  ] ──► [  7  ] ──► NULL</span></span>
+<span class="line"><span>           score=1     score=2     score=3     score=4     score=5     score=6     score=7</span></span></code></pre></div><p><strong>跳表的特点</strong>：</p><ul><li>多层链表结构，查询效率接近平衡二叉树，平均 O(log N)</li><li>支持范围查询，按 score 排序遍历</li><li>实现简单，比红黑树更易维护</li></ul><p><strong>哈希表的作用</strong>：</p><ul><li>存储 member → score 的映射</li><li>支持 O(1) 的成员查找</li><li>弥补跳表在精确查找方面的不足</li></ul><p><strong>双结构的优势</strong>：</p><ul><li>跳表：支持按 score 范围查询和排序</li><li>哈希表：支持 O(1) 的成员精确查找</li><li>两者结合，兼顾查询和范围操作的性能</li></ul><h3 id="_6-2-常用命令" tabindex="-1">6.2 常用命令 <a class="header-anchor" href="#_6-2-常用命令" aria-label="Permalink to “6.2 常用命令”">​</a></h3><h4 id="zadd-zrem-添加和删除元素" tabindex="-1">ZADD / ZREM：添加和删除元素 <a class="header-anchor" href="#zadd-zrem-添加和删除元素" aria-label="Permalink to “ZADD / ZREM：添加和删除元素”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 添加元素（member + score）</span></span>
+<span class="line"><span>ZADD rank 100 &quot;Alice&quot;</span></span>
+<span class="line"><span>ZADD rank 200 &quot;Bob&quot;</span></span>
+<span class="line"><span>ZADD rank 150 &quot;Charlie&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 批量添加</span></span>
+<span class="line"><span>ZADD rank 180 &quot;David&quot; 220 &quot;Eve&quot; 90 &quot;Frank&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 删除元素</span></span>
+<span class="line"><span>ZREM rank &quot;Frank&quot;</span></span>
+<span class="line"><span>ZREM rank &quot;Alice&quot; &quot;Bob&quot;  // 支持批量删除</span></span></code></pre></div><h4 id="查询排名和分数" tabindex="-1">查询排名和分数 <a class="header-anchor" href="#查询排名和分数" aria-label="Permalink to “查询排名和分数”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取成员排名（从 0 开始，升序）</span></span>
+<span class="line"><span>ZRANK rank &quot;Charlie&quot;  // 2 (第三)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取成员排名（降序）</span></span>
+<span class="line"><span>ZREVRANK rank &quot;Charlie&quot;  // 1 (第二)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取成员分数</span></span>
+<span class="line"><span>ZSCORE rank &quot;Charlie&quot;  // &quot;150&quot;</span></span>
+<span class="line"><span>ZSCORE rank &quot;Alice&quot;    // nil（已删除）</span></span></code></pre></div><h4 id="范围查询" tabindex="-1">范围查询 <a class="header-anchor" href="#范围查询" aria-label="Permalink to “范围查询”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取指定排名范围的成员（升序）</span></span>
+<span class="line"><span>ZRANGE rank 0 2       // 排名前 3 的成员</span></span>
+<span class="line"><span>ZRANGE rank -3 -1     // 排名后 3 的成员</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取指定排名范围的成员（降序）</span></span>
+<span class="line"><span>ZREVRANGE rank 0 2    // 排名前 3 的成员（从高到低）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取指定分数范围的成员</span></span>
+<span class="line"><span>ZRANGEBYSCORE rank 100 200</span></span>
+<span class="line"><span>// 返回分数在 [100, 200] 之间的成员</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 带 LIMIT 分页的范围查询</span></span>
+<span class="line"><span>ZRANGEBYSCORE rank 100 200 LIMIT 0 10</span></span>
+<span class="line"><span>// 分数在 [100, 200] 之间的前 10 个成员</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 带 WITHSCORES 返回分数</span></span>
+<span class="line"><span>ZRANGE rank 0 2 WITHSCORES</span></span>
+<span class="line"><span>// 返回 [&quot;David&quot;, &quot;180&quot;, &quot;Eve&quot;, &quot;220&quot;, &quot;Charlie&quot;, &quot;150&quot;]</span></span></code></pre></div><h4 id="分数操作" tabindex="-1">分数操作 <a class="header-anchor" href="#分数操作" aria-label="Permalink to “分数操作”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 分数自增</span></span>
+<span class="line"><span>ZADD rank 100 &quot;Alice&quot;</span></span>
+<span class="line"><span>ZINCRBY rank 50 &quot;Alice&quot;   // Alice 的分数变为 150</span></span>
+<span class="line"><span>ZINCRBY rank -30 &quot;Alice&quot;  // Alice 的分数变为 120</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 批量获取分数</span></span>
+<span class="line"><span>ZSCORE rank &quot;Alice&quot; &quot;Bob&quot; &quot;Charlie&quot;</span></span>
+<span class="line"><span>// 返回 [&quot;120&quot;, nil, &quot;150&quot;]</span></span></code></pre></div><h4 id="集合操作" tabindex="-1">集合操作 <a class="header-anchor" href="#集合操作" aria-label="Permalink to “集合操作”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 并集</span></span>
+<span class="line"><span>ZUNIONSTORE rank:total 2 rank:week rank:month</span></span>
+<span class="line"><span>// 将每周和每月的分数合并（相同 member 的分数相加）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 并集并指定聚合方式</span></span>
+<span class="line"><span>ZUNIONSTORE rank:total 2 rank:week rank:month AGGREGATE MAX</span></span>
+<span class="line"><span>// 相同 member 取最大分数</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 交集</span></span>
+<span class="line"><span>ZINTERSTORE rank:common 2 rank:week rank:month</span></span>
+<span class="line"><span>// 两个榜单的共同成员，分数相加</span></span></code></pre></div><h4 id="其他操作" tabindex="-1">其他操作 <a class="header-anchor" href="#其他操作" aria-label="Permalink to “其他操作”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 获取 ZSet 元素数量</span></span>
+<span class="line"><span>ZCARD rank  // 5</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 统计指定分数范围的成员数量</span></span>
+<span class="line"><span>ZCOUNT rank 100 200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 删除指定排名范围的成员</span></span>
+<span class="line"><span>ZREMRANGEBYRANK rank 0 2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 删除指定分数范围的成员</span></span>
+<span class="line"><span>ZREMRANGEBYSCORE rank 100 200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 遍历 ZSet</span></span>
+<span class="line"><span>ZSCAN rank 0 COUNT 100</span></span></code></pre></div><h4 id="zset-常用命令汇总" tabindex="-1">ZSet 常用命令汇总 <a class="header-anchor" href="#zset-常用命令汇总" aria-label="Permalink to “ZSet 常用命令汇总”">​</a></h4><table tabindex="0"><thead><tr><th>命令</th><th>说明</th><th>时间复杂度</th></tr></thead><tbody><tr><td><code>ZADD key score member</code></td><td>添加元素</td><td>O(log N)</td></tr><tr><td><code>ZREM key m1 m2 ...</code></td><td>删除元素</td><td>O(M log N)</td></tr><tr><td><code>ZRANK key member</code></td><td>获取排名（升序）</td><td>O(log N)</td></tr><tr><td><code>ZREVRANK key member</code></td><td>获取排名（降序）</td><td>O(log N)</td></tr><tr><td><code>ZSCORE key member</code></td><td>获取分数</td><td>O(1)</td></tr><tr><td><code>ZRANGE key start stop</code></td><td>获取排名范围元素</td><td>O(log N + M)</td></tr><tr><td><code>ZREVRANGE key start stop</code></td><td>获取排名范围元素（降序）</td><td>O(log N + M)</td></tr><tr><td><code>ZRANGEBYSCORE key min max</code></td><td>获取分数范围元素</td><td>O(log N + M)</td></tr><tr><td><code>ZREVRANGEBYSCORE key max min</code></td><td>获取分数范围元素（降序）</td><td>O(log N + M)</td></tr><tr><td><code>ZINCRBY key increment member</code></td><td>分数自增</td><td>O(log N)</td></tr><tr><td><code>ZCARD key</code></td><td>获取元素数量</td><td>O(1)</td></tr><tr><td><code>ZCOUNT key min max</code></td><td>分数范围内的元素数量</td><td>O(log N)</td></tr><tr><td><code>ZREMRANGEBYRANK key start stop</code></td><td>删除排名范围元素</td><td>O(log N + M)</td></tr><tr><td><code>ZREMRANGEBYSCORE key min max</code></td><td>删除分数范围元素</td><td>O(log N + M)</td></tr><tr><td><code>ZUNIONSTORE dest num k1 k2</code></td><td>并集运算并存储</td><td>O(N)</td></tr><tr><td><code>ZINTERSTORE dest num k1 k2</code></td><td>交集运算并存储</td><td>O(N)</td></tr><tr><td><code>ZSCAN key cursor</code></td><td>游标遍历</td><td>O(N)</td></tr></tbody></table><h3 id="_6-3-应用场景" tabindex="-1">6.3 应用场景 <a class="header-anchor" href="#_6-3-应用场景" aria-label="Permalink to “6.3 应用场景”">​</a></h3><h4 id="场景一-排行榜" tabindex="-1">场景一：排行榜 <a class="header-anchor" href="#场景一-排行榜" aria-label="Permalink to “场景一：排行榜”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 游戏排行榜</span></span>
+<span class="line"><span>ZADD game:rank:season1</span></span>
+<span class="line"><span>    1500 &quot;玩家A&quot;</span></span>
+<span class="line"><span>    1450 &quot;玩家B&quot;</span></span>
+<span class="line"><span>    1400 &quot;玩家C&quot;</span></span>
+<span class="line"><span>    1350 &quot;玩家D&quot;</span></span>
+<span class="line"><span>    1300 &quot;玩家E&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取 Top 10</span></span>
+<span class="line"><span>ZREVRANGE game:rank:season1 0 9 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取玩家排名</span></span>
+<span class="line"><span>ZREVRANK game:rank:season1 &quot;玩家A&quot;  // 0 (第一名)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 玩家得分更新</span></span>
+<span class="line"><span>ZINCRBY game:rank:season1 50 &quot;玩家A&quot;  // 玩家A 获得 50 分</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取分数在 1300-1400 的玩家</span></span>
+<span class="line"><span>ZRANGEBYSCORE game:rank:season1 1300 1400 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 只保留 Top 100</span></span>
+<span class="line"><span>ZREMRANGEBYRANK game:rank:season1 100 -1</span></span></code></pre></div><h4 id="场景二-评分系统" tabindex="-1">场景二：评分系统 <a class="header-anchor" href="#场景二-评分系统" aria-label="Permalink to “场景二：评分系统”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 电影评分</span></span>
+<span class="line"><span>ZADD movie:rating</span></span>
+<span class="line"><span>    9.5 &quot;肖申克的救赎&quot;</span></span>
+<span class="line"><span>    9.0 &quot;霸王别姬&quot;</span></span>
+<span class="line"><span>    8.5 &quot;阿甘正传&quot;</span></span>
+<span class="line"><span>    8.0 &quot;泰坦尼克号&quot;</span></span>
+<span class="line"><span>    7.5 &quot;千与千寻&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取 Top 3</span></span>
+<span class="line"><span>ZREVRANGE movie:rating 0 2 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取评分 8.0 以上的电影</span></span>
+<span class="line"><span>ZRANGEBYSCORE movie:rating 8.0 10 WITHSCORES</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取电影排名</span></span>
+<span class="line"><span>ZREVRANK movie:rating &quot;霸王别姬&quot;  // 1 (第二)</span></span></code></pre></div><h4 id="场景三-延迟队列" tabindex="-1">场景三：延迟队列 <a class="header-anchor" href="#场景三-延迟队列" aria-label="Permalink to “场景三：延迟队列”">​</a></h4><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 使用 ZSet 实现延迟任务队列</span></span>
+<span class="line"><span>// score 为执行时间戳，member 为任务 ID</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 添加延迟任务</span></span>
+<span class="line"><span>ZADD delay:queue</span></span>
+<span class="line"><span>    1715760000 &quot;task:1001&quot;  // 在指定时间执行</span></span>
+<span class="line"><span>    1715763600 &quot;task:1002&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 轮询到期任务（应用层定时执行）</span></span>
+<span class="line"><span>// 获取 score &lt;= 当前时间的任务</span></span>
+<span class="line"><span>ZRANGEBYSCORE delay:queue 0 &lt;current_timestamp&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 处理任务后移除</span></span>
+<span class="line"><span>ZREM delay:queue &quot;task:1001&quot;</span></span></code></pre></div><hr><h2 id="七、其他数据类型简介" tabindex="-1">七、其他数据类型简介 <a class="header-anchor" href="#七、其他数据类型简介" aria-label="Permalink to “七、其他数据类型简介”">​</a></h2><h3 id="_7-1-hyperloglog" tabindex="-1">7.1 HyperLogLog <a class="header-anchor" href="#_7-1-hyperloglog" aria-label="Permalink to “7.1 HyperLogLog”">​</a></h3><p>HyperLogLog 是一种<strong>概率数据结构</strong>，用于估算集合的基数（元素数量），而非存储实际元素。</p><p><strong>特点</strong>：</p><ul><li>固定内存占用：约 12KB</li><li>标准误差：约 0.81%</li><li>最多可存储 2^64 个元素</li></ul><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 添加元素</span></span>
+<span class="line"><span>PFADD uv:article:1001 &quot;user:1001&quot;</span></span>
+<span class="line"><span>PFADD uv:article:1001 &quot;user:1002&quot; &quot;user:1003&quot;</span></span>
+<span class="line"><span>PFADD uv:article:1001 &quot;user:1001&quot;  // 自动去重</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 估算基数</span></span>
+<span class="line"><span>PFCOUNT uv:article:1001  // 3（近似值）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 合并多个 HyperLogLog</span></span>
+<span class="line"><span>PFMERGE uv:total uv:article:1001 uv:article:1002</span></span>
+<span class="line"><span>PFCOUNT uv:total  // 估算总 UV</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>文章 UV（独立访客）统计</li><li>实时在线人数估算</li><li>大规模数据去重统计</li></ul><p><strong>注意事项</strong>：</p><ul><li>只能获取近似值，无法获取精确值</li><li>无法获取实际存储的元素</li><li>适合对精度要求不高的统计场景</li></ul><h3 id="_7-2-bitmap-位图" tabindex="-1">7.2 Bitmap（位图） <a class="header-anchor" href="#_7-2-bitmap-位图" aria-label="Permalink to “7.2 Bitmap（位图）”">​</a></h3><p>Bitmap 是基于字符串的位操作数据结构，通过设置每一位来表示某种状态。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 场景：用户签到打卡</span></span>
+<span class="line"><span>// 每个用户一个 Bitmap，每一位代表一天</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 用户 1001 在第 1 天签到</span></span>
+<span class="line"><span>SETBIT sign:1001 1 1</span></span>
+<span class="line"><span>// 用户 1001 在第 3 天签到</span></span>
+<span class="line"><span>SETBIT sign:1001 3 1</span></span>
+<span class="line"><span>// 用户 1001 在第 7 天签到</span></span>
+<span class="line"><span>SETBIT sign:1001 7 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查询某一天是否签到</span></span>
+<span class="line"><span>GETBIT sign:1001 1   // 1 (已签到)</span></span>
+<span class="line"><span>GETBIT sign:1001 2   // 0 (未签到)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 统计签到天数</span></span>
+<span class="line"><span>BITCOUNT sign:1001  // 3</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 统计指定范围的签到天数</span></span>
+<span class="line"><span>BITCOUNT sign:1001 0 30  // 第 0-30 天的签到天数</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 位运算</span></span>
+<span class="line"><span>SETBIT online:users:day1 1001 1  // 用户 1001 在线</span></span>
+<span class="line"><span>SETBIT online:users:day1 1002 1  // 用户 1002 在线</span></span>
+<span class="line"><span>SETBIT online:users:day2 1001 1</span></span>
+<span class="line"><span>SETBIT online:users:day2 1003 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 计算两天都在线的用户（AND 运算）</span></span>
+<span class="line"><span>BITOP AND online:both online:users:day1 online:users:day2</span></span>
+<span class="line"><span>BITCOUNT online:both  // 1 (只有用户 1001 两天都在线)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 计算两天中至少一天在线的用户（OR 运算）</span></span>
+<span class="line"><span>BITOP OR online:either online:users:day1 online:users:day2</span></span>
+<span class="line"><span>BITCOUNT online:either  // 3</span></span></code></pre></div><p><strong>应用场景</strong>：</p><ul><li>签到打卡系统</li><li>在线状态标记</li><li>用户活跃天数统计</li><li>数据去重</li></ul><h3 id="_7-3-geo-地理坐标" tabindex="-1">7.3 Geo（地理坐标） <a class="header-anchor" href="#_7-3-geo-地理坐标" aria-label="Permalink to “7.3 Geo（地理坐标）”">​</a></h3><p>Geo 类型用于存储地理位置信息，并支持计算两点之间的距离或查找附近的地点。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 添加地理位置（经度、纬度、名称）</span></span>
+<span class="line"><span>GEOADD places</span></span>
+<span class="line"><span>    116.397428 39.90923 &quot;天安门&quot;</span></span>
+<span class="line"><span>    116.405285 39.904989 &quot;故宫&quot;</span></span>
+<span class="line"><span>    116.397428 39.90923 &quot;北京&quot;</span></span>
+<span class="line"><span>    121.473701 31.230416 &quot;上海&quot;</span></span>
+<span class="line"><span>    113.264434 23.129162 &quot;广州&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取地理位置坐标</span></span>
+<span class="line"><span>GEOPOS places &quot;天安门&quot; &quot;故宫&quot;</span></span>
+<span class="line"><span>// 返回 [[116.397428, 39.90923], [116.405285, 39.904989]]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 计算两点之间的距离（默认米）</span></span>
+<span class="line"><span>GEODIST places &quot;天安门&quot; &quot;故宫&quot;</span></span>
+<span class="line"><span>// 返回 &quot;518.6923&quot;（约 518 米）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 指定单位计算距离</span></span>
+<span class="line"><span>GEODIST places &quot;北京&quot; &quot;上海&quot; km</span></span>
+<span class="line"><span>// 返回 &quot;1068.1358&quot;（约 1068 公里）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查找附近的地点</span></span>
+<span class="line"><span>GEOSEARCH places FROMLONLAT 116.397428 39.90923</span></span>
+<span class="line"><span>    BYRADIUS 1 km WITHDIST</span></span>
+<span class="line"><span>// 返回距离天安门 1 公里内的地点及距离</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 查找附近的地点（按成员）</span></span>
+<span class="line"><span>GEOSEARCH places FROMMEMBER &quot;天安门&quot;</span></span>
+<span class="line"><span>    BYRADIUS 2 km WITHDIST</span></span></code></pre></div><p><strong>GEO 的底层实现</strong>：</p><ul><li>基于 ZSet 实现</li><li>使用 Geohash 编码将二维坐标转换为一维字符串</li><li>支持高效的范围查询</li></ul><p><strong>应用场景</strong>：</p><ul><li>附近的人/地点搜索</li><li>配送范围管理</li><li>地理围栏</li></ul><h3 id="_7-4-stream-流" tabindex="-1">7.4 Stream（流） <a class="header-anchor" href="#_7-4-stream-流" aria-label="Permalink to “7.4 Stream（流）”">​</a></h3><p>Stream 是 Redis 5.0+ 引入的消息队列数据类型，功能类似于 Kafka。</p><div class="language-redis"><button title="Copy Code" class="copy"></button><span class="lang">redis</span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 添加消息</span></span>
+<span class="line"><span>XADD mystream</span></span>
+<span class="line"><span>    *</span><span>  // 自动生成 ID</span></span>
+<span class="line"><span>    type &quot;order&quot;</span></span>
+<span class="line"><span>    userId &quot;1001&quot;</span></span>
+<span class="line"><span>    productId &quot;2001&quot;</span></span>
+<span class="line"><span>    count &quot;2&quot;</span></span>
+<span class="line"><span>    totalPrice &quot;39998&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 指定消息 ID</span></span>
+<span class="line"><span>XADD mystream 1001 type &quot;order&quot; userId &quot;1001&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 读取消息</span></span>
+<span class="line"><span>XREAD COUNT 10 STREAMS mystream 0  // 从 ID 0 开始读取</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 阻塞读取新消息</span></span>
+<span class="line"><span>XREAD BLOCK 5000 STREAMS mystream $  // 等待新消息，超时 5 秒</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 创建消费者组</span></span>
+<span class="line"><span>XGROUP CREATE mystream group1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 消费者组读取</span></span>
+<span class="line"><span>XREADGROUP GROUP group1 consumer1</span></span>
+<span class="line"><span>    COUNT 10 STREAMS mystream &gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 确认消息已处理</span></span>
+<span class="line"><span>XACK mystream group1 1001</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取流信息</span></span>
+<span class="line"><span>XINFO STREAM mystream</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 获取消费者组信息</span></span>
+<span class="line"><span>XINFO GROUPS mystream</span></span></code></pre></div><p><strong>Stream 的特点</strong>：</p><ul><li>支持持久化，消息不会丢失</li><li>支持消费者组，实现负载均衡</li><li>支持消息确认机制</li><li>支持消息回放</li><li>支持裁剪流长度</li></ul><p><strong>应用场景</strong>：</p><ul><li>高吞吐消息队列</li><li>事件溯源</li><li>实时数据处理</li><li>日志收集</li></ul><hr><h2 id="八、数据类型选择策略" tabindex="-1">八、数据类型选择策略 <a class="header-anchor" href="#八、数据类型选择策略" aria-label="Permalink to “八、数据类型选择策略”">​</a></h2><h3 id="_8-1-核心类型选择矩阵" tabindex="-1">8.1 核心类型选择矩阵 <a class="header-anchor" href="#_8-1-核心类型选择矩阵" aria-label="Permalink to “8.1 核心类型选择矩阵”">​</a></h3><table tabindex="0"><thead><tr><th>需求场景</th><th>推荐类型</th><th>原因</th></tr></thead><tbody><tr><td>简单 KV 存储</td><td>String</td><td>简单高效，支持过期时间</td></tr><tr><td>对象存储</td><td>Hash</td><td>部分读写优于 JSON 序列化</td></tr><tr><td>队列/栈</td><td>List</td><td>原生支持两端操作，O(1) 时间复杂度</td></tr><tr><td>标签/去重</td><td>Set</td><td>自动去重，支持集合运算</td></tr><tr><td>排行榜</td><td>ZSet</td><td>有序、支持分数更新和范围查询</td></tr><tr><td>大规模计数</td><td>HyperLogLog</td><td>固定内存，支持 UV 统计</td></tr><tr><td>状态标记</td><td>Bitmap</td><td>极省空间，支持位运算</td></tr><tr><td>地理位置</td><td>Geo</td><td>原生支持距离计算和范围查询</td></tr><tr><td>消息队列</td><td>Stream</td><td>支持消费者组和消息确认</td></tr></tbody></table><h3 id="_8-2-常见数据结构对比" tabindex="-1">8.2 常见数据结构对比 <a class="header-anchor" href="#_8-2-常见数据结构对比" aria-label="Permalink to “8.2 常见数据结构对比”">​</a></h3><table tabindex="0"><thead><tr><th>对比项</th><th>String</th><th>Hash</th><th>List</th><th>Set</th><th>ZSet</th></tr></thead><tbody><tr><td>数据模型</td><td>单值</td><td>键值对</td><td>有序列表</td><td>无序集合</td><td>有序集合</td></tr><tr><td>内存效率</td><td>高</td><td>中</td><td>中</td><td>中</td><td>中</td></tr><tr><td>随机访问</td><td>O(1)</td><td>O(1)</td><td>O(N)</td><td>O(1)</td><td>O(log N)</td></tr><tr><td>范围查询</td><td>不支持</td><td>不支持</td><td>支持</td><td>支持</td><td>支持</td></tr><tr><td>去重</td><td>不支持</td><td>不支持</td><td>不支持</td><td>自动</td><td>自动</td></tr><tr><td>典型场景</td><td>缓存、计数器</td><td>用户信息、配置</td><td>消息队列、时间线</td><td>标签、好友</td><td>排行榜、评分</td></tr></tbody></table><h3 id="_8-3-选择建议" tabindex="-1">8.3 选择建议 <a class="header-anchor" href="#_8-3-选择建议" aria-label="Permalink to “8.3 选择建议”">​</a></h3><ol><li><strong>优先选择简单类型</strong>：能用 String 解决的问题不用 Hash，能用 Hash 解决的问题不用 List</li><li><strong>考虑数据规模</strong>：小数据量可选用 ziplist 编码的类型，大数据量考虑性能</li><li><strong>评估读写模式</strong>：读多写少（如缓存）和写多读少（如计数器）的选择不同</li><li><strong>关注内存使用</strong>：HyperLogLog 和 Bitmap 在大规模数据下有显著优势</li><li><strong>利用组合</strong>：多个数据类型可以组合使用，如 ZSet + Hash 实现复杂业务</li></ol><hr><h2 id="本章小结" tabindex="-1">本章小结 <a class="header-anchor" href="#本章小结" aria-label="Permalink to “本章小结”">​</a></h2><p>本章详细讲解了 Redis 的九大核心数据类型及其底层实现、常用命令和应用场景：</p><ol><li><strong>String 类型</strong>：基于 SDS 实现，支持缓存、计数器、分布式锁等场景</li><li><strong>Hash 类型</strong>：基于 ziplist/hashtable 动态编码，适合存储对象结构</li><li><strong>List 类型</strong>：基于 ziplist/quicklist 实现，适合消息队列和时间线</li><li><strong>Set 类型</strong>：基于 intset/hashtable 实现，支持集合运算和去重</li><li><strong>ZSet 类型</strong>：基于 ziplist/skiplist+hashtable 实现，适合排行榜和评分系统</li><li><strong>HyperLogLog</strong>：概率数据结构，适合大规模基数统计</li><li><strong>Bitmap</strong>：位操作数据结构，适合状态标记和签到系统</li><li><strong>Geo</strong>：地理坐标类型，适合位置服务</li><li><strong>Stream</strong>：消息队列类型，适合实时数据流处理</li></ol><p>每种数据类型都有其独特的设计哲学和适用场景，掌握它们的底层实现原理有助于在实际工作中做出最优选择。</p></div></div></main><footer class="VPDocFooter" data-v-7011f0d8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/blog/redis/basic/Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>Redis简介与环境搭建</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/blog/redis/core/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>数据结构底层实现</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"ai_advanced_agent开发.md\":\"eQlOBCDK\",\"ai_advanced_rag实战.md\":\"MZsj1Wbl\",\"ai_advanced_多模态应用.md\":\"BYz5GSl5\",\"ai_advanced_性能优化.md\":\"TwZmcarV\",\"ai_api_claude_api详解.md\":\"0HIO0cyN\",\"ai_api_openai_api详解.md\":\"CcM3IH8U\",\"ai_basic_prompt工程基础.md\":\"BYqYf4qr\",\"ai_basic_大模型概述.md\":\"ChV7taP9\",\"ai_basic_环境搭建.md\":\"Dau_WHr4\",\"ai_expert_模型微调.md\":\"Di7C1DUj\",\"ai_expert_生产部署.md\":\"CA9mrnXW\",\"ai_framework_langchain入门.md\":\"lw5WGBbf\",\"ai_framework_本地模型部署.md\":\"CmfZOEzE\",\"ai_projects_代码助手.md\":\"Djak3WHb\",\"ai_projects_数据分析助手.md\":\"C0G9UTmw\",\"ai_projects_智能客服系统.md\":\"rVnR6rjl\",\"browser_浏览器渲染原理.md\":\"B7v9RQ57\",\"browser_浏览器输入url后回车会发生什么.md\":\"B8FApKyO\",\"css_gpu加速.md\":\"lCh4btKs\",\"css_伪类和伪元素.md\":\"BAOIiTnb\",\"css_包含块.md\":\"DdJtrNrj\",\"css_响应式网页设计和媒体查询.md\":\"CQq1SmT9\",\"css_层叠、优先级与继承.md\":\"DeQtur6u\",\"css_层叠上下文.md\":\"vIV1F6dT\",\"css_属性计算过程.md\":\"BfvkV_JE\",\"css_布局.md\":\"DxQd8oQE\",\"css_引入方式与优先级.md\":\"Bx90Hus5\",\"css_格式化上下文.md\":\"4hX23ur6\",\"css_溢出.md\":\"DM4MXi9i\",\"css_盒模型.md\":\"q-Ux-PBm\",\"css_选择器.md\":\"BsubPA4z\",\"css_重排与重绘.md\":\"D4th5SPA\",\"docker_01-别再纠结环境问题了-一文带你看懂docker究竟是什么.md\":\"cZIVncca\",\"docker_02-零基础docker极速入门-10分钟跑起你的第一个nginx容器.md\":\"ahT2wkre\",\"docker_03-秒杀虚拟机-docker与虚拟机的核心区别.md\":\"CFFt4nmp\",\"docker_04-告别我本地跑得好好的-用docker彻底解决开发环境不一致的痛点.md\":\"D1x4_LPp\",\"docker_05-程序员高效神器-docker常用命令实战速查（附记忆口诀）.md\":\"vRla9p-X\",\"docker_06-从打镜像到精简优化-手把手教你写生产级dockerfile.md\":\"ZrlE_V_s\",\"docker_07-docker数据卷管理实战-持久化再也不怕.md\":\"CxwzNX5c\",\"docker_08-docker网络模型详解-bridge-host-overlay.md\":\"DwhpE1CG\",\"docker_09-如何将镜像体积缩小90%-多阶段构建与alpine镜像调优指南.md\":\"BPYR4HQe\",\"docker_10-docker环境变量与config文件注入全攻略.md\":\"DbjQdne7\",\"docker_11-单机容器编排实战-docker-compose搭建lnmp-springcloud全流程.md\":\"Bs6B_Y_T\",\"docker_12-docker依赖控制与healthcheck最佳实践.md\":\"ChTxvdX7\",\"docker_13-docker-swarm-从零搭建生产可用的高可用容器集群.md\":\"DSvKfiOr\",\"docker_14-滚动更新与回滚-docker服务零宕机发布策略详解.md\":\"DZEkm4MI\",\"docker_15-容器监控-cadvisor-prometheus-grafana.md\":\"HVaKKWlW\",\"docker_16-docker容器资源隔离-cgroups-namespace底层原理深剖.md\":\"DJIWJ4SY\",\"docker_17-dockerignore与build-cache构建效率提升指南.md\":\"DSgkejWy\",\"docker_18-容器漂移与注册中心-consul-nacos适配.md\":\"CBCkK3DF\",\"docker_19-docker安全全景扫描-rootless模式与镜像漏洞检测实战.md\":\"BLRrqmjU\",\"docker_20-从传统物理机到docker化改造的8个避坑指南.md\":\"B-CxFqEw\",\"engineering_css模块化.md\":\"BxvG7ovj\",\"engineering_husky.md\":\"CMXvFx_M\",\"engineering_js模块化.md\":\"B9zT61pI\",\"engineering_代码规范：eslint _ prettier 在前端工程化中的最佳实践.md\":\"DIdsmzte\",\"engineering_前端工程化.md\":\"CpT9iwgv\",\"engineering_前端工程化必备：husky _ lint-staged 实战指南.md\":\"DW3P6P1Z\",\"index.md\":\"BGMoi_3m\",\"java_advanced_io与nio.md\":\"DwVU1-5P\",\"java_advanced_java8新特性.md\":\"AZN8izuk\",\"java_advanced_jvm内存模型与gc.md\":\"BrlqyjHb\",\"java_advanced_并发编程.md\":\"BfnNDpw7\",\"java_advanced_序列化.md\":\"DepwFnh4\",\"java_basic_基础语法.md\":\"U1dbZegg\",\"java_basic_数组与字符串.md\":\"BnMoFh2W\",\"java_basic_环境搭建.md\":\"CKHiRKKo\",\"java_core_异常处理.md\":\"CIJ7g1Yc\",\"java_core_泛型.md\":\"CtFklX5J\",\"java_core_注解与反射.md\":\"DaH817-4\",\"java_core_集合框架.md\":\"DopTBz9r\",\"java_core_面向对象编程.md\":\"DomB2DXC\",\"java_expert_jvm调优.md\":\"V2bgFzS8\",\"java_expert_并发编程深入.md\":\"vIAiO9Ne\",\"java_expert_设计模式.md\":\"CxtiIu9q\",\"java_frameworks_mybatis_mybatis入门与核心概念.md\":\"BTeFhHtA\",\"java_frameworks_mybatis_mybatis核心原理.md\":\"DkkJksjB\",\"java_frameworks_mybatis_动态sql与缓存机制.md\":\"ITymWGJQ\",\"java_frameworks_spring_aop面向切面编程.md\":\"ChRZb5KT\",\"java_frameworks_spring_bean生命周期与作用域.md\":\"CC7IhZRG\",\"java_frameworks_spring_spring事务管理.md\":\"CIpwyZRH\",\"java_frameworks_spring_spring入门与ioc控制反转.md\":\"BK-hsfE9\",\"java_frameworks_spring_spring核心原理.md\":\"CQKvSbV5\",\"java_frameworks_springboot_springboot入门与核心特性.md\":\"C_qMXj8P\",\"java_frameworks_springboot_springboot核心原理.md\":\"CVKk042X\",\"java_frameworks_springboot_springboot自动配置原理.md\":\"DzZrJ-BH\",\"java_frameworks_springboot_配置文件与环境管理.md\":\"DqvDFVkx\",\"java_frameworks_springmvc_springmvc入门与请求处理流程.md\":\"BObvm39O\",\"java_frameworks_springmvc_参数绑定与数据校验.md\":\"JQ30tFRv\",\"java_frameworks_springmvc_异常处理机制.md\":\"DTzGVk7E\",\"java_frameworks_springmvc_拦截器与过滤器.md\":\"Cs_7BZN9\",\"javascript_basic_严格模式.md\":\"C2YJXxAm\",\"javascript_basic_数据类型.md\":\"CvfmjX8V\",\"javascript_basic_相等性比较.md\":\"DRVCyMg-\",\"javascript_basic_类型转换.md\":\"Df6b3WZp\",\"javascript_core_this.md\":\"Bv3hB_gK\",\"javascript_core_事件循环.md\":\"ATFbN01X\",\"javascript_core_作用域.md\":\"DnxWnBi-\",\"javascript_core_原型.md\":\"Dx09eKtj\",\"javascript_core_执行上下文.md\":\"C14KPDZ7\",\"javascript_core_提升.md\":\"C4W0nw1h\",\"javascript_core_继承.md\":\"Wci4FsS-\",\"javascript_core_闭包.md\":\"ZUOIrzw_\",\"javascript_es6_箭头函数.md\":\"Dr9imCbX\",\"javascript_other_微前端iframe架构通讯方式.md\":\"03VeOXZH\",\"javascript_other_深拷贝与浅拷贝.md\":\"DHHMV7ZH\",\"javascript_other_编辑器撤销重做功能.md\":\"DlDbrHNw\",\"mysql_advanced_sql优化实战.md\":\"B2zaONSw\",\"mysql_advanced_主从复制原理.md\":\"FG8bfNPo\",\"mysql_advanced_分库分表策略.md\":\"AJewfqEN\",\"mysql_advanced_性能调优实战.md\":\"nvSrFhyA\",\"mysql_basic_mysql简介与环境搭建.md\":\"B0mXK9Lz\",\"mysql_basic_sql基础语法.md\":\"JSFuOFvt\",\"mysql_basic_数据查询与操作.md\":\"CX2FezlU\",\"mysql_basic_数据类型与表结构.md\":\"Bt_oye0O\",\"mysql_core_事务与acid特性.md\":\"emEajFWt\",\"mysql_core_存储引擎详解.md\":\"DIg_iTrJ\",\"mysql_core_索引原理与应用.md\":\"MTzYDes5\",\"mysql_core_锁机制与并发控制.md\":\"C0vDKi8P\",\"mysql_expert_innodb存储引擎深度剖析.md\":\"BfOnnbWA\",\"mysql_expert_mysql高可用架构.md\":\"76eP_3B5\",\"mysql_expert_日志系统与恢复机制.md\":\"BwsYiGlE\",\"mysql_expert_查询优化器原理.md\":\"B5x0jrkR\",\"other_资源.md\":\"D_OE9DkM\",\"performance_vendor文件体积过大如何解决.md\":\"C2DjRHaw\",\"python_advanced_lambda 表达式.md\":\"BWYapYD3\",\"python_advanced_上下文管理器.md\":\"BMpFSV9r\",\"python_advanced_元编程.md\":\"PeAr7sWC\",\"python_advanced_并发编程.md\":\"muRg8CUk\",\"python_advanced_异步编程.md\":\"f2368y5O\",\"python_advanced_推导式.md\":\"COAu7r_v\",\"python_advanced_正则表达式.md\":\"ifd5cooy\",\"python_advanced_生成器与迭代器.md\":\"Bv7kVi8W\",\"python_advanced_装饰器.md\":\"CYOsQFrs\",\"python_advanced_闭包.md\":\"CrEDVQtY\",\"python_basic_列表与元组.md\":\"CJygAZDW\",\"python_basic_变量与数据类型.md\":\"s9VnD6A-\",\"python_basic_字典与集合.md\":\"DPa2KICV\",\"python_basic_字符串.md\":\"Dafq5cud\",\"python_basic_循环语句.md\":\"DWjlcCYK\",\"python_basic_条件语句.md\":\"CDrAshJY\",\"python_basic_环境搭建.md\":\"Cr35dXxd\",\"python_basic_运算符.md\":\"y8bdRnM4\",\"python_core_作用域与命名空间.md\":\"Cv_nwQQC\",\"python_core_函数基础.md\":\"jAX5D0hA\",\"python_core_参数传递.md\":\"C2D2_krf\",\"python_core_异常处理.md\":\"HaQJpIdk\",\"python_core_文件操作.md\":\"qQkFJeR-\",\"python_core_模块与包.md\":\"D83U6aJr\",\"python_core_类与对象.md\":\"vS8IqQmm\",\"python_core_继承与多态.md\":\"C1KXy4bO\",\"python_core_面向对象基础.md\":\"_0ZwgCdo\",\"python_core_魔术方法.md\":\"BRKjPPxM\",\"python_expert_gil 全局解释器锁.md\":\"qAdMxyKB\",\"python_expert_内存管理.md\":\"z2aPhwfr\",\"python_expert_性能优化.md\":\"BEF59zBP\",\"python_expert_测试与调试.md\":\"Wfw1JyWL\",\"python_expert_类型提示.md\":\"CDeSSK4f\",\"python_expert_设计模式.md\":\"BxuLHNlz\",\"python_tools_pip.md\":\"CupnCbKI\",\"python_tools_代码规范.md\":\"DckvCy5V\",\"python_tools_虚拟环境.md\":\"BkedGAfT\",\"react_fiber.md\":\"CwiUrkIf\",\"react_自动批处理.md\":\"BhbeXKPF\",\"redis_advanced_主从复制与集群.md\":\"BCnt_YGz\",\"redis_advanced_缓存问题与性能优化.md\":\"D0D3PTOq\",\"redis_basic_redis简介与环境搭建.md\":\"DkyTvIN5\",\"redis_basic_数据类型与基础命令.md\":\"BQzqOJkp\",\"redis_core_内存管理与淘汰策略.md\":\"DEQEc746\",\"redis_core_发布订阅与事务.md\":\"DsxNNMwC\",\"redis_core_持久化机制.md\":\"CO-6zC3Q\",\"redis_core_数据结构底层实现.md\":\"x4LOlYof\",\"redis_expert_分布式锁与高可用架构.md\":\"DSz0VAk2\",\"redis_expert_单线程模型与事件循环.md\":\"ByvEwYV5\",\"vue_diff算法.md\":\"D8N7_zlN\",\"vue_new vue()和createapp()的区别.md\":\"CSXj7jzN\",\"vue_vue2源码执行流程.md\":\"gRfykG9X\",\"vue_vue3响应式源码.md\":\"OoUrgUWY\",\"vue_vue3新特性.md\":\"CpDvonIQ\",\"vue_响应式原理.md\":\"YCccUd1E\",\"vue_虚拟dom.md\":\"B8aWN7YF\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"博客\",\"description\":\"苏子龙博客\",\"base\":\"/blog/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"outline\":{\"level\":[2,3],\"label\":\"目录\"},\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"Css\",\"link\":\"/css/引入方式与优先级\"},{\"text\":\"JavaScript\",\"link\":\"/javascript/basic/数据类型\"},{\"text\":\"浏览器\",\"link\":\"/browser/浏览器渲染原理\"},{\"text\":\"工程化\",\"link\":\"/engineering/前端工程化\"},{\"text\":\"框架\",\"items\":[{\"text\":\"Vue\",\"link\":\"/vue/Vue3新特性\"},{\"text\":\"React\",\"link\":\"/react/Fiber\"}]},{\"text\":\"性能\",\"link\":\"/performance/vendor文件体积过大如何解决\"},{\"text\":\"其他\",\"link\":\"/other/资源\"},{\"text\":\"Python\",\"link\":\"/python/basic/环境搭建\"},{\"text\":\"Java\",\"link\":\"/java/basic/环境搭建\"},{\"text\":\"AI\",\"link\":\"/ai/basic/大模型概述\"},{\"text\":\"MySQL\",\"link\":\"/mysql/basic/MySQL简介与环境搭建\"},{\"text\":\"Redis\",\"link\":\"/redis/basic/Redis简介与环境搭建\"}],\"sidebar\":{\"browser\":[{\"text\":\"浏览器\",\"items\":[{\"text\":\"浏览器渲染原理\",\"link\":\"/browser/浏览器渲染原理\"},{\"text\":\"浏览器输入URL后回车会发生什么\",\"link\":\"/browser/浏览器输入URL后回车会发生什么\"}]}],\"html\":[{\"text\":\"Html\",\"items\":[{\"text\":\"浏览器渲染原理\",\"link\":\"/browser/浏览器渲染原理\"}]}],\"css\":[{\"text\":\"Css\",\"items\":[{\"text\":\"引入方式与优先级\",\"link\":\"/css/引入方式与优先级\"},{\"text\":\"选择器\",\"link\":\"/css/选择器\"},{\"text\":\"伪类和伪元素\",\"link\":\"/css/伪类和伪元素\"},{\"text\":\"格式化上下文\",\"link\":\"/css/格式化上下文\"},{\"text\":\"层叠、优先级与继承\",\"link\":\"/css/层叠、优先级与继承\"},{\"text\":\"盒模型\",\"link\":\"/css/盒模型\"},{\"text\":\"布局\",\"link\":\"/css/布局\"},{\"text\":\"响应式网页设计和媒体查询\",\"link\":\"/css/响应式网页设计和媒体查询\"},{\"text\":\"溢出\",\"link\":\"/css/溢出\"},{\"text\":\"层叠上下文\",\"link\":\"/css/层叠上下文\"},{\"text\":\"重排与重绘\",\"link\":\"/css/重排与重绘\"},{\"text\":\"GPU加速\",\"link\":\"/css/GPU加速\"},{\"text\":\"属性计算过程\",\"link\":\"/css/属性计算过程\"},{\"text\":\"包含块\",\"link\":\"/css/包含块\"}]}],\"javascript\":[{\"text\":\"基础知识\",\"items\":[{\"text\":\"数据类型\",\"link\":\"/javascript/basic/数据类型\"},{\"text\":\"类型转换\",\"link\":\"/javascript/basic/类型转换\"},{\"text\":\"相等性比较\",\"link\":\"/javascript/basic/相等性比较\"},{\"text\":\"严格模式\",\"link\":\"/javascript/basic/严格模式\"}]},{\"text\":\"核心概念\",\"items\":[{\"text\":\"作用域\",\"link\":\"/javascript/core/作用域\"},{\"text\":\"提升\",\"link\":\"/javascript/core/提升\"},{\"text\":\"闭包\",\"link\":\"/javascript/core/闭包\"},{\"text\":\"执行上下文\",\"link\":\"/javascript/core/执行上下文\"},{\"text\":\"this\",\"link\":\"/javascript/core/this\"},{\"text\":\"原型\",\"link\":\"/javascript/core/原型\"},{\"text\":\"继承\",\"link\":\"/javascript/core/继承\"},{\"text\":\"事件循环\",\"link\":\"/javascript/core/事件循环\"}]},{\"text\":\"其他\",\"items\":[{\"text\":\"深拷贝与浅拷贝\",\"link\":\"/javascript/other/深拷贝与浅拷贝\"},{\"text\":\"编辑器撤销重做功能\",\"link\":\"/javascript/other/编辑器撤销重做功能\"},{\"text\":\"微前端iframe架构通讯方式\",\"link\":\"/javascript/other/微前端iframe架构通讯方式\"}]},{\"text\":\"高级主题\",\"items\":[]},{\"text\":\"ES6\",\"items\":[{\"text\":\"箭头函数\",\"link\":\"/javascript/es6/箭头函数\"}]}],\"vue\":[{\"text\":\"基础\",\"items\":[{\"text\":\"Vue3新特性\",\"link\":\"/vue/Vue3新特性\"},{\"text\":\"new Vue()和createApp()的区别\",\"link\":\"/vue/new Vue()和createApp()的区别\"},{\"text\":\"Vue2源码执行流程\",\"link\":\"/vue/Vue2源码执行流程\"},{\"text\":\"响应式原理\",\"link\":\"/vue/响应式原理\"},{\"text\":\"虚拟Dom\",\"link\":\"/vue/虚拟Dom\"},{\"text\":\"Diff算法\",\"link\":\"/vue/Diff算法\"},{\"text\":\"key的作用\",\"link\":\"/vue/key的作用\"}]}],\"react\":[{\"text\":\"react\",\"items\":[{\"text\":\"Fiber\",\"link\":\"/react/Fiber\"},{\"text\":\"自动批处理\",\"link\":\"/react/自动批处理\"}]}],\"engineering\":[{\"text\":\"前端工程化\",\"items\":[{\"text\":\"前端工程化介绍\",\"link\":\"/engineering/前端工程化\"}]},{\"text\":\"模块化与组件化\",\"items\":[{\"text\":\"JS模块化\",\"link\":\"/engineering/JS模块化\"},{\"text\":\"CSS模块化\",\"link\":\"/engineering/CSS模块化\"}]},{\"text\":\"开发效率与构建工具\"},{\"text\":\"代码质量与规范\",\"items\":[{\"text\":\"代码规范：ESLint + Prettier 在前端工程化中的最佳实践\",\"link\":\"/engineering/代码规范：ESLint + Prettier 在前端工程化中的最佳实践\"},{\"text\":\"前端工程化必备：husky + lint-staged 实战指南\",\"link\":\"/engineering/前端工程化必备：husky + lint-staged 实战指南\"}]},{\"text\":\"测试与质量保障\"},{\"text\":\"部署与运维\"},{\"text\":\"性能优化\"}],\"资源\":[{\"text\":\"资源\",\"items\":[{\"text\":\"资源\",\"link\":\"/other/资源\"}]}],\"python\":[{\"text\":\"基础\",\"items\":[{\"text\":\"环境搭建\",\"link\":\"/python/basic/环境搭建\"},{\"text\":\"变量与数据类型\",\"link\":\"/python/basic/变量与数据类型\"},{\"text\":\"运算符\",\"link\":\"/python/basic/运算符\"},{\"text\":\"条件语句\",\"link\":\"/python/basic/条件语句\"},{\"text\":\"循环语句\",\"link\":\"/python/basic/循环语句\"},{\"text\":\"字符串\",\"link\":\"/python/basic/字符串\"},{\"text\":\"列表与元组\",\"link\":\"/python/basic/列表与元组\"},{\"text\":\"字典与集合\",\"link\":\"/python/basic/字典与集合\"}]},{\"text\":\"核心\",\"items\":[{\"text\":\"函数基础\",\"link\":\"/python/core/函数基础\"},{\"text\":\"参数传递\",\"link\":\"/python/core/参数传递\"},{\"text\":\"作用域与命名空间\",\"link\":\"/python/core/作用域与命名空间\"},{\"text\":\"模块与包\",\"link\":\"/python/core/模块与包\"},{\"text\":\"文件操作\",\"link\":\"/python/core/文件操作\"},{\"text\":\"异常处理\",\"link\":\"/python/core/异常处理\"},{\"text\":\"面向对象基础\",\"link\":\"/python/core/面向对象基础\"},{\"text\":\"类与对象\",\"link\":\"/python/core/类与对象\"},{\"text\":\"继承与多态\",\"link\":\"/python/core/继承与多态\"},{\"text\":\"魔术方法\",\"link\":\"/python/core/魔术方法\"}]},{\"text\":\"进阶\",\"items\":[{\"text\":\"装饰器\",\"link\":\"/python/advanced/装饰器\"},{\"text\":\"生成器与迭代器\",\"link\":\"/python/advanced/生成器与迭代器\"},{\"text\":\"上下文管理器\",\"link\":\"/python/advanced/上下文管理器\"},{\"text\":\"闭包\",\"link\":\"/python/advanced/闭包\"},{\"text\":\"Lambda 表达式\",\"link\":\"/python/advanced/Lambda 表达式\"},{\"text\":\"推导式\",\"link\":\"/python/advanced/推导式\"},{\"text\":\"正则表达式\",\"link\":\"/python/advanced/正则表达式\"},{\"text\":\"并发编程\",\"link\":\"/python/advanced/并发编程\"},{\"text\":\"异步编程\",\"link\":\"/python/advanced/异步编程\"},{\"text\":\"元编程\",\"link\":\"/python/advanced/元编程\"}]},{\"text\":\"高级\",\"items\":[{\"text\":\"内存管理\",\"link\":\"/python/expert/内存管理\"},{\"text\":\"GIL 全局解释器锁\",\"link\":\"/python/expert/GIL 全局解释器锁\"},{\"text\":\"性能优化\",\"link\":\"/python/expert/性能优化\"},{\"text\":\"设计模式\",\"link\":\"/python/expert/设计模式\"},{\"text\":\"类型提示\",\"link\":\"/python/expert/类型提示\"},{\"text\":\"测试与调试\",\"link\":\"/python/expert/测试与调试\"}]},{\"text\":\"工具\",\"items\":[{\"text\":\"pip\",\"link\":\"/python/tools/pip\"},{\"text\":\"虚拟环境\",\"link\":\"/python/tools/虚拟环境\"},{\"text\":\"代码规范\",\"link\":\"/python/tools/代码规范\"}]}],\"java\":[{\"text\":\"基础\",\"items\":[{\"text\":\"环境搭建\",\"link\":\"/java/basic/环境搭建\"},{\"text\":\"基础语法\",\"link\":\"/java/basic/基础语法\"},{\"text\":\"数组与字符串\",\"link\":\"/java/basic/数组与字符串\"}]},{\"text\":\"核心\",\"items\":[{\"text\":\"面向对象编程\",\"link\":\"/java/core/面向对象编程\"},{\"text\":\"集合框架\",\"link\":\"/java/core/集合框架\"},{\"text\":\"异常处理\",\"link\":\"/java/core/异常处理\"},{\"text\":\"泛型\",\"link\":\"/java/core/泛型\"},{\"text\":\"注解与反射\",\"link\":\"/java/core/注解与反射\"}]},{\"text\":\"进阶\",\"items\":[{\"text\":\"JVM内存模型与GC\",\"link\":\"/java/advanced/JVM内存模型与GC\"},{\"text\":\"并发编程\",\"link\":\"/java/advanced/并发编程\"},{\"text\":\"Java 8+新特性\",\"link\":\"/java/advanced/Java8新特性\"},{\"text\":\"IO与NIO\",\"link\":\"/java/advanced/IO与NIO\"},{\"text\":\"序列化\",\"link\":\"/java/advanced/序列化\"}]},{\"text\":\"高级\",\"items\":[{\"text\":\"JVM调优\",\"link\":\"/java/expert/JVM调优\"},{\"text\":\"并发编程深入\",\"link\":\"/java/expert/并发编程深入\"},{\"text\":\"设计模式\",\"link\":\"/java/expert/设计模式\"}]},{\"text\":\"Spring\",\"items\":[{\"text\":\"Spring入门与IoC控制反转\",\"link\":\"/java/frameworks/spring/Spring入门与IoC控制反转\"},{\"text\":\"Bean生命周期与作用域\",\"link\":\"/java/frameworks/spring/Bean生命周期与作用域\"},{\"text\":\"AOP面向切面编程\",\"link\":\"/java/frameworks/spring/AOP面向切面编程\"},{\"text\":\"Spring事务管理\",\"link\":\"/java/frameworks/spring/Spring事务管理\"},{\"text\":\"Spring核心原理\",\"link\":\"/java/frameworks/spring/Spring核心原理\"}]},{\"text\":\"SpringMVC\",\"items\":[{\"text\":\"SpringMVC入门与请求处理流程\",\"link\":\"/java/frameworks/springmvc/SpringMVC入门与请求处理流程\"},{\"text\":\"参数绑定与数据校验\",\"link\":\"/java/frameworks/springmvc/参数绑定与数据校验\"},{\"text\":\"异常处理机制\",\"link\":\"/java/frameworks/springmvc/异常处理机制\"},{\"text\":\"拦截器与过滤器\",\"link\":\"/java/frameworks/springmvc/拦截器与过滤器\"}]},{\"text\":\"MyBatis\",\"items\":[{\"text\":\"MyBatis入门与核心概念\",\"link\":\"/java/frameworks/mybatis/MyBatis入门与核心概念\"},{\"text\":\"动态SQL与缓存机制\",\"link\":\"/java/frameworks/mybatis/动态SQL与缓存机制\"},{\"text\":\"MyBatis核心原理\",\"link\":\"/java/frameworks/mybatis/MyBatis核心原理\"}]},{\"text\":\"SpringBoot\",\"items\":[{\"text\":\"SpringBoot入门与核心特性\",\"link\":\"/java/frameworks/springboot/SpringBoot入门与核心特性\"},{\"text\":\"SpringBoot自动配置原理\",\"link\":\"/java/frameworks/springboot/SpringBoot自动配置原理\"},{\"text\":\"配置文件与环境管理\",\"link\":\"/java/frameworks/springboot/配置文件与环境管理\"},{\"text\":\"SpringBoot核心原理\",\"link\":\"/java/frameworks/springboot/SpringBoot核心原理\"}]}],\"ai\":[{\"text\":\"第一阶段：基础入门\",\"items\":[{\"text\":\"大模型概述\",\"link\":\"/ai/basic/大模型概述\"},{\"text\":\"Prompt工程基础\",\"link\":\"/ai/basic/Prompt工程基础\"},{\"text\":\"环境搭建\",\"link\":\"/ai/basic/环境搭建\"}]},{\"text\":\"第二阶段：核心API与框架\",\"items\":[{\"text\":\"OpenAI API详解\",\"link\":\"/ai/api/OpenAI_API详解\"},{\"text\":\"Claude API详解\",\"link\":\"/ai/api/Claude_API详解\"},{\"text\":\"LangChain入门\",\"link\":\"/ai/framework/LangChain入门\"},{\"text\":\"本地模型部署\",\"link\":\"/ai/framework/本地模型部署\"}]},{\"text\":\"第三阶段：高级应用开发\",\"items\":[{\"text\":\"RAG实战\",\"link\":\"/ai/advanced/RAG实战\"},{\"text\":\"Agent开发\",\"link\":\"/ai/advanced/Agent开发\"},{\"text\":\"多模态应用\",\"link\":\"/ai/advanced/多模态应用\"},{\"text\":\"性能优化\",\"link\":\"/ai/advanced/性能优化\"}]},{\"text\":\"第四阶段：实战项目\",\"items\":[{\"text\":\"智能客服系统\",\"link\":\"/ai/projects/智能客服系统\"},{\"text\":\"代码助手\",\"link\":\"/ai/projects/代码助手\"},{\"text\":\"数据分析助手\",\"link\":\"/ai/projects/数据分析助手\"}]},{\"text\":\"第五阶段：进阶与部署\",\"items\":[{\"text\":\"模型微调\",\"link\":\"/ai/expert/模型微调\"},{\"text\":\"生产部署\",\"link\":\"/ai/expert/生产部署\"}]}],\"mysql\":[{\"text\":\"入门\",\"items\":[{\"text\":\"MySQL简介与环境搭建\",\"link\":\"/mysql/basic/MySQL简介与环境搭建\"},{\"text\":\"SQL基础语法\",\"link\":\"/mysql/basic/SQL基础语法\"},{\"text\":\"数据类型与表结构\",\"link\":\"/mysql/basic/数据类型与表结构\"},{\"text\":\"数据查询与操作\",\"link\":\"/mysql/basic/数据查询与操作\"}]},{\"text\":\"核心原理\",\"items\":[{\"text\":\"索引原理与应用\",\"link\":\"/mysql/core/索引原理与应用\"},{\"text\":\"事务与ACID特性\",\"link\":\"/mysql/core/事务与ACID特性\"},{\"text\":\"存储引擎详解\",\"link\":\"/mysql/core/存储引擎详解\"},{\"text\":\"锁机制与并发控制\",\"link\":\"/mysql/core/锁机制与并发控制\"}]},{\"text\":\"进阶实战\",\"items\":[{\"text\":\"SQL优化实战\",\"link\":\"/mysql/advanced/SQL优化实战\"},{\"text\":\"主从复制原理\",\"link\":\"/mysql/advanced/主从复制原理\"},{\"text\":\"分库分表策略\",\"link\":\"/mysql/advanced/分库分表策略\"},{\"text\":\"性能调优实战\",\"link\":\"/mysql/advanced/性能调优实战\"}]},{\"text\":\"精通与架构\",\"items\":[{\"text\":\"InnoDB存储引擎深度剖析\",\"link\":\"/mysql/expert/InnoDB存储引擎深度剖析\"},{\"text\":\"查询优化器原理\",\"link\":\"/mysql/expert/查询优化器原理\"},{\"text\":\"日志系统与恢复机制\",\"link\":\"/mysql/expert/日志系统与恢复机制\"},{\"text\":\"MySQL高可用架构\",\"link\":\"/mysql/expert/MySQL高可用架构\"}]}],\"redis\":[{\"text\":\"入门\",\"items\":[{\"text\":\"Redis简介与环境搭建\",\"link\":\"/redis/basic/Redis简介与环境搭建\"},{\"text\":\"数据类型与基础命令\",\"link\":\"/redis/basic/数据类型与基础命令\"}]},{\"text\":\"核心原理\",\"items\":[{\"text\":\"数据结构底层实现\",\"link\":\"/redis/core/数据结构底层实现\"},{\"text\":\"持久化机制\",\"link\":\"/redis/core/持久化机制\"},{\"text\":\"内存管理与淘汰策略\",\"link\":\"/redis/core/内存管理与淘汰策略\"},{\"text\":\"发布订阅与事务\",\"link\":\"/redis/core/发布订阅与事务\"}]},{\"text\":\"进阶实战\",\"items\":[{\"text\":\"主从复制与集群\",\"link\":\"/redis/advanced/主从复制与集群\"},{\"text\":\"缓存问题与性能优化\",\"link\":\"/redis/advanced/缓存问题与性能优化\"}]},{\"text\":\"精通与架构\",\"items\":[{\"text\":\"单线程模型与事件循环\",\"link\":\"/redis/expert/单线程模型与事件循环\"},{\"text\":\"分布式锁与高可用架构\",\"link\":\"/redis/expert/分布式锁与高可用架构\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/vuejs/vitepress\"}]},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false,\"additionalConfig\":{}}");</script>
+    
+  </body>
+</html>
